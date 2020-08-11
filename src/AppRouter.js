@@ -4,11 +4,13 @@ import Home from "./components/Home";
 
 function AppRouter() {
   return (
-    <Switch>
-      <Route exact path="/">
-        <Home />
-      </Route>
-    </Switch>
+    <>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </>
   );
 }
 
