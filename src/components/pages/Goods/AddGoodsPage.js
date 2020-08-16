@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import FormText from "../../common/FormText";
+import { connect } from "react-redux";
+import * as goodsActions from "../../../redux/actions/goodsActions";
 
-const AddGoodsPage = () => {
+const AddGoodsPage = (props) => {
   const [good, setGood] = useState({
     name: "",
     carbohydrates: "",
@@ -17,6 +19,7 @@ const AddGoodsPage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    props.onAddCourse(good);
   };
 
   return (
@@ -72,4 +75,18 @@ const AddGoodsPage = () => {
   );
 };
 
-export default AddGoodsPage;
+const mapStateToProps = (state) => {
+  return {
+    goods: state.goods,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAddCourse: (goods) => {
+      dispatch(goodsActions.saveGoods(goods));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddGoodsPage);
