@@ -1,0 +1,1 @@
+export const LOAD_GOODS_SUCCESS = "LOAD_GOODS_SUCCESS";
