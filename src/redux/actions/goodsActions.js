@@ -1,7 +1,8 @@
 import * as actionTypes from "./actionTypes";
+import * as webApi from "../../api/goodsApi";
 
 export function saveGoodsSuccess(goods) {
-  return { type: "SAVE_GOODS_SUCCESS", goods };
+  return { type: actionTypes.SAVE_GOODS_SUCCESS, goods };
 }
 
 export function loadGoodsSuccess(goods) {
@@ -10,7 +11,8 @@ export function loadGoodsSuccess(goods) {
 
 export function loadGoods() {
   return function (dispatch) {
-    return fetch("http://localhost:5000/api/goods")
+    return webApi
+      .getGoods()
       .then((goods) => {
         dispatch(loadGoodsSuccess(goods));
       })
@@ -22,9 +24,10 @@ export function loadGoods() {
 
 export function saveGoods(goods) {
   return function (dispatch) {
-    return fetch("http://localhost:5000/api/goods")
-      .then((response) => {
-        dispatch(saveGoodsSuccess(response));
+    return webApi
+      .saveGoods(goods)
+      .then(() => {
+        dispatch(saveGoodsSuccess(goods));
       })
       .catch((error) => {
         throw error;

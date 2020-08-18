@@ -4,6 +4,7 @@ import Home from "./components/pages/HomePage";
 import PageNotFound from "./components/pages/PageNotFound";
 import AboutPage from "./components/pages/AboutPage";
 import AddGoodsPage from "./components/pages/Goods/AddGoodsPage";
+import GoodsListPage from "./components/pages/Goods/GoodsListPage";
 
 function AppRouter() {
   return (
@@ -20,6 +21,9 @@ function AppRouter() {
         </Route>
         <Route exact path="/goods/add">
           <AddGoodsPage />
+        </Route>
+        <Route path="/goods/list">
+          <GoodsListPage />
         </Route>
         <Route>
           <PageNotFound />
