@@ -3,14 +3,15 @@ import "./App.css";
 import AppRouter from "./AppRouter";
 import Layout from "./components/Layout/Layout";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Container } from "react-bootstrap";
 
 function App() {
   return (
     <>
       <Layout />
-      <div className="container col-12 col-md-8 col-lg-6">
+      <Container fluid style={{ minWidth: "380px" }}>
         <AppRouter />
-      </div>
+      </Container>
     </>
   );
 }
