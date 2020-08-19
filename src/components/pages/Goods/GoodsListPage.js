@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import * as goodsActions from "../../../redux/actions/goodsActions";
 import GoodsPreview from "./GoodsPreview";
