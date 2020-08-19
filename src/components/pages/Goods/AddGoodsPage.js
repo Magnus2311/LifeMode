@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Col } from "react-bootstrap";
 import FormText from "../../common/FormText";
 import { connect } from "react-redux";
 import * as goodsActions from "../../../redux/actions/goodsActions";
+import ChoosePhotoInput from "../../common/ChoosePhotoInput";
 
 const AddGoodsPage = (props) => {
   const [good, setGood] = useState({
@@ -11,10 +12,15 @@ const AddGoodsPage = (props) => {
     fats: "",
     calories: "",
     protein: "",
+    image: "",
   });
 
   const handleChange = (event) => {
     setGood({ ...good, [event.target.name]: event.target.value });
+  };
+
+  const handleImgChange = (src) => {
+    setGood({ ...good, image: src });
   };
 
   const handleSubmit = (event) => {
@@ -23,55 +29,63 @@ const AddGoodsPage = (props) => {
   };
 
   return (
-    <Form
-      style={{ display: "grid", placeItems: "center" }}
-      onSubmit={handleSubmit}
-    >
-      <h1>Add Goods</h1>
-      <FormText
-        label="Name"
-        type="text"
-        name="name"
-        placeholder="Enter goods name"
-        value={good.name}
-        handleChange={handleChange}
-      />
-      <FormText
-        label="Carbohydrates"
-        type="text"
-        name="carbohydrates"
-        placeholder="Enter carbohydrates"
-        value={good.carbohydrates}
-        handleChange={handleChange}
-      />
-      <FormText
-        label="Fats"
-        type="text"
-        name="fats"
-        placeholder="Enter fats"
-        value={good.fats}
-        handleChange={handleChange}
-      />
-      <FormText
-        label="Calories"
-        type="text"
-        name="calories"
-        placeholder="Enter calories"
-        value={good.calories}
-        handleChange={handleChange}
-      />
-      <FormText
-        label="Protein"
-        type="text"
-        name="protein"
-        placeholder="Enter protein"
-        value={good.protein}
-        handleChange={handleChange}
-      />
-      <Button variant="primary" type="submit">
-        Add
-      </Button>
-    </Form>
+    <Col>
+      <Form onSubmit={handleSubmit}>
+        <h1>Add Goods</h1>
+        <FormText
+          label="Name"
+          type="text"
+          name="name"
+          placeholder="Enter goods name"
+          value={good.name}
+          handleChange={handleChange}
+        />
+
+        <ChoosePhotoInput
+          label="Photo"
+          name="image"
+          placeholder="Choose photo"
+          value={good.image}
+          handleChange={handleImgChange}
+        />
+
+        <FormText
+          label="Carbohydrates"
+          type="text"
+          name="carbohydrates"
+          placeholder="Enter carbohydrates"
+          value={good.carbohydrates}
+          handleChange={handleChange}
+        />
+        <FormText
+          label="Fats"
+          type="text"
+          name="fats"
+          placeholder="Enter fats"
+          value={good.fats}
+          handleChange={handleChange}
+        />
+        <FormText
+          label="Calories"
+          type="text"
+          name="calories"
+          placeholder="Enter calories"
+          value={good.calories}
+          handleChange={handleChange}
+        />
+        <FormText
+          label="Protein"
+          type="text"
+          name="protein"
+          placeholder="Enter protein"
+          value={good.protein}
+          handleChange={handleChange}
+        />
+        <Button variant="primary" type="submit">
+          Add
+        </Button>
+      </Form>
+    </Col>
   );
 };
 

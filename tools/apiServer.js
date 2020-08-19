@@ -49,7 +49,7 @@ server.post("/goods/", function (req, res, next) {
   if (error) {
     res.status(400).send(error);
   } else {
-    req.body.slug = createSlug(req.body.title); // Generate a slug for new courses.
+    req.body.slug = createSlug(req.body.name); // Generate a slug for new courses.
     next();
   }
 });
@@ -74,7 +74,7 @@ function createSlug(value) {
 }
 
 function validateGoods(goods) {
-  if (!goods.title) return "Title is required.";
-  if (!goods.category) return "Category is required.";
+  if (!goods.name) return "Title is required.";
+  if (!goods.image) return "Category is required.";
   return "";
 }
