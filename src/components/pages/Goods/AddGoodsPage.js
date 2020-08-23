@@ -50,7 +50,6 @@ const AddGoodsPage = (props) => {
     event.preventDefault();
     props.onAddCourse(good);
     setGood(emptyGood);
-    toast.success("Goods added successfully!");
   };
 
   return (

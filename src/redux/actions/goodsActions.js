@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import * as webApi from "../../api/goodsApi";
+import { toast } from "react-toastify";
 
 export function saveGoodsSuccess(goods) {
   return { type: actionTypes.SAVE_GOODS_SUCCESS, goods };
@@ -28,8 +29,10 @@ export function saveGoods(goods) {
       .saveGoods(goods)
       .then(() => {
         dispatch(saveGoodsSuccess(goods));
+        toast.success("Goods added successfully!");
       })
       .catch((error) => {
+        toast.error("Goods add failed!");
         throw error;
       });
   };
