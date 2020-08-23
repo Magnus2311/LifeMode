@@ -5,27 +5,50 @@ import { connect } from "react-redux";
 import * as goodsActions from "../../../redux/actions/goodsActions";
 import ChoosePhotoInput from "../../common/ChoosePhotoInput";
 
+const defaultImgName = "Choose photo";
+let file;
+
+const emptyGood = {
+  name: "",
+  carbohydrates: "",
+  fats: "",
+  calories: "",
+  protein: "",
+  image: "",
+  imgName: "Choose photo",
+};
+
 const AddGoodsPage = (props) => {
-  const [good, setGood] = useState({
-    name: "",
-    carbohydrates: "",
-    fats: "",
-    calories: "",
-    protein: "",
-    image: "",
-  });
+  const [good, setGood] = useState(emptyGood);
 
   const handleChange = (event) => {
     setGood({ ...good, [event.target.name]: event.target.value });
   };
 
-  const handleImgChange = (src) => {
-    setGood({ ...good, image: src });
+  const handleImgChange = (event) => {
+    file = event.target.files[0];
+    let imageSrc;
+    if (file) {
+      var reader = new FileReader();
+      reader.onload = () => {
+        imageSrc = reader.result;
+        setGood({
+          ...good,
+          image: imageSrc,
+          imgName: file.name,
+        });
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setGood({ ...good, image: "imageSrc" });
+      setGood({ ...good, imgName: defaultImgName });
+    }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     props.onAddCourse(good);
+    setGood(emptyGood);
   };
 
   return (
@@ -44,8 +67,8 @@ const AddGoodsPage = (props) => {
         <ChoosePhotoInput
           label="Photo"
           name="image"
-          placeholder="Choose photo"
-          value={good.image}
+          imgName={good.imgName}
+          imgSrc={good.image}
           handleChange={handleImgChange}
         />
 

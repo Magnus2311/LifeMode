@@ -1,28 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Image } from "react-bootstrap";
 
 const ChoosePhotoInput = (props) => {
-  const { label, handleChange, placeholder } = props;
-
-  const [imgName, setImgName] = useState(placeholder);
-  const [imgSrc, setImgSrc] = useState("");
-
-  const onChange = (event) => {
-    if (event.target.files[0]) {
-      setImgName(event.target.files[0].name);
-
-      var reader = new FileReader();
-      reader.onload = () => {
-        const result = reader.result;
-        setImgSrc(result);
-        handleChange(result);
-      };
-      reader.readAsDataURL(event.target.files[0]);
-    } else {
-      setImgSrc("");
-      setImgName(placeholder);
-    }
-  };
+  const { label, imgName, handleChange, imgSrc } = props;
 
   return (
     <Form.Group style={{ textAlignLast: "center" }}>
@@ -32,7 +12,7 @@ const ChoosePhotoInput = (props) => {
         label={imgName}
         data-browse="Browse"
         custom
-        onChange={onChange}
+        onChange={handleChange}
         style={{ textAlignLast: "start" }}
       />
       <Image
