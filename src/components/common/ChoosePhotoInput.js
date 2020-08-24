@@ -5,7 +5,12 @@ const ChoosePhotoInput = (props) => {
   const { label, imgName, handleChange, imgSrc } = props;
 
   return (
-    <Form.Group style={{ textAlignLast: "center" }}>
+    <Form.Group
+      style={{
+        textAlignLast: "center",
+        marginBottom: imgSrc !== "" ? "1rem" : "0",
+      }}
+    >
       <Form.Label>{label}</Form.Label>
       <Form.File
         id="image"

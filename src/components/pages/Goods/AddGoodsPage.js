@@ -4,6 +4,7 @@ import FormText from "../../common/FormText";
 import { connect } from "react-redux";
 import * as goodsActions from "../../../redux/actions/goodsActions";
 import ChoosePhotoInput from "../../common/ChoosePhotoInput";
+import { toast } from "react-toastify";
 
 const defaultImgName = "Choose photo";
 let file;
