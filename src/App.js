@@ -6,10 +6,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { LanguageProvider } from "./services/languages/Laguage";
 
 function App() {
   return (
-    <>
+    <LanguageProvider>
       <Layout />
       <Container
         fluid
@@ -21,7 +22,7 @@ function App() {
         </Row>
       </Container>
       <ToastContainer />
-    </>
+    </LanguageProvider>
   );
 }
 
