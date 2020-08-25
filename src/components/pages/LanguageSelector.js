@@ -30,10 +30,9 @@ export default function LanguageSelector() {
     >
       {Object.entries(languageOptions).map(([id, name]) => {
         return (
-          <NavDropdown.Item>
+          <NavDropdown.Item key={id}>
             <Image
               style={{ height: "20px", width: "20px" }}
-              key={id}
               title={name}
               data-language={id}
               onClick={handleLanguageChange}
