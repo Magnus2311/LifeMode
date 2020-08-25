@@ -3,6 +3,31 @@ import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { Translator } from "../../services/languages/Laguage";
 import LanguageSelector from "../pages/LanguageSelector";
 import { Link } from "react-router-dom";
+const categoriesJson = require("../../resources/categories/categories.json");
+
+function listCategories(categories) {
+  debugger;
+  return Object.entries(categories).map(([key, value]) => {
+    if (!value || typeof value === "string" || value === "undefined") {
+      return (
+        <NavDropdown.Item className="nav-dropdown-item">
+          <Link className="dropdown-item" to="/goods/list">
+            <Translator getString={value === "undefined" ? key : value} />
+          </Link>
+        </NavDropdown.Item>
+      );
+    } else {
+      return (
+        <>
+          <NavDropdown title={<Translator getString={key} />}>
+            {listCategories(value)}
+          </NavDropdown>
+          <NavDropdown.Divider />
+        </>
+      );
+    }
+  });
+}
 
 const Layout = () => {
   return (
@@ -28,6 +53,8 @@ const Layout = () => {
                 <Translator getString="Show" />
               </Link>
             </NavDropdown.Item>
+            <NavDropdown.Divider />
+            {listCategories(categoriesJson)}
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>
