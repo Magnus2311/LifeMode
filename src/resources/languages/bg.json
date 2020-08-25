@@ -1,4 +1,17 @@
 {
   "Goods": "Стоки",
-  "HomePageTitle": "Начална страница"
+  "Home Page": "Начална страница",
+  "About": "За нас",
+  "Add": "Добавяне",
+  "Show": "Всички",
+  "Oop, page not found!": "Оопси, нещо се обърка!",
+  "About page": "За нас",
+  "Add Goods": "Добавяне на продукт",
+  "Name": "Име",
+  "Photo": "Снимка",
+  "Carbohydrates": "Въглехидрати",
+  "Fats": "Мазнини",
+  "Calories": "Калории",
+  "Protein": "Протеини",
+  "Enter goods name": "Въведете име на продукета"
 }
