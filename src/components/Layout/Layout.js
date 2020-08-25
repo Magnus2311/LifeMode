@@ -14,6 +14,7 @@ const Layout = () => {
           <Nav.Link href="/test">Test</Nav.Link>
           <Nav.Link href="/goods/add">Add Goods</Nav.Link>
           <Nav.Link href="/goods/list">Show Goods</Nav.Link>
+          <Nav.Link href="/login">Login</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

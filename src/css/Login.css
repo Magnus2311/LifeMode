@@ -1,0 +1,57 @@
+.forgot-password,
+.forgot-password a {
+  text-align: right;
+  font-size: 13px;
+  padding-top: 10px;
+  color: #7f7d7d;
+  margin: 0;
+}
+
+.forgot-password a {
+  color: #167bff;
+}
+
+.remember-me {
+  margin: 1rem;
+}
+
+.btn-facebook {
+  width: 10rem;
+  height: 43px;
+  /* border-radius: 4px; */
+  font-size: 15px;
+  background: #3b5998;
+  color: white;
+  border: 0px transparent;
+  text-align: center;
+  margin: 10px;
+  display: inline-block;
+}
+.btn-facebook:hover {
+  background: #3b5998;
+  opacity: 0.6;
+}
+.btn-facebook i {
+  margin-left: -5px;
+  margin-right: 7px;
+}
+.btn-google {
+  margin: 5px;
+  width: 165px;
+  height: 35px;
+  border-radius: 4px;
+  background: #db3236;
+  color: white;
+  border: 0px transparent;
+  text-align: center;
+}
+.btn-google:hover {
+  background: #db3236;
+  opacity: 0.6;
+}
+@media only screen and (max-width: 399px) {
+  .btn-facebook,
+  .btn-google {
+    width: 100%;
+  }
+}

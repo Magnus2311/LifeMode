@@ -3,8 +3,9 @@ import { Switch, Route } from "react-router";
 import Home from "./components/pages/home/HomePage";
 import PageNotFound from "./components/pages/PageNotFound";
 import AboutPage from "./components/pages/about/AboutPage";
-import AddGoodsPage from "./components/pages/Goods/AddGoodsPage";
-import GoodsListPage from "./components/pages/Goods/GoodsListPage";
+import GoodsListPage from "./components/pages/goods/GoodsListPage";
+import LoginPage from "./components/pages/login/LoginPage";
+import AddGoodsPage from "./components/pages/goods/AddGoodsPage";
 
 function AppRouter() {
   return (
@@ -24,6 +25,9 @@ function AppRouter() {
         </Route>
         <Route path="/goods/list">
           <GoodsListPage />
+        </Route>
+        <Route path="/login">
+          <LoginPage />
         </Route>
         <Route>
           <PageNotFound />
