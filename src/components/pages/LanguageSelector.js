@@ -34,6 +34,7 @@ export default function LanguageSelector() {
             <Image
               style={{ height: "20px", width: "20px" }}
               key={id}
+              title={name}
               data-language={id}
               onClick={handleLanguageChange}
               src={`/images/languages/${id}.png`}
