@@ -32,10 +32,11 @@ export default function LanguageSelector() {
         return (
           <NavDropdown.Item>
             <Image
+              style={{ height: "20px", width: "20px" }}
               key={id}
               data-language={id}
               onClick={handleLanguageChange}
-              src={`/images/languages/${name}.png`}
+              src={`/images/languages/${id}.png`}
             />
           </NavDropdown.Item>
         );
