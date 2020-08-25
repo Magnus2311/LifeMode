@@ -2,15 +2,7 @@ import React from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 
 const GoodsPreview = (props) => {
-  const {
-    id,
-    name,
-    carbohydrates,
-    fats,
-    calories,
-    protein,
-    image,
-  } = props.goods;
+  const { name, carbohydrates, fats, calories, protein, image } = props.goods;
 
   return (
     <>

@@ -4,7 +4,7 @@ import FormText from "../../common/FormText";
 import { connect } from "react-redux";
 import * as goodsActions from "../../../redux/actions/goodsActions";
 import ChoosePhotoInput from "../../common/ChoosePhotoInput";
-import { toast } from "react-toastify";
+import { Translator } from "../../../services/languages/Laguage";
 
 const defaultImgName = "Choose photo";
 let file;
@@ -55,9 +55,11 @@ const AddGoodsPage = (props) => {
   return (
     <Col>
       <Form onSubmit={handleSubmit}>
-        <h1>Add Goods</h1>
+        <h1>
+          <Translator getString="Add Goods" />
+        </h1>
         <FormText
-          label="Name"
+          label={<Translator getString="Name" />}
           type="text"
           name="name"
           placeholder="Enter goods name"
@@ -66,7 +68,7 @@ const AddGoodsPage = (props) => {
         />
 
         <ChoosePhotoInput
-          label="Photo"
+          label={<Translator getString="Photo" />}
           name="image"
           imgName={good.imgName}
           imgSrc={good.image}
@@ -74,39 +76,39 @@ const AddGoodsPage = (props) => {
         />
 
         <FormText
-          label="Carbohydrates"
+          label={<Translator getString="Carbohydrates" />}
           type="text"
           name="carbohydrates"
-          placeholder="Enter carbohydrates"
+          placeholder={<Translator getString="Enter carbohydrates" />}
           value={good.carbohydrates}
           handleChange={handleChange}
         />
         <FormText
-          label="Fats"
+          label={<Translator getString="Fats" />}
           type="text"
           name="fats"
-          placeholder="Enter fats"
+          placeholder={<Translator getString="Enter fats" />}
           value={good.fats}
           handleChange={handleChange}
         />
         <FormText
-          label="Calories"
+          label={<Translator getString="Calories" />}
           type="text"
           name="calories"
-          placeholder="Enter calories"
+          placeholder={<Translator getString="Enter calories" />}
           value={good.calories}
           handleChange={handleChange}
         />
         <FormText
-          label="Protein"
+          label={<Translator getString="Protein" />}
           type="text"
           name="protein"
-          placeholder="Enter protein"
+          placeholder={<Translator getString="Enter protein" />}
           value={good.protein}
           handleChange={handleChange}
         />
         <Button variant="primary" type="submit">
-          Add
+          <Translator getString="Add" />
         </Button>
       </Form>
     </Col>

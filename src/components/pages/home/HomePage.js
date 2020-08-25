@@ -1,9 +1,12 @@
 import React from "react";
+import { Translator } from "../../../services/languages/Laguage";
 
 const Home = () => {
   return (
     <div>
-      <h1>Home page</h1>
+      <h1>
+        <Translator getString="Home Page" />
+      </h1>
     </div>
   );
 };
