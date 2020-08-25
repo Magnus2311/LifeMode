@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div>
       <h1>
-        <Translator getString="HomePageTitle" />
+        <Translator getString="Home Page" />
       </h1>
     </div>
   );

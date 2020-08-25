@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router";
+import { Switch, Route } from "react-router-dom";
 import Home from "./components/pages/home/HomePage";
 import PageNotFound from "./components/pages/PageNotFound";
 import AboutPage from "./components/pages/about/AboutPage";
@@ -10,24 +10,11 @@ function AppRouter() {
   return (
     <>
       <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/about">
-          <AboutPage />
-        </Route>
-        <Route exact path="/about">
-          <AboutPage />
-        </Route>
-        <Route exact path="/goods/add">
-          <AddGoodsPage />
-        </Route>
-        <Route path="/goods/list">
-          <GoodsListPage />
-        </Route>
-        <Route>
-          <PageNotFound />
-        </Route>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/about" component={AboutPage} />
+        <Route exact path="/goods/add" component={AddGoodsPage} />
+        <Route path="/goods/list" component={GoodsListPage} />
+        <Route component={PageNotFound} />
       </Switch>
     </>
   );

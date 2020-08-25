@@ -1,6 +1,6 @@
-import React, { useState, createContext, useContext } from "react";
+import { createContext } from "react";
 
-import { languageOptions, dictionaryList } from "./";
+import { dictionaryList } from "./";
 
 export const LanguageContext = createContext({
   userLanguage: "en",
