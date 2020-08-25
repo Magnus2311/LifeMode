@@ -79,7 +79,7 @@ const AddGoodsPage = (props) => {
           label={<Translator getString="Carbohydrates" />}
           type="text"
           name="carbohydrates"
-          placeholder={<Translator getString="Enter carbohydrates" />}
+          placeholder="Enter carbohydrates"
           value={good.carbohydrates}
           handleChange={handleChange}
         />
@@ -87,7 +87,7 @@ const AddGoodsPage = (props) => {
           label={<Translator getString="Fats" />}
           type="text"
           name="fats"
-          placeholder={<Translator getString="Enter fats" />}
+          placeholder="Enter fats"
           value={good.fats}
           handleChange={handleChange}
         />
@@ -95,7 +95,7 @@ const AddGoodsPage = (props) => {
           label={<Translator getString="Calories" />}
           type="text"
           name="calories"
-          placeholder={<Translator getString="Enter calories" />}
+          placeholder="Enter calories"
           value={good.calories}
           handleChange={handleChange}
         />
@@ -103,7 +103,7 @@ const AddGoodsPage = (props) => {
           label={<Translator getString="Protein" />}
           type="text"
           name="protein"
-          placeholder={<Translator getString="Enter protein" />}
+          placeholder="Enter protein"
           value={good.protein}
           handleChange={handleChange}
         />
