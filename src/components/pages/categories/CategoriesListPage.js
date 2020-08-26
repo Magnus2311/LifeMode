@@ -1,18 +1,29 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import * as categoryActions from "../../../redux/actions/categoryActions";
+// import * as categoryActions from "../../../redux/actions/categoryActions";
 import Category from "../../common/Category";
+const categories = require("../../../resources/categories/categories.json")
+  .categories;
 
 const CategoriesListPage = (props) => {
-  const { categories, onLoadCategories } = props;
+  const { onLoadCategories } = props;
 
-  const onClick = (event) => {};
+  const onClick = (category) => {
+    const { children } = category;
+    if (children) {
+      children.map([]);
+    }
+  };
 
   useEffect(onLoadCategories, []);
 
   return categories.map((category) => {
     return (
-      <Category key={category.id} category={category} handleClick={onClick} />
+      <Category
+        key={category.id}
+        category={category}
+        handleClick={onClick(category)}
+      />
     );
   });
 };
@@ -26,7 +37,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onLoadCategories: () => {
-      dispatch(categoryActions.loadCategories());
+      // dispatch(categoryActions.loadCategories());
     },
   };
 };
