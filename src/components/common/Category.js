@@ -8,7 +8,7 @@ const Category = (props) => {
 
   return (
     <Col>
-      <Card onClick={handleClick}>
+      <Card className="category-item text-center" onClick={handleClick}>
         <Card.Body>
           <Card.Img src={image}></Card.Img>
           <Card.Header>
