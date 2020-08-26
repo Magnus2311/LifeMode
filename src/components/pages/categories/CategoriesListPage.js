@@ -8,23 +8,10 @@ const categories = require("../../../resources/categories/categories.json")
 const CategoriesListPage = (props) => {
   const { onLoadCategories } = props;
 
-  const onClick = (category) => {
-    const { children } = category;
-    if (children) {
-      children.map([]);
-    }
-  };
-
   useEffect(onLoadCategories, []);
 
   return categories.map((category) => {
-    return (
-      <Category
-        key={category.id}
-        category={category}
-        handleClick={onClick(category)}
-      />
-    );
+    return <Category key={category.id} category={category} />;
   });
 };
 
