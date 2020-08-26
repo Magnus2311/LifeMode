@@ -1,3 +1,25 @@
 .nav-dropdown-item {
   padding: 0 !important;
 }
+
+.category-item {
+  min-width: 160px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+.card-body {
+  padding: 0;
+}
+
+.category-item img {
+  height: 90px;
+  width: 160px;
+}
+
+.card-header {
+  padding: 0.75rem 0;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  background: none;
+}

@@ -1,34 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { Translator } from "../../services/languages/Laguage";
 import LanguageSelector from "../pages/LanguageSelector";
 import { Link } from "react-router-dom";
 
 const Layout = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const handleClick = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
-    <Navbar bg="light" expand="lg" style={{ minWidth: "380px" }}>
-      <Link className="navbar-brand" to="/">
+    <Navbar
+      bg="light"
+      expand="lg"
+      style={{ minWidth: "380px" }}
+      expanded={isExpanded}
+    >
+      <Link className="navbar-brand" to="/" onClick={handleClick}>
         Life Mode
       </Link>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Toggle
+        aria-controls="basic-navbar-nav"
+        style={{ marginRight: "50px" }}
+        onClick={handleClick}
+      />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="/test">Test</Nav.Link>
-          <Link className="nav-link" to="/about">
+          <Link className="nav-link" to="/about" onClick={handleClick}>
             <Translator getString="About" />
           </Link>
           <NavDropdown title={<Translator getString="Goods" />}>
             <NavDropdown.Item className="nav-dropdown-item">
-              <Link className="dropdown-item" to="/goods/add">
+              <Link
+                className="dropdown-item"
+                to="/goods/add"
+                onClick={handleClick}
+              >
                 <Translator getString="Add" />
               </Link>
             </NavDropdown.Item>
             <NavDropdown.Item className="nav-dropdown-item">
-              <Link className="dropdown-item" to="/goods/list">
+              <Link
+                className="dropdown-item"
+                to="/goods/list"
+                onClick={handleClick}
+              >
                 <Translator getString="Show" />
               </Link>
             </NavDropdown.Item>
           </NavDropdown>
+          <Link className="nav-link" to="/categories/all" onClick={handleClick}>
+            <Translator getString="Categories" />
+          </Link>
         </Nav>
       </Navbar.Collapse>
       <LanguageSelector />
