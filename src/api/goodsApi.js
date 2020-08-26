@@ -1,5 +1,5 @@
 import { handleResponse, handleError } from "./apiUtils";
-const baseUrl = "http://localhost:3001/goods/";
+const baseUrl = "http://localhost:5000/goods/";
 
 export function getGoods() {
   return fetch(baseUrl).then(handleResponse).catch(handleError);
