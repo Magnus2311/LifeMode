@@ -7,7 +7,6 @@ import ChoosePhotoInput from "../../common/ChoosePhotoInput";
 import { Translator } from "../../../services/languages/Laguage";
 
 const defaultImgName = "Choose photo";
-let file;
 
 const emptyProduct = {
   name: "",
@@ -27,7 +26,7 @@ const AddProductPage = (props) => {
   };
 
   const handleImgChange = (event) => {
-    file = event.target.files[0];
+    let file = event.target.files[0];
     let imageSrc;
     if (file) {
       var reader = new FileReader();
@@ -115,12 +114,6 @@ const AddProductPage = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    products: state.products,
-  };
-};
-
 const mapDispatchToProps = (dispatch) => {
   return {
     onAddProduct: (product) => {
@@ -129,4 +122,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddProductPage);
+export default connect(mapDispatchToProps)(AddProductPage);
