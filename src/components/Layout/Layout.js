@@ -8,6 +8,10 @@ const Layout = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleClick = () => {
+    if (isExpanded) setIsExpanded(!isExpanded);
+  };
+
+  const handleOpenning = () => {
     setIsExpanded(!isExpanded);
   };
 
@@ -24,18 +28,18 @@ const Layout = () => {
       <Navbar.Toggle
         aria-controls="basic-navbar-nav"
         style={{ marginRight: "50px" }}
-        onClick={handleClick}
+        onClick={handleOpenning}
       />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Link className="nav-link" to="/about" onClick={handleClick}>
             <Translator getString="About" />
           </Link>
-          <NavDropdown title={<Translator getString="Goods" />}>
+          <NavDropdown title={<Translator getString="Products" />}>
             <NavDropdown.Item className="nav-dropdown-item">
               <Link
                 className="dropdown-item"
-                to="/goods/add"
+                to="/products/add"
                 onClick={handleClick}
               >
                 <Translator getString="Add" />
@@ -44,7 +48,7 @@ const Layout = () => {
             <NavDropdown.Item className="nav-dropdown-item">
               <Link
                 className="dropdown-item"
-                to="/goods/list"
+                to="/products/list"
                 onClick={handleClick}
               >
                 <Translator getString="Show" />

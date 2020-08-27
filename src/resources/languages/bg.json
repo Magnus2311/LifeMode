@@ -1,18 +1,18 @@
 {
-  "Goods": "Стоки",
+  "Products": "Стоки",
   "Home Page": "Начална страница",
   "About": "За нас",
   "Add": "Добавяне",
   "Show": "Всички",
   "Oop, page not found!": "Оопси, нещо се обърка!",
   "About page": "За нас",
-  "Add Goods": "Добавяне на продукт",
+  "Add Product": "Добавяне на продукт",
   "Name": "Име",
   "Photo": "Снимка",
   "Carbohydrates": "Въглехидрати",
   "Fats": "Мазнини",
   "Calories": "Калории",
   "Proteins": "Протеини",
-  "Enter goods name": "Въведете име на продукета",
+  "Enter product name": "Въведете име на продукта",
   "Boiled egg": "Варено яйце"
 }

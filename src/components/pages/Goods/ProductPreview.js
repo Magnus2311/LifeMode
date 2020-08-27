@@ -2,8 +2,8 @@ import React from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { Translator } from "../../../services/languages/Laguage";
 
-const GoodsPreview = (props) => {
-  const { name, carbohydrates, fats, calories, protein, image } = props.goods;
+const ProductPreview = (props) => {
+  const { name, carbohydrates, fats, calories, protein, image } = props.product;
 
   return (
     <>
@@ -51,4 +51,4 @@ const GoodsPreview = (props) => {
   );
 };
 
-export default GoodsPreview;
+export default ProductPreview;

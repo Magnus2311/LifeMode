@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-// import * as categoryActions from "../../../redux/actions/categoryActions";
+import * as categoryActions from "../../../redux/actions/categoryActions";
 import Category from "../../common/Category";
-const categories = require("../../../resources/categories/categories.json")
-  .categories;
 
 const CategoriesListPage = (props) => {
-  const { onLoadCategories } = props;
+  const { categories, onLoadCategories } = props;
 
   useEffect(onLoadCategories, []);
 
@@ -24,7 +22,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onLoadCategories: () => {
-      // dispatch(categoryActions.loadCategories());
+      dispatch(categoryActions.loadCategories());
     },
   };
 };

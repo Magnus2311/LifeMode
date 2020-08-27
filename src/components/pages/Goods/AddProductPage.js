@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Form, Button, Col } from "react-bootstrap";
 import FormText from "../../common/FormText";
 import { connect } from "react-redux";
-import * as goodsActions from "../../../redux/actions/goodsActions";
+import * as productsActions from "../../../redux/actions/productsActions";
 import ChoosePhotoInput from "../../common/ChoosePhotoInput";
 import { Translator } from "../../../services/languages/Laguage";
 
 const defaultImgName = "Choose photo";
 let file;
 
-const emptyGood = {
+const emptyProduct = {
   name: "",
   carbohydrates: "",
   fats: "",
@@ -19,11 +19,11 @@ const emptyGood = {
   imgName: "Choose photo",
 };
 
-const AddGoodsPage = (props) => {
-  const [good, setGood] = useState(emptyGood);
+const AddProductPage = (props) => {
+  const [product, setProduct] = useState(emptyProduct);
 
   const handleChange = (event) => {
-    setGood({ ...good, [event.target.name]: event.target.value });
+    setProduct({ ...product, [event.target.name]: event.target.value });
   };
 
   const handleImgChange = (event) => {
@@ -33,45 +33,45 @@ const AddGoodsPage = (props) => {
       var reader = new FileReader();
       reader.onload = () => {
         imageSrc = reader.result;
-        setGood({
-          ...good,
+        setProduct({
+          ...product,
           image: imageSrc,
           imgName: file.name,
         });
       };
       reader.readAsDataURL(file);
     } else {
-      setGood({ ...good, image: "imageSrc" });
-      setGood({ ...good, imgName: defaultImgName });
+      setProduct({ ...product, image: "imageSrc" });
+      setProduct({ ...product, imgName: defaultImgName });
     }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.onAddCourse(good);
-    setGood(emptyGood);
+    props.onAddProduct(product);
+    setProduct(emptyProduct);
   };
 
   return (
     <Col>
       <Form onSubmit={handleSubmit}>
         <h1>
-          <Translator getString="Add Goods" />
+          <Translator getString="Add Product" />
         </h1>
         <FormText
           label={<Translator getString="Name" />}
           type="text"
           name="name"
-          placeholder="Enter goods name"
-          value={good.name}
+          placeholder="Enter product name"
+          value={product.name}
           handleChange={handleChange}
         />
 
         <ChoosePhotoInput
           label={<Translator getString="Photo" />}
           name="image"
-          imgName={good.imgName}
-          imgSrc={good.image}
+          imgName={product.imgName}
+          imgSrc={product.image}
           handleChange={handleImgChange}
         />
 
@@ -80,7 +80,7 @@ const AddGoodsPage = (props) => {
           type="text"
           name="carbohydrates"
           placeholder="Enter carbohydrates"
-          value={good.carbohydrates}
+          value={product.carbohydrates}
           handleChange={handleChange}
         />
         <FormText
@@ -88,7 +88,7 @@ const AddGoodsPage = (props) => {
           type="text"
           name="fats"
           placeholder="Enter fats"
-          value={good.fats}
+          value={product.fats}
           handleChange={handleChange}
         />
         <FormText
@@ -96,15 +96,15 @@ const AddGoodsPage = (props) => {
           type="text"
           name="calories"
           placeholder="Enter calories"
-          value={good.calories}
+          value={product.calories}
           handleChange={handleChange}
         />
         <FormText
-          label={<Translator getString="Protein" />}
+          label={<Translator getString="Proteins" />}
           type="text"
           name="protein"
           placeholder="Enter protein"
-          value={good.protein}
+          value={product.protein}
           handleChange={handleChange}
         />
         <Button variant="primary" type="submit">
@@ -117,16 +117,16 @@ const AddGoodsPage = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    goods: state.goods,
+    products: state.products,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddCourse: (goods) => {
-      dispatch(goodsActions.saveGoods(goods));
+    onAddProduct: (product) => {
+      dispatch(productsActions.saveProduct(product));
     },
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddGoodsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(AddProductPage);
