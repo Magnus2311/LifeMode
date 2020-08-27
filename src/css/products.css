@@ -1,0 +1,22 @@
+.products-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.card-header {
+  font-size: 0.75rem;
+}
+
+.products-info {
+  font-size: 0.7rem;
+}
+
+.product-item img {
+  height: 90px;
+  width: 160px;
+}
+
+.col-6 {
+  padding: 0 !important;
+}

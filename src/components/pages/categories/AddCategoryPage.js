@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import * as categoryActions from "../../../redux/actions/categoryActions";
-import { Col, Form, FormText, Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { Translator } from "../../../services/languages/Laguage";
 import ChoosePhotoInput from "../../common/ChoosePhotoInput";
 import ChooseParentCategory from "./ChooseParentCategory";
+import FormText from "../../common/FormText";
+import "../../../css/categories.css";
 
 const defaultImgName = "Choose photo";
 
@@ -16,11 +18,11 @@ const emptyCategory = {
 };
 
 const AddCategoryPage = (props) => {
-  const { categories } = props;
+  const { categories, onAddCategory } = props;
   const [category, setCategory] = useState(emptyCategory);
 
   const handleChange = (event) => {
-    setCategory({ ...category, [event.target.name]: event.taget.value });
+    setCategory({ ...category, [event.target.name]: event.target.value });
   };
 
   const handleImgChange = (event) => {
@@ -43,38 +45,48 @@ const AddCategoryPage = (props) => {
     }
   };
 
-  const handleSubmit = (event) => {};
+  const handleChoose = (categoryId) => {
+    setCategory({ ...category, parentId: categoryId });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onAddCategory(category);
+    setCategory(emptyCategory);
+  };
 
   return (
-    <Col>
-      <Form onSubmit={handleSubmit}>
-        <h1>
-          <Translator getString="Add Category" />
-        </h1>
-        <FormText
-          label={<Translator getString="Name" />}
-          type="text"
-          name="name"
-          placeholder="Enter category name"
-          value={category.name}
-          handleChange={handleChange}
-        />
+    <Form className="add-form" onSubmit={handleSubmit}>
+      <h1>
+        <Translator getString="Add category" />
+      </h1>
 
-        <ChooseParentCategory categories={categories} />
+      <ChooseParentCategory
+        handleChoose={handleChoose}
+        categories={categories}
+      />
 
-        <ChoosePhotoInput
-          label={<Translator getString="Photo" />}
-          name="image"
-          imgName={category.imgName}
-          imgSrc={category.image}
-          handleChange={handleImgChange}
-        />
+      <FormText
+        label={<Translator getString="Name" />}
+        type="text"
+        name="name"
+        placeholder="Enter category name"
+        value={category.name}
+        handleChange={handleChange}
+      />
 
-        <Button variant="primary" type="submit">
-          <Translator getString="Add" />
-        </Button>
-      </Form>
-    </Col>
+      <ChoosePhotoInput
+        label={<Translator getString="Photo" />}
+        name="image"
+        imgName={category.imgName}
+        imgSrc={category.image}
+        handleChange={handleImgChange}
+      />
+
+      <Button variant="primary" type="submit">
+        <Translator getString="Add" />
+      </Button>
+    </Form>
   );
 };
 

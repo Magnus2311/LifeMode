@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { Translator } from "../../services/languages/Laguage";
 
 const Category = (props) => {
@@ -7,16 +7,14 @@ const Category = (props) => {
   const { image, name } = props.category;
 
   return (
-    <Col>
-      <Card className="category-item text-center" onClick={handleClick}>
-        <Card.Body>
-          <Card.Img src={image}></Card.Img>
-          <Card.Header>
-            <Translator getString={name} />
-          </Card.Header>
-        </Card.Body>
-      </Card>
-    </Col>
+    <Card className="category-item text-center" onClick={handleClick}>
+      <Card.Body>
+        <Card.Img src={image}></Card.Img>
+        <Card.Header>
+          <Translator getString={name} />
+        </Card.Header>
+      </Card.Body>
+    </Card>
   );
 };
 

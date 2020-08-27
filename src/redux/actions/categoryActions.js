@@ -7,7 +7,7 @@ export function loadCategoriesSuccess(categories) {
 }
 
 export function saveCategorySuccess(category) {
-  return { type: actionTypes.LOAD_CATEGORIES_SUCCESS, category };
+  return { type: actionTypes.SAVE_CATEGORY_SUCCESS, category };
 }
 
 export function loadCategories() {
@@ -16,10 +16,8 @@ export function loadCategories() {
       .getCategories()
       .then((categories) => {
         dispatch(loadCategoriesSuccess(categories));
-        toast.success("Categories loaded successfully");
       })
       .catch((error) => {
-        toast.error("Loading categories failed!");
         throw error;
       });
   };
@@ -31,7 +29,7 @@ export function saveCategory(category) {
       .saveCategory(category)
       .then((category) => {
         dispatch(saveCategorySuccess(category));
-        toast.error("Category added successfully!");
+        toast.success("Category added successfully!");
       })
       .catch((error) => {
         toast.error("Adding category failed!");

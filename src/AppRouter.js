@@ -6,6 +6,7 @@ import AboutPage from "./components/pages/about/AboutPage";
 import CategoriesListPage from "./components/pages/categories/CategoriesListPage";
 import AddProductPage from "./components/pages/Goods/AddProductPage";
 import ProductsListPage from "./components/pages/Goods/ProductsListPage";
+import AddCategoryPage from "./components/pages/categories/AddCategoryPage";
 
 function AppRouter() {
   return (
@@ -16,6 +17,7 @@ function AppRouter() {
         <Route exact path="/products/add" component={AddProductPage} />
         <Route path="/products/list" component={ProductsListPage} />
         <Route path="/categories/all" component={CategoriesListPage} />
+        <Route path="/categories/add" component={AddCategoryPage} />
         <Route component={PageNotFound} />
       </Switch>
     </>

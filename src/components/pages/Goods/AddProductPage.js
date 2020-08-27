@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Col } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import FormText from "../../common/FormText";
 import { connect } from "react-redux";
 import * as productsActions from "../../../redux/actions/productsActions";
@@ -7,6 +7,7 @@ import ChoosePhotoInput from "../../common/ChoosePhotoInput";
 import { Translator } from "../../../services/languages/Laguage";
 
 const defaultImgName = "Choose photo";
+let file;
 
 const emptyProduct = {
   name: "",
@@ -26,7 +27,7 @@ const AddProductPage = (props) => {
   };
 
   const handleImgChange = (event) => {
-    let file = event.target.files[0];
+    file = event.target.files[0];
     let imageSrc;
     if (file) {
       var reader = new FileReader();
@@ -52,66 +53,70 @@ const AddProductPage = (props) => {
   };
 
   return (
-    <Col>
-      <Form onSubmit={handleSubmit}>
-        <h1>
-          <Translator getString="Add Product" />
-        </h1>
-        <FormText
-          label={<Translator getString="Name" />}
-          type="text"
-          name="name"
-          placeholder="Enter product name"
-          value={product.name}
-          handleChange={handleChange}
-        />
+    <Form className="add-form" onSubmit={handleSubmit}>
+      <h1>
+        <Translator getString="Add Product" />
+      </h1>
+      <FormText
+        label={<Translator getString="Name" />}
+        type="text"
+        name="name"
+        placeholder="Enter product name"
+        value={product.name}
+        handleChange={handleChange}
+      />
 
-        <ChoosePhotoInput
-          label={<Translator getString="Photo" />}
-          name="image"
-          imgName={product.imgName}
-          imgSrc={product.image}
-          handleChange={handleImgChange}
-        />
+      <ChoosePhotoInput
+        label={<Translator getString="Photo" />}
+        name="image"
+        imgName={product.imgName}
+        imgSrc={product.image}
+        handleChange={handleImgChange}
+      />
 
-        <FormText
-          label={<Translator getString="Carbohydrates" />}
-          type="text"
-          name="carbohydrates"
-          placeholder="Enter carbohydrates"
-          value={product.carbohydrates}
-          handleChange={handleChange}
-        />
-        <FormText
-          label={<Translator getString="Fats" />}
-          type="text"
-          name="fats"
-          placeholder="Enter fats"
-          value={product.fats}
-          handleChange={handleChange}
-        />
-        <FormText
-          label={<Translator getString="Calories" />}
-          type="text"
-          name="calories"
-          placeholder="Enter calories"
-          value={product.calories}
-          handleChange={handleChange}
-        />
-        <FormText
-          label={<Translator getString="Proteins" />}
-          type="text"
-          name="protein"
-          placeholder="Enter protein"
-          value={product.protein}
-          handleChange={handleChange}
-        />
-        <Button variant="primary" type="submit">
-          <Translator getString="Add" />
-        </Button>
-      </Form>
-    </Col>
+      <FormText
+        label={<Translator getString="Carbohydrates" />}
+        type="text"
+        name="carbohydrates"
+        placeholder="Enter carbohydrates"
+        value={product.carbohydrates}
+        handleChange={handleChange}
+      />
+      <FormText
+        label={<Translator getString="Fats" />}
+        type="text"
+        name="fats"
+        placeholder="Enter fats"
+        value={product.fats}
+        handleChange={handleChange}
+      />
+      <FormText
+        label={<Translator getString="Calories" />}
+        type="text"
+        name="calories"
+        placeholder="Enter calories"
+        value={product.calories}
+        handleChange={handleChange}
+      />
+      <FormText
+        label={<Translator getString="Proteins" />}
+        type="text"
+        name="protein"
+        placeholder="Enter protein"
+        value={product.protein}
+        handleChange={handleChange}
+      />
+      <Button variant="primary" type="submit">
+        <Translator getString="Add" />
+      </Button>
+    </Form>
   );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    products: state.products,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -122,4 +127,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapDispatchToProps)(AddProductPage);
+export default connect(mapStateToProps, mapDispatchToProps)(AddProductPage);
