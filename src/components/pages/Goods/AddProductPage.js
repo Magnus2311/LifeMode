@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import * as productsActions from "../../../redux/actions/productsActions";
 import ChoosePhotoInput from "../../common/ChoosePhotoInput";
 import { Translator } from "../../../services/languages/Laguage";
+import ChooseParentCategory from "../categories/ChooseParentCategory";
 
 const defaultImgName = "Choose photo";
 let file;
@@ -17,9 +18,12 @@ const emptyProduct = {
   protein: "",
   image: "",
   imgName: "Choose photo",
+  categoryId: "",
+  category: {},
 };
 
 const AddProductPage = (props) => {
+  const { categories } = props;
   const [product, setProduct] = useState(emptyProduct);
 
   const handleChange = (event) => {
@@ -52,6 +56,15 @@ const AddProductPage = (props) => {
     setProduct(emptyProduct);
   };
 
+  const handleChoose = (categoryId) => {
+    debugger;
+    setProduct({ ...product, categoryId });
+    setProduct({
+      ...product,
+      category: categories.filter((c) => c.categoryId === categoryId),
+    });
+  };
+
   return (
     <Form className="add-form" onSubmit={handleSubmit}>
       <h1>
@@ -64,6 +77,11 @@ const AddProductPage = (props) => {
         placeholder="Enter product name"
         value={product.name}
         handleChange={handleChange}
+      />
+
+      <ChooseParentCategory
+        handleChoose={handleChoose}
+        categories={categories}
       />
 
       <ChoosePhotoInput
@@ -116,6 +134,7 @@ const AddProductPage = (props) => {
 const mapStateToProps = (state) => {
   return {
     products: state.products,
+    categories: state.categories,
   };
 };
 

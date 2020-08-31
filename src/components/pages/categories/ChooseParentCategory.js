@@ -3,7 +3,7 @@ import { Translator } from "../../../services/languages/Laguage";
 import { Dropdown } from "react-bootstrap";
 
 const ChooseParentCategory = (props) => {
-  const { categories, handleChoose } = props;
+  const { categories, handleChoose, canSelectMainCategory } = props;
   const [selectedCategory, setSelectedCategory] = useState({
     name: <Translator getString="Main category" />,
     categoryId: "",
@@ -27,18 +27,23 @@ const ChooseParentCategory = (props) => {
     return categories.map((category) => {
       return category.subCategories && category.subCategories.length > 0 ? (
         <>
-          <Dropdown>
+          <Dropdown key={category.id}>
             <Dropdown.Toggle>
-              {/* eslint-disable-next-line */}
-              <a
-                href="#"
-                role="button"
-                className="dropdown-toggle-choose text-left"
-                type="submit"
-                data-categoryId={category.id}
-                data-categoryName={category.name}
-                onClick={closeDropdownAndHandle}
-              ></a>
+              {canSelectMainCategory ? (
+                /* eslint-disable-next-line */
+                <a
+                  href="#"
+                  role="button"
+                  className="dropdown-toggle-choose text-left"
+                  type="submit"
+                  data-categoryId={category.id}
+                  data-categoryName={category.name}
+                  onClick={closeDropdownAndHandle}
+                ></a>
+              ) : (
+                ""
+              )}
+
               <Translator getString={category.name} />
             </Dropdown.Toggle>
             <Dropdown.Menu>
@@ -61,7 +66,7 @@ const ChooseParentCategory = (props) => {
 
   return (
     <Dropdown show={isDropdownShown}>
-      <Dropdown.Toggle onClick={() => setIsDropdownShown(true)}>
+      <Dropdown.Toggle onClick={() => setIsDropdownShown(!isDropdownShown)}>
         <Translator getString={selectedCategory.name} />
       </Dropdown.Toggle>
       <Dropdown.Menu>

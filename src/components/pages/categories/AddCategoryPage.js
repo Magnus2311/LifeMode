@@ -13,7 +13,7 @@ const defaultImgName = "Choose photo";
 const emptyCategory = {
   name: "",
   image: "",
-  imgName: "",
+  imgName: defaultImgName,
   parentId: "",
 };
 
@@ -63,6 +63,7 @@ const AddCategoryPage = (props) => {
 
       <ChooseParentCategory
         handleChoose={handleChoose}
+        canSelectMainCategory={true}
         categories={categories}
       />
 
