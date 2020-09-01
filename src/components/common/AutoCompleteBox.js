@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../../css/autocomplete.css";
-import { Translator } from "../../services/languages/Laguage";
 
 const AutoCompleteBox = (props) => {
   const { data, placeholder, handleSubmit, handleChange } = props;
@@ -9,11 +8,9 @@ const AutoCompleteBox = (props) => {
 
   const handleInnerChange = (event) => {
     setText(event.target.value);
-    debugger;
     setOptions(
       data.filter((item) => {
-        var str = <Translator getString={item} />;
-        return item && str === event.target.value;
+        return item.includes(event.target.value);
       })
     );
     if (handleChange) handleChange(event.target.value);
@@ -31,20 +28,24 @@ const AutoCompleteBox = (props) => {
         <div
           className="autocomplete-options"
           style={{
-            display: text.length === 0 ? "none" : "block",
+            display:
+              text.length === 0 || (options && options.length === 0) || !options
+                ? "none"
+                : "block",
           }}
         >
-          {options.map((option) => {
-            return (
-              <div
-                className="autocomplete-option"
-                key={option}
-                onClick={handleSubmit}
-              >
-                {option}
-              </div>
-            );
-          })}
+          {options &&
+            options.map((option) => {
+              return (
+                <div
+                  className="autocomplete-option"
+                  key={option}
+                  onClick={handleSubmit}
+                >
+                  {option}
+                </div>
+              );
+            })}
         </div>
       </div>
     </>
