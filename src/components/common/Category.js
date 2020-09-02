@@ -4,10 +4,14 @@ import { Translator } from "../../services/languages/Laguage";
 
 const Category = (props) => {
   const { handleClick } = props;
-  const { image, name } = props.category;
+  const { image, name, id } = props.category;
 
   return (
-    <Card className="category-item text-center" onClick={handleClick}>
+    <Card
+      data-id={id}
+      className="category-item text-center"
+      onClick={handleClick}
+    >
       <Card.Body>
         <Card.Img src={image}></Card.Img>
         <Card.Header>

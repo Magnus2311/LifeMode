@@ -22,7 +22,7 @@ function AppRouter(props) {
         <Route exact path="/" component={Home} />
         <Route exact path="/about" component={AboutPage} />
         <Route exact path="/products/add" component={AddProductPage} />
-        <Route path="/products/list" component={ProductsListPage} />
+        <Route path="/products/:categoryId?" component={ProductsListPage} />
         <Route path="/categories/all" component={CategoriesListPage} />
         <Route path="/categories/add" component={AddCategoryPage} />
         <Route component={PageNotFound} />

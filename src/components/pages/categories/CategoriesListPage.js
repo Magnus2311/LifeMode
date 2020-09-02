@@ -4,7 +4,7 @@ import * as categoryActions from "../../../redux/actions/categoryActions";
 import Category from "../../common/Category";
 import "../../../css/categories.css";
 import AutoCompleteBox from "../../common/AutoCompleteBox";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 const CategoriesListPage = (props) => {
   const { categories, onLoadCategories } = props;
@@ -15,16 +15,29 @@ const CategoriesListPage = (props) => {
 
   useEffect(onLoadCategories, []);
 
+  const handleAutocompleteOptionChoose = (event) => {
+    setSearchtext(event.target.textContent);
+    var category = categories.find(
+      (category) => category.name === event.target.textContent
+    );
+    debugger;
+    if (category && category.subCategories.length > 0) {
+      setSubcategories(category.subCategories);
+      setShownCategories([category]);
+    } else props.history.push(`/products/${category.id}`);
+  };
+
   const handleCategoryChoose = (event) => {
     setSearchtext(event.target.textContent);
     var category = categories.find(
-      (category) => category.name === event.target.innerHTML
+      (category) =>
+        category.id === parseInt(event.currentTarget.getAttribute("data-id"))
     );
     debugger;
-    if (category.subCategories.length > 0) {
+    if (category && category.subCategories.length > 0) {
       setSubcategories(category.subCategories);
       setShownCategories([category]);
-    } else return <Redirect to={`/products/${category.name}`} />;
+    } else props.history.push(`/products/${category.id}`);
   };
 
   const handleSerachTextChanged = (searchText) => {
@@ -41,8 +54,7 @@ const CategoriesListPage = (props) => {
   return (
     <>
       <AutoCompleteBox
-        placeholder="Choose category"
-        handleSubmit={handleCategoryChoose}
+        handleSubmit={handleAutocompleteOptionChoose}
         handleChange={handleSerachTextChanged}
         data={categories.map((category) => {
           return category.name;
@@ -57,6 +69,7 @@ const CategoriesListPage = (props) => {
                     name="category"
                     key={category.id}
                     category={category}
+                    handleClick={handleCategoryChoose}
                   />
                 )
               );

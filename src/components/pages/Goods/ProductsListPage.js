@@ -6,14 +6,18 @@ import "../../../css/products.css";
 
 const ProductsListPage = (props) => {
   const { products, onLoadProducts } = props;
+  const { categoryId } = props.match.params;
+  debugger;
 
   useEffect(onLoadProducts, []);
 
   return (
     <div className="products-container">
-      {products.map((product) => {
-        return <ProductPreview key={product.id} product={product} />;
-      })}
+      {products
+        .filter((p) => !categoryId || p.categoryId === parseInt(categoryId))
+        .map((product) => {
+          return <ProductPreview key={product.id} product={product} />;
+        })}
     </div>
   );
 };

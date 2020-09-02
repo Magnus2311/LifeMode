@@ -48,7 +48,7 @@ const Layout = () => {
             <NavDropdown.Item className="nav-dropdown-item">
               <Link
                 className="dropdown-item"
-                to="/products/list"
+                to="/products/"
                 onClick={handleClick}
               >
                 <Translator getString="Show" />

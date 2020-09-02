@@ -19,7 +19,6 @@ const emptyProduct = {
   image: "",
   imgName: "Choose photo",
   categoryId: "",
-  category: {},
 };
 
 const AddProductPage = (props) => {
@@ -58,10 +57,10 @@ const AddProductPage = (props) => {
 
   const handleChoose = (categoryId) => {
     debugger;
-    setProduct({ ...product, categoryId });
+    const category = categories.find((c) => c.id === parseInt(categoryId));
     setProduct({
       ...product,
-      category: categories.filter((c) => c.categoryId === categoryId),
+      categoryId: category.id,
     });
   };
 
