@@ -4,7 +4,6 @@ import * as categoryActions from "../../../redux/actions/categoryActions";
 import Category from "../../common/Category";
 import "../../../css/categories.css";
 import AutoCompleteBox from "../../common/AutoCompleteBox";
-import BackButton from "../../common/BackButton";
 
 const CategoriesListPage = (props) => {
   const { categories, onLoadCategories } = props;

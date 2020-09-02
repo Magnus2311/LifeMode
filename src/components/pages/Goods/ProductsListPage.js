@@ -4,7 +4,6 @@ import * as productsActions from "../../../redux/actions/productsActions";
 import ProductPreview from "./ProductPreview";
 import "../../../css/products.css";
 import Category from "../../common/Category";
-import { Link } from "react-router-dom";
 import BackButton from "../../common/BackButton";
 
 const ProductsListPage = (props) => {
