@@ -4,7 +4,7 @@ import * as categoryActions from "../../../redux/actions/categoryActions";
 import Category from "../../common/Category";
 import "../../../css/categories.css";
 import AutoCompleteBox from "../../common/AutoCompleteBox";
-import { Redirect, Link } from "react-router-dom";
+import BackButton from "../../common/BackButton";
 
 const CategoriesListPage = (props) => {
   const { categories, onLoadCategories } = props;
@@ -33,7 +33,7 @@ const CategoriesListPage = (props) => {
       (category) =>
         category.id === parseInt(event.currentTarget.getAttribute("data-id"))
     );
-    debugger;
+
     if (category && category.subCategories.length > 0) {
       setSubcategories(category.subCategories);
       setShownCategories([category]);
@@ -85,7 +85,18 @@ const CategoriesListPage = (props) => {
               );
             })}
       </div>
-      <div className="sub-categories-container">{subcategories}</div>
+      <div className="sub-categories-container">
+        {subcategories.map((category) => {
+          return (
+            <Category
+              name="category"
+              key={category.id}
+              category={category}
+              handleClick={handleCategoryChoose}
+            />
+          );
+        })}
+      </div>
     </>
   );
 };

@@ -4,7 +4,6 @@ import { Translator } from "../../../services/languages/Laguage";
 
 const ProductPreview = (props) => {
   const { name, carbohydrates, fats, calories, protein, image } = props.product;
-  debugger;
 
   return (
     <>

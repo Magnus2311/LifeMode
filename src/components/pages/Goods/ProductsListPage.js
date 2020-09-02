@@ -3,28 +3,48 @@ import { connect } from "react-redux";
 import * as productsActions from "../../../redux/actions/productsActions";
 import ProductPreview from "./ProductPreview";
 import "../../../css/products.css";
+import Category from "../../common/Category";
+import { Link } from "react-router-dom";
+import BackButton from "../../common/BackButton";
 
 const ProductsListPage = (props) => {
-  const { products, onLoadProducts } = props;
+  const { products, categories, onLoadProducts } = props;
   const { categoryId } = props.match.params;
-  debugger;
+
+  const category = categoryId
+    ? categories.find((c) => c.id === parseInt(categoryId))
+    : undefined;
 
   useEffect(onLoadProducts, []);
 
   return (
-    <div className="products-container">
-      {products
-        .filter((p) => !categoryId || p.categoryId === parseInt(categoryId))
-        .map((product) => {
-          return <ProductPreview key={product.id} product={product} />;
-        })}
-    </div>
+    <>
+      {category ? (
+        <>
+          <div className="choosen-category-container">
+            <BackButton history={props.history} />
+            <Category name="category" key={category.id} category={category} />
+          </div>
+          <hr />
+        </>
+      ) : (
+        <></>
+      )}
+      <div className="products-container">
+        {products
+          .filter((p) => !categoryId || p.categoryId === parseInt(categoryId))
+          .map((product) => {
+            return <ProductPreview key={product.id} product={product} />;
+          })}
+      </div>
+    </>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
     products: state.products,
+    categories: state.categories,
   };
 };
 
