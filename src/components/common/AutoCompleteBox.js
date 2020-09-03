@@ -7,10 +7,10 @@ const AutoCompleteBox = (props) => {
   const [options, setOptions] = useState(data);
 
   const handleInnerChange = (event) => {
-    setText(event.target.value);
+    setText(event.target.value.toLowerCase());
     setOptions(
       data.filter((item) => {
-        return item.includes(event.target.value);
+        return item.toLowerCase().includes(event.target.value.toLowerCase());
       })
     );
     if (handleChange) handleChange(event.target.value);

@@ -1,3 +1,11 @@
 .add-form {
   width: clamp(0, 100%, 60ch);
 }
+
+hr {
+  margin-top: 0rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  width: 100%;
+}

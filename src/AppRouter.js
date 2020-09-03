@@ -9,6 +9,7 @@ import ProductsListPage from "./components/pages/Goods/ProductsListPage";
 import AddCategoryPage from "./components/pages/categories/AddCategoryPage";
 import { connect } from "react-redux";
 import * as categoryActions from "./redux/actions/categoryActions";
+import SubCategoriesListPage from "./components/pages/categories/SubCategoriesListPage";
 
 function AppRouter(props) {
   const { dispatch } = props;
@@ -25,6 +26,10 @@ function AppRouter(props) {
         <Route path="/products/:categoryId?" component={ProductsListPage} />
         <Route path="/categories/all" component={CategoriesListPage} />
         <Route path="/categories/add" component={AddCategoryPage} />
+        <Route
+          path="/categories/:categoryId?"
+          component={SubCategoriesListPage}
+        />
         <Route component={PageNotFound} />
       </Switch>
     </>

@@ -3,32 +3,27 @@ import { connect } from "react-redux";
 import * as productsActions from "../../../redux/actions/productsActions";
 import ProductPreview from "./ProductPreview";
 import "../../../css/products.css";
-import Category from "../../common/Category";
-import BackButton from "../../common/BackButton";
+import ChosenCategories from "../../common/Categories/ChosenCategories";
+import findAllParentCategories from "../../../services/categories/categories";
 
 const ProductsListPage = (props) => {
   const { products, categories, onLoadProducts } = props;
   const { categoryId } = props.match.params;
 
-  const category = categoryId
-    ? categories.find((c) => c.id === parseInt(categoryId))
-    : undefined;
+  const initialize = () => {
+    onLoadProducts();
+    findAllParentCategories(categoryId, categories);
+  };
 
-  useEffect(onLoadProducts, []);
+  useEffect(initialize, []);
 
   return (
     <>
-      {category ? (
-        <>
-          <div className="choosen-category-container">
-            <BackButton history={props.history} />
-            <Category name="category" key={category.id} category={category} />
-          </div>
-          <hr />
-        </>
-      ) : (
-        <></>
-      )}
+      <ChosenCategories
+        history={props.history}
+        categoryId={categoryId}
+        categories={categories}
+      />
       <div className="products-container">
         {products
           .filter((p) => !categoryId || p.categoryId === parseInt(categoryId))

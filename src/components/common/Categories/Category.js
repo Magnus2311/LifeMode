@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import { Translator } from "../../services/languages/Laguage";
+import { Translator } from "../../../services/languages/Laguage";
 
 const Category = (props) => {
   const { handleClick } = props;

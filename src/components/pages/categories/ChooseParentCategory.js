@@ -17,8 +17,8 @@ const ChooseParentCategory = (props) => {
 
   const handleClick = (event) => {
     setIsDropdownShown(false);
-    const categoryId = event.target.getAttribute("data-categoryId");
-    const categoryName = event.target.getAttribute("data-categoryName");
+    const categoryId = event.target.getAttribute("data-categoryid");
+    const categoryName = event.target.getAttribute("data-categoryname");
     setSelectedCategory({ name: categoryName, categoryId: categoryId });
     handleChoose(categoryId);
   };
@@ -26,36 +26,34 @@ const ChooseParentCategory = (props) => {
   const showCategories = (categories) => {
     return categories.map((category) => {
       return category.subCategories && category.subCategories.length > 0 ? (
-        <>
-          <Dropdown key={category.id}>
-            <Dropdown.Toggle>
-              {canSelectMainCategory ? (
-                /* eslint-disable-next-line */
-                <a
-                  href="#"
-                  role="button"
-                  className="dropdown-toggle-choose text-left"
-                  type="submit"
-                  data-categoryId={category.id}
-                  data-categoryName={category.name}
-                  onClick={closeDropdownAndHandle}
-                ></a>
-              ) : (
-                ""
-              )}
+        <Dropdown key={category.id}>
+          <Dropdown.Toggle>
+            {canSelectMainCategory ? (
+              /* eslint-disable-next-line */
+              <a
+                href="#"
+                role="button"
+                className="dropdown-toggle-choose text-left"
+                type="submit"
+                data-categoryid={category.id}
+                data-categoryname={category.name}
+                onClick={closeDropdownAndHandle}
+              ></a>
+            ) : (
+              ""
+            )}
 
-              <Translator getString={category.name} />
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {showCategories(category.subCategories)}
-            </Dropdown.Menu>
-          </Dropdown>
-        </>
+            <Translator getString={category.name} />
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            {showCategories(category.subCategories)}
+          </Dropdown.Menu>
+        </Dropdown>
       ) : (
         <Dropdown.Item
           key={category.id}
-          data-categoryId={category.id}
-          data-categoryName={category.name}
+          data-categoryid={category.id}
+          data-categoryname={category.name}
           onClick={handleClick}
         >
           <Translator getString={category.name} />
@@ -65,7 +63,7 @@ const ChooseParentCategory = (props) => {
   };
 
   return (
-    <Dropdown show={isDropdownShown}>
+    <Dropdown key={selectedCategory.id} show={isDropdownShown}>
       <Dropdown.Toggle onClick={() => setIsDropdownShown(!isDropdownShown)}>
         <Translator getString={selectedCategory.name} />
       </Dropdown.Toggle>

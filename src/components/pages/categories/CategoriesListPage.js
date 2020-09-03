@@ -1,42 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import * as categoryActions from "../../../redux/actions/categoryActions";
-import Category from "../../common/Category";
 import "../../../css/categories.css";
 import AutoCompleteBox from "../../common/AutoCompleteBox";
+import Category from "../../common/Categories/Category";
+import ChosenCategories from "../../common/Categories/ChosenCategories";
+import { handleCategoryClick } from "../../../services/categories/categories";
 
 const CategoriesListPage = (props) => {
   const { categories, onLoadCategories } = props;
+  let { categoryId } = props.match.params;
   // eslint-disable-next-line
   const [searchText, setSearchtext] = useState("");
-  const [shownCategories, setShownCategories] = useState(categories);
-  const [subcategories, setSubcategories] = useState([]);
+  const [shownCategories, setShownCategories] = useState(
+    categories.filter((category) => !category.parentId)
+  );
 
   useEffect(onLoadCategories, []);
 
   const handleAutocompleteOptionChoose = (event) => {
     setSearchtext(event.target.textContent);
     var category = categories.find(
-      (category) => category.name === event.target.textContent
+      (category) =>
+        category.name.toLowerCase() === event.target.textContent.toLowerCase()
     );
-    debugger;
-    if (category && category.subCategories.length > 0) {
-      setSubcategories(category.subCategories);
-      setShownCategories([category]);
-    } else props.history.push(`/products/${category.id}`);
+    if (category && category.subCategories.length > 0)
+      props.history.push(`/categories/${category.id}`);
+    else props.history.push(`/products/${category.id}`);
   };
 
   const handleCategoryChoose = (event) => {
     setSearchtext(event.target.textContent);
-    var category = categories.find(
-      (category) =>
-        category.id === parseInt(event.currentTarget.getAttribute("data-id"))
-    );
-
-    if (category && category.subCategories.length > 0) {
-      setSubcategories(category.subCategories);
-      setShownCategories([category]);
-    } else props.history.push(`/products/${category.id}`);
+    handleCategoryClick(event, categories, props.history);
   };
 
   const handleSerachTextChanged = (searchText) => {
@@ -45,7 +40,7 @@ const CategoriesListPage = (props) => {
     else
       setShownCategories(
         categories.filter((category) => {
-          return category.name.includes(searchText);
+          return category.name.toLowerCase().includes(searchText.toLowerCase());
         })
       );
   };
@@ -59,20 +54,29 @@ const CategoriesListPage = (props) => {
           return category.name;
         })}
       />
+      {categoryId && (
+        <ChosenCategories
+          history={props.history}
+          categoryId={categoryId}
+          categories={categories}
+        />
+      )}
       <div className="categories-container">
         {shownCategories.length === 0
-          ? categories.map((category) => {
-              return (
-                !category.parentId && (
-                  <Category
-                    name="category"
-                    key={category.id}
-                    category={category}
-                    handleClick={handleCategoryChoose}
-                  />
-                )
-              );
-            })
+          ? categories
+              .filter((category) => !category.parentId)
+              .map((category) => {
+                return (
+                  !category.parentId && (
+                    <Category
+                      name="category"
+                      key={category.id}
+                      category={category}
+                      handleClick={handleCategoryChoose}
+                    />
+                  )
+                );
+              })
           : shownCategories.map((category) => {
               return (
                 <Category
@@ -83,18 +87,6 @@ const CategoriesListPage = (props) => {
                 />
               );
             })}
-      </div>
-      <div className="sub-categories-container">
-        {subcategories.map((category) => {
-          return (
-            <Category
-              name="category"
-              key={category.id}
-              category={category}
-              handleClick={handleCategoryChoose}
-            />
-          );
-        })}
       </div>
     </>
   );
