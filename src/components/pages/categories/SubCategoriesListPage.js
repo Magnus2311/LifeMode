@@ -25,16 +25,18 @@ const SubCategoriesListPage = (props) => {
         categoryId={categoryId}
         categories={categories}
       />
-      {findSubCategories(categoryId, categories).map((category) => {
-        return (
-          <Category
-            name="category"
-            key={category.id}
-            category={category}
-            handleClick={handleCategoryChoose}
-          />
-        );
-      })}
+      <div className="categories-container">
+        {findSubCategories(categoryId, categories).map((category) => {
+          return (
+            <Category
+              name="category"
+              key={category.id}
+              category={category}
+              handleClick={handleCategoryChoose}
+            />
+          );
+        })}
+      </div>
     </>
   );
 };
