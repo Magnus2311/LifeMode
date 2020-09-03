@@ -2,20 +2,20 @@ import * as actionTypes from "./actionTypes";
 import * as webApi from "../../api/productsApi";
 import { toast } from "react-toastify";
 
-export function saveProductSuccess(goods) {
-  return { type: actionTypes.SAVE_PRODUCT_SUCCESS, goods };
+export function saveProductSuccess(products) {
+  return { type: actionTypes.SAVE_PRODUCT_SUCCESS, products };
 }
 
-export function loadProductsSuccess(goods) {
-  return { type: actionTypes.LOAD_PRODUCTS_SUCCESS, goods };
+export function loadProductsSuccess(products) {
+  return { type: actionTypes.LOAD_PRODUCTS_SUCCESS, products };
 }
 
 export function loadProducts() {
   return function (dispatch) {
     return webApi
       .getProducts()
-      .then((goods) => {
-        dispatch(loadProductsSuccess(goods));
+      .then((products) => {
+        dispatch(loadProductsSuccess(products));
       })
       .catch((error) => {
         throw error;
@@ -25,6 +25,7 @@ export function loadProducts() {
 
 export function saveProduct(product) {
   return function (dispatch) {
+    debugger;
     return webApi
       .saveProduct(product)
       .then(() => {

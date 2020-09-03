@@ -29,6 +29,5 @@ export function LanguageProvider({ children }) {
 
 export function Translator({ getString }) {
   const languageContext = useContext(LanguageContext);
-
   return languageContext.dictionary[getString] || getString;
 }

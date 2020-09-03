@@ -48,7 +48,7 @@ const Layout = () => {
             <NavDropdown.Item className="nav-dropdown-item">
               <Link
                 className="dropdown-item"
-                to="/products/list"
+                to="/products/"
                 onClick={handleClick}
               >
                 <Translator getString="Show" />
@@ -57,6 +57,9 @@ const Layout = () => {
           </NavDropdown>
           <Link className="nav-link" to="/categories/all" onClick={handleClick}>
             <Translator getString="Categories" />
+          </Link>
+          <Link className="nav-link" to="/categories/add" onClick={handleClick}>
+            <Translator getString="Add category" />
           </Link>
         </Nav>
       </Navbar.Collapse>
