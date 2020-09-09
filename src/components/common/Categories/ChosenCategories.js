@@ -1,12 +1,11 @@
 import React from "react";
-import BackButton from "../BackButton";
 import Category from "./Category";
 import findAllParentCategories, {
   handleCategoryClick,
 } from "../../../services/categories/categories";
 
 const ChosenCategories = (props) => {
-  const { history, categoryId, categories } = props;
+  const { categoryId, categories } = props;
 
   const handleClick = (event) => {
     handleCategoryClick(event, categories, props.history);
@@ -29,10 +28,7 @@ const ChosenCategories = (props) => {
 
   return (
     <>
-      <div className="choosen-category-container">
-        <BackButton history={history} />
-        {items}
-      </div>
+      <div className="choosen-category-container">{items}</div>
       <hr />
     </>
   );
