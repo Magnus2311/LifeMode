@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 import Home from "./components/pages/home/HomePage";
 import PageNotFound from "./components/pages/PageNotFound";
 import AboutPage from "./components/pages/about/AboutPage";
@@ -13,13 +13,24 @@ import SubCategoriesListPage from "./components/pages/categories/SubCategoriesLi
 
 function AppRouter(props) {
   const { dispatch } = props;
+
+  const location = useLocation();
+
   useEffect(() => {
     dispatch(categoryActions.loadCategories());
   });
 
   return (
     <>
-      <Switch>
+      {/* <TransitionGroup>
+        <CSSTransition
+          key={location.key}
+          timeout={300}
+          classNames="page"
+          unmountOnExit
+        >
+          <div className="page"> */}
+      <Switch key={location.key} location={location}>
         <Route exact path="/" component={Home} />
         <Route exact path="/about" component={AboutPage} />
         <Route exact path="/products/add" component={AddProductPage} />
@@ -32,6 +43,9 @@ function AppRouter(props) {
         />
         <Route component={PageNotFound} />
       </Switch>
+      {/* </div>
+        </CSSTransition>
+      </TransitionGroup> */}
     </>
   );
 }

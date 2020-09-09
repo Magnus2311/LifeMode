@@ -12,22 +12,26 @@ const ChosenCategories = (props) => {
     handleCategoryClick(event, categories, props.history);
   };
 
+  const items = findAllParentCategories(categoryId, categories).map(
+    (category) => {
+      return (
+        category && (
+          <Category
+            name="category"
+            key={category.id}
+            category={category}
+            handleClick={handleClick}
+          />
+        )
+      );
+    }
+  );
+
   return (
     <>
       <div className="choosen-category-container">
         <BackButton history={history} />
-        {findAllParentCategories(categoryId, categories).map((category) => {
-          return (
-            category && (
-              <Category
-                name="category"
-                key={category.id}
-                category={category}
-                handleClick={handleClick}
-              />
-            )
-          );
-        })}
+        {items}
       </div>
       <hr />
     </>
