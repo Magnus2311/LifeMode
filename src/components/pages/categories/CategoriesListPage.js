@@ -6,6 +6,7 @@ import AutoCompleteBox from "../../common/AutoCompleteBox";
 import Category from "../../common/Categories/Category";
 import ChosenCategories from "../../common/Categories/ChosenCategories";
 import { handleCategoryClick } from "../../../services/categories/categories";
+import "../../../css/cards.scss";
 
 const CategoriesListPage = (props) => {
   const { categories, onLoadCategories } = props;
