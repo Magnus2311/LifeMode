@@ -6,7 +6,6 @@ import AutoCompleteBox from "../../common/AutoCompleteBox";
 import Category from "../../common/Categories/Category";
 import ChosenCategories from "../../common/Categories/ChosenCategories";
 import { handleCategoryClick } from "../../../services/categories/categories";
-import "../../../css/cards.scss";
 
 const CategoriesListPage = (props) => {
   const { categories, onLoadCategories } = props;
@@ -62,33 +61,31 @@ const CategoriesListPage = (props) => {
           categories={categories}
         />
       )}
-      <div className="categories-container">
-        {shownCategories.length === 0
-          ? categories
-              .filter((category) => !category.parentId)
-              .map((category) => {
-                return (
-                  !category.parentId && (
-                    <Category
-                      name="category"
-                      key={category.id}
-                      category={category}
-                      handleClick={handleCategoryChoose}
-                    />
-                  )
-                );
-              })
-          : shownCategories.map((category) => {
+      {shownCategories.length === 0
+        ? categories
+            .filter((category) => !category.parentId)
+            .map((category) => {
               return (
-                <Category
-                  name="category"
-                  key={category.id}
-                  category={category}
-                  handleClick={handleCategoryChoose}
-                />
+                !category.parentId && (
+                  <Category
+                    name="category"
+                    key={category.id}
+                    category={category}
+                    handleClick={handleCategoryChoose}
+                  />
+                )
               );
-            })}
-      </div>
+            })
+        : shownCategories.map((category) => {
+            return (
+              <Category
+                name="category"
+                key={category.id}
+                category={category}
+                handleClick={handleCategoryChoose}
+              />
+            );
+          })}
     </>
   );
 };
