@@ -55,6 +55,9 @@ const Layout = () => {
               </Link>
             </NavDropdown.Item>
           </NavDropdown>
+          <Link className="nav-link" to="/login">
+            <Translator getString="Login" />
+           </Link>
           <Link className="nav-link" to="/categories/all" onClick={handleClick}>
             <Translator getString="Categories" />
           </Link>
