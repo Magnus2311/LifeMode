@@ -12,10 +12,10 @@ export function loginUser(user) {
       .loginUser(user)
       .then(() => {
         dispatch(loginUserSuccess(user));
-        toast.success("Successfull login");
+        toast.success("User successfully login");
       })
       .catch((error) => {
-        toast.error("Login failed!");
+        toast.error("User login failed");
         throw error;
       });
   };
