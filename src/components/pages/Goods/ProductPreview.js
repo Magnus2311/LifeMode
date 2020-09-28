@@ -9,7 +9,7 @@ const ProductPreview = (props) => {
     carbohydrates,
     fats,
     calories,
-    protein,
+    proteins,
     image,
   } = props.product;
 
@@ -50,7 +50,7 @@ const ProductPreview = (props) => {
     // </>
 
     <div className="product">
-      <div className="rank">{id}</div>
+      {/* <div className="rank">{id}</div> */}
       <div className="front">
         <img className="thumbnail" src={image} alt="" />
         <h3 className="product-name">{<Translator getString={name} />}</h3>
@@ -85,7 +85,7 @@ const ProductPreview = (props) => {
             </span>
           </p>
           <p className="product-data-info">
-            {protein}
+            {proteins}
             <span>
               <Translator getString="Proteins" />
             </span>
