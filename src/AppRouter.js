@@ -1,39 +1,54 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Switch, Route, useLocation } from "react-router-dom";
 import Home from "./components/pages/home/HomePage";
 import PageNotFound from "./components/pages/PageNotFound";
 import AboutPage from "./components/pages/about/AboutPage";
-import GoodsListPage from "./components/pages/goods/GoodsListPage";
+import CategoriesListPage from "./components/pages/categories/CategoriesListPage";
+import AddProductPage from "./components/pages/Goods/AddProductPage";
 import LoginPage from "./components/pages/login/LoginPage";
-import AddGoodsPage from "./components/pages/goods/AddGoodsPage";
+import ProductsListPage from "./components/pages/Goods/ProductsListPage";
+import AddCategoryPage from "./components/pages/categories/AddCategoryPage";
+import { connect } from "react-redux";
+import * as categoryActions from "./redux/actions/categoryActions";
+import SubCategoriesListPage from "./components/pages/categories/SubCategoriesListPage";
 
-function AppRouter() {
+function AppRouter(props) {
+  const { dispatch } = props;
+
+  const location = useLocation();
+
+  useEffect(() => {
+    dispatch(categoryActions.loadCategories());
+  });
+
   return (
     <>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/about">
-          <AboutPage />
-        </Route>
-        <Route exact path="/about">
-          <AboutPage />
-        </Route>
-        <Route exact path="/goods/add">
-          <AddGoodsPage />
-        </Route>
-        <Route path="/goods/list">
-          <GoodsListPage />
-        </Route>
-        <Route path="/login">
-          <LoginPage />
-        </Route>
-        <Route>
-          <PageNotFound />
-        </Route>
+      {/* <TransitionGroup>
+        <CSSTransition
+          key={location.key}
+          timeout={300}
+          classNames="page"
+          unmountOnExit
+        >
+          <div className="page"> */}
+      <Switch key={location.key} location={location}>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/about" component={AboutPage} />
+        <Route exact path="/products/add" component={AddProductPage} />
+        <Route path="/products/:categoryId?" component={ProductsListPage} />
+        <Route path="/categories/all" component={CategoriesListPage} />
+        <Route path="/categories/add" component={AddCategoryPage} />
+        <Route path="/login" component={LoginPage} />
+        <Route
+          path="/categories/:categoryId?"
+          component={SubCategoriesListPage}
+        />
+        <Route component={PageNotFound} />
       </Switch>
+      {/* </div>
+        </CSSTransition>
+      </TransitionGroup> */}
     </>
   );
 }
-export default AppRouter;
+export default connect()(AppRouter);

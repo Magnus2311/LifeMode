@@ -8,7 +8,7 @@ export default function LanguageSelector() {
   const { userLanguage, userLanguageChange } = useContext(LanguageContext);
 
   const handleLanguageChange = (e) => {
-    userLanguageChange(e.target.getAttribute("data-language"));
+    userLanguageChange(e.currentTarget.getAttribute("data-language"));
   };
 
   useEffect(() => {
@@ -21,22 +21,32 @@ export default function LanguageSelector() {
 
   return (
     <NavDropdown
+      style={{
+        position: "fixed",
+        right: "0",
+        top: "5px",
+        zIndex: "99",
+      }}
       title={
         <Image
-          style={{ height: "20px", width: "20px" }}
+          style={{
+            height: "20px",
+            width: "20px",
+          }}
           src={`/images/languages/${userLanguage}.png`}
         />
       }
     >
       {Object.entries(languageOptions).map(([id, name]) => {
         return (
-          <NavDropdown.Item>
+          <NavDropdown.Item
+            key={id}
+            data-language={id}
+            onClick={handleLanguageChange}
+          >
             <Image
               style={{ height: "20px", width: "20px" }}
-              key={id}
               title={name}
-              data-language={id}
-              onClick={handleLanguageChange}
               src={`/images/languages/${id}.png`}
             />
           </NavDropdown.Item>

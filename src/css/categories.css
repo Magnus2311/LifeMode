@@ -1,0 +1,68 @@
+.dropdown-menu {
+  padding: 0px !important;
+  width: 100%;
+}
+
+.dropdown-toggle {
+  width: 100%;
+  border-radius: 0 !important;
+}
+
+.dropdown-toggle-choose {
+  width: 18px;
+  height: 18px;
+  margin-right: 20px;
+  border: 1px ridge white;
+  background: white;
+}
+
+.dropdown-toggle-choose {
+  background: white;
+}
+
+.nav-dropdown-item {
+  padding: 0 !important;
+}
+
+.card {
+  margin: 0.75rem;
+  width: 160px;
+}
+
+.category-item {
+  min-width: 160px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+.card-body {
+  width: 160px;
+  padding: 0 !important;
+}
+
+.category-item img {
+  height: 90px;
+  width: 160px;
+}
+
+.card-header {
+  width: 160px;
+  padding: 0.75rem 0;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  background: none !important;
+}
+
+.categories-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  place-items: center;
+}
+
+.sub-categories-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  place-items: center;
+}
