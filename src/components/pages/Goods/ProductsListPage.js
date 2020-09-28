@@ -4,7 +4,7 @@ import * as productsActions from "../../../redux/actions/productsActions";
 import ProductPreview from "./ProductPreview";
 import "../../../css/products.css";
 import ChosenCategories from "../../common/Categories/ChosenCategories";
-import "../../../css/cards.scss";
+import "../../../css/products.scss";
 
 const ProductsListPage = (props) => {
   const { products, categories, onLoadProducts } = props;

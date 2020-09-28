@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Translator } from "../../../services/languages/Laguage";
 
 const ProductPreview = (props) => {
@@ -52,7 +53,7 @@ const ProductPreview = (props) => {
       <div className="rank">{id}</div>
       <div className="front">
         <img className="thumbnail" src={image} alt="" />
-        <h3 className="name">{<Translator getString={name} />}</h3>
+        <h3 className="product-name">{<Translator getString={name} />}</h3>
         <div className="stats">
           <p className="receipts-count">5432</p>
           <div className="receipts">
@@ -66,26 +67,46 @@ const ProductPreview = (props) => {
       <div className="back">
         <div className="product-info">
           <p className="product-data-info">
-            <span>750</span>
+            {carbohydrates}
+            <span>
+              <Translator getString="Carbohydrates" />
+            </span>
           </p>
           <p className="product-data-info">
-            <span>750</span>
+            {fats}
+            <span>
+              <Translator getString="Fats" />
+            </span>
+          </p>
+          <p className="product-data-info">
+            {calories}
+            <span>
+              <Translator getString="Calories" />
+            </span>
+          </p>
+          <p className="product-data-info">
+            {protein}
+            <span>
+              <Translator getString="Proteins" />
+            </span>
           </p>
         </div>
-        <a className="btn btn-primary btn-xl" href={`/receipts/${id}`}>
-          <Translator getString="Receipts with that product" />
-        </a>
-        <div className="receipts-back">
+        <Link className="to-receipts" href={`/receipts/${id}`}>
+          <Translator getString="Receipts" />
+        </Link>
+        <div className="receipts">
           <div className="receipt">
-            <p className="name"></p>
+            <div className="icon">
+              <img src={image} alt="" />
+            </div>
+            <p className="name">Receipt 1</p>
             <p className="number"></p>
           </div>
           <div className="receipt">
-            <p className="name"></p>
-            <p className="number"></p>
-          </div>
-          <div className="receipt">
-            <p className="name"></p>
+            <div className="icon">
+              <img src={image} alt="" />
+            </div>
+            <p className="name">Receipt 1</p>
             <p className="number"></p>
           </div>
         </div>
