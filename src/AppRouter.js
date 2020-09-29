@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
 import Home from "./components/pages/home/HomePage";
 import PageNotFound from "./components/pages/PageNotFound";
@@ -8,7 +8,7 @@ import AddProductPage from "./components/pages/products/AddProductPage";
 import LoginPage from "./components/pages/login/LoginPage";
 import ProductsListPage from "./components/pages/products/ProductsListPage";
 import AddCategoryPage from "./components/pages/categories/AddCategoryPage";
-import { connect } from "react-redux";
+import { connect, useStore } from "react-redux";
 import * as categoryActions from "./redux/actions/categoryActions";
 import * as productActions from "./redux/actions/productsActions";
 import SubCategoriesListPage from "./components/pages/categories/SubCategoriesListPage";
@@ -18,10 +18,11 @@ function AppRouter(props) {
 
   const location = useLocation();
 
-  useEffect(() => {
+  var state = useStore().getState();
+  if (!state.categories || state.categories.length === 0)
     dispatch(categoryActions.loadCategories());
+  if (!state.products || state.products.length === 0)
     dispatch(productActions.loadProducts());
-  });
 
   return (
     <>
