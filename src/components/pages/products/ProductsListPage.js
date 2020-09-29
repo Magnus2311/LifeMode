@@ -8,6 +8,7 @@ import "../../../css/products.scss";
 const ProductsListPage = (props) => {
   const { products, categories } = props;
   const { categoryId } = props.match.params;
+  debugger;
 
   return (
     <>
@@ -20,7 +21,7 @@ const ProductsListPage = (props) => {
       )}
       <div className="products-container">
         {products
-          .filter((p) => !categoryId || p.categoryId === parseInt(categoryId))
+          .filter((p) => !categoryId || p.categoryId === categoryId)
           .map((product) => {
             return <ProductPreview key={product.id} product={product} />;
           })}
