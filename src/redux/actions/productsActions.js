@@ -1,7 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import * as webApi from "../../api/productsApi";
 import { toast } from "react-toastify";
-import * as cacheService from "../../services/caching/cacheData";
 
 export function saveProductSuccess(products) {
   return { type: actionTypes.SAVE_PRODUCT_SUCCESS, products };
@@ -13,17 +12,14 @@ export function loadProductsSuccess(products) {
 
 export function loadProducts() {
   return function (dispatch) {
-    var products = cacheService.getWithExpiry("products");
-    return products
-      ? products
-      : webApi
-          .getProducts()
-          .then((products) => {
-            dispatch(loadProductsSuccess(products));
-          })
-          .catch((error) => {
-            throw error;
-          });
+    return webApi
+      .getProducts()
+      .then((products) => {
+        dispatch(loadProductsSuccess(products));
+      })
+      .catch((error) => {
+        throw error;
+      });
   };
 }
 
