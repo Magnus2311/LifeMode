@@ -1,16 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import * as productsActions from "../../../redux/actions/productsActions";
 import ProductPreview from "./ProductPreview";
 import "../../../css/products.css";
 import ChosenCategories from "../../common/Categories/ChosenCategories";
 import "../../../css/products.scss";
 
 const ProductsListPage = (props) => {
-  const { products, categories, onLoadProducts } = props;
+  const { products, categories } = props;
   const { categoryId } = props.match.params;
-
-  useEffect(onLoadProducts, []);
 
   return (
     <>
@@ -39,12 +36,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onLoadProducts: () => {
-      dispatch(productsActions.loadProducts());
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductsListPage);
+export default connect(mapStateToProps)(ProductsListPage);

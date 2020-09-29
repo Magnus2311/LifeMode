@@ -61,8 +61,9 @@ const CategoriesListPage = (props) => {
           categories={categories}
         />
       )}
-      {shownCategories.length === 0
-        ? categories
+      {shownCategories.length === 0 ? (
+        <div className="categories-list-container">
+          {categories
             .filter((category) => !category.parentId)
             .map((category) => {
               return (
@@ -75,8 +76,11 @@ const CategoriesListPage = (props) => {
                   />
                 )
               );
-            })
-        : shownCategories.map((category) => {
+            })}
+        </div>
+      ) : (
+        <div className="categories-list-container">
+          {shownCategories.map((category) => {
             return (
               <Category
                 name="category"
@@ -86,6 +90,8 @@ const CategoriesListPage = (props) => {
               />
             );
           })}
+        </div>
+      )}
     </>
   );
 };

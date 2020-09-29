@@ -53,3 +53,10 @@ h5,
 h6 {
   text-align: center;
 }
+
+.categories-list-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  place-items: center;
+  width: 100%;
+}

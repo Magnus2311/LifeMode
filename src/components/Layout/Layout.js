@@ -45,19 +45,10 @@ const Layout = () => {
                 <Translator getString="Add" />
               </Link>
             </NavDropdown.Item>
-            <NavDropdown.Item className="nav-dropdown-item">
-              <Link
-                className="dropdown-item"
-                to="/products/"
-                onClick={handleClick}
-              >
-                <Translator getString="Show" />
-              </Link>
-            </NavDropdown.Item>
           </NavDropdown>
           <Link className="nav-link" to="/login">
             <Translator getString="Login" />
-           </Link>
+          </Link>
           <Link className="nav-link" to="/categories/all" onClick={handleClick}>
             <Translator getString="Categories" />
           </Link>

@@ -4,12 +4,13 @@ import Home from "./components/pages/home/HomePage";
 import PageNotFound from "./components/pages/PageNotFound";
 import AboutPage from "./components/pages/about/AboutPage";
 import CategoriesListPage from "./components/pages/categories/CategoriesListPage";
-import AddProductPage from "./components/pages/Goods/AddProductPage";
+import AddProductPage from "./components/pages/products/AddProductPage";
 import LoginPage from "./components/pages/login/LoginPage";
-import ProductsListPage from "./components/pages/Goods/ProductsListPage";
+import ProductsListPage from "./components/pages/products/ProductsListPage";
 import AddCategoryPage from "./components/pages/categories/AddCategoryPage";
 import { connect } from "react-redux";
 import * as categoryActions from "./redux/actions/categoryActions";
+import * as productActions from "./redux/actions/productsActions";
 import SubCategoriesListPage from "./components/pages/categories/SubCategoriesListPage";
 
 function AppRouter(props) {
@@ -19,6 +20,7 @@ function AppRouter(props) {
 
   useEffect(() => {
     dispatch(categoryActions.loadCategories());
+    dispatch(productActions.loadProducts());
   });
 
   return (
@@ -35,7 +37,7 @@ function AppRouter(props) {
         <Route exact path="/" component={Home} />
         <Route exact path="/about" component={AboutPage} />
         <Route exact path="/products/add" component={AddProductPage} />
-        <Route path="/products/:categoryId?" component={ProductsListPage} />
+        <Route path="/products/:categoryId" component={ProductsListPage} />
         <Route path="/categories/all" component={CategoriesListPage} />
         <Route path="/categories/add" component={AddCategoryPage} />
         <Route path="/login" component={LoginPage} />
