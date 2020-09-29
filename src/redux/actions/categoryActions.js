@@ -1,6 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import * as webApi from "../../api/categoriesApi";
 import { toast } from "react-toastify";
+import * as cacheService from "../../services/caching/cacheData";
 
 export function loadCategoriesSuccess(categories) {
   return { type: actionTypes.LOAD_CATEGORIES_SUCCESS, categories };
@@ -12,14 +13,18 @@ export function saveCategorySuccess(category) {
 
 export function loadCategories() {
   return function (dispatch) {
-    return webApi
-      .getCategories()
-      .then((categories) => {
-        dispatch(loadCategoriesSuccess(categories));
-      })
-      .catch((error) => {
-        throw error;
-      });
+    var categories = cacheService.getWithExpiry("categories");
+    return categories
+      ? categories
+      : webApi
+          .getCategories()
+          .then((categories) => {
+            dispatch(loadCategoriesSuccess(categories));
+            cacheService.setWithExpiry("categories", categories);
+          })
+          .catch((error) => {
+            throw error;
+          });
   };
 }
 
