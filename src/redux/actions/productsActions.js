@@ -12,12 +12,17 @@ export function loadProductsSuccess(products) {
 
 export function loadProducts() {
   return function (dispatch) {
+    debugger;
+    dispatch({ type: actionTypes.REQUEST_LOAD_PRODUCTS });
     return webApi
       .getProducts()
       .then((products) => {
         dispatch(loadProductsSuccess(products));
+        dispatch({ type: actionTypes.REQUEST_LOAD_PRODUCTS_SUCCESS });
       })
       .catch((error) => {
+        toast.error("Loading productsb  failed!");
+        dispatch({ type: actionTypes.REQUEST_LOAD_PRODUCTS_SUCCESS });
         throw error;
       });
   };
@@ -25,7 +30,6 @@ export function loadProducts() {
 
 export function saveProduct(product) {
   return function (dispatch) {
-    debugger;
     return webApi
       .saveProduct(product)
       .then(() => {

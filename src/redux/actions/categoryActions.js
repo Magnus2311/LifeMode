@@ -4,7 +4,11 @@ import { toast } from "react-toastify";
 import * as cacheService from "../../services/caching/cacheData";
 
 export function loadCategoriesSuccess(categories) {
-  return { type: actionTypes.LOAD_CATEGORIES_SUCCESS, categories };
+  return {
+    type: actionTypes.LOAD_CATEGORIES_SUCCESS,
+    categories,
+    loading: false,
+  };
 }
 
 export function saveCategorySuccess(category) {
@@ -20,12 +24,14 @@ export function loadCategories() {
           .getCategories()
           .then((categories) => {
             dispatch(loadCategoriesSuccess(categories));
+            dispatch({ type: actionTypes.REQUEST_LOAD_CATEGORIES_SUCCESS });
             cacheService.setWithExpiry("categories", categories);
           })
           .catch((error) => {
+            dispatch({ type: actionTypes.REQUEST_LOAD_CATEGORIES_SUCCESS });
+            toast.error("Loading categories failed!");
             throw error;
-          });
-  };
+          });   
 }
 
 export function saveCategory(category) {

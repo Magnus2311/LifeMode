@@ -4,14 +4,16 @@ import ProductPreview from "./ProductPreview";
 import "../../../css/products.css";
 import ChosenCategories from "../../common/Categories/ChosenCategories";
 import "../../../css/products.scss";
+import Loader from "../../common/Loader";
 
 const ProductsListPage = (props) => {
-  const { products, categories } = props;
+  const { products, categories, loading } = props;
   const { categoryId } = props.match.params;
   debugger;
 
   return (
     <>
+      <Loader isLoading={loading} />
       {categoryId && (
         <ChosenCategories
           history={props.history}
@@ -31,9 +33,11 @@ const ProductsListPage = (props) => {
 };
 
 const mapStateToProps = (state) => {
+  debugger;
   return {
     products: state.products,
     categories: state.categories,
+    loading: state.loader.isProductsLoading,
   };
 };
 
