@@ -1,6 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import * as webApi from "../../api/categoriesApi";
 import { toast } from "react-toastify";
+import * as cacheService from "../../services/caching/cacheData";
 
 export function loadCategoriesSuccess(categories) {
   return {
@@ -16,19 +17,21 @@ export function saveCategorySuccess(category) {
 
 export function loadCategories() {
   return function (dispatch) {
-    dispatch({ type: actionTypes.REQUEST_LOAD_CATEGORIES });
-    return webApi
-      .getCategories()
-      .then((categories) => {
-        dispatch(loadCategoriesSuccess(categories));
-        dispatch({ type: actionTypes.REQUEST_LOAD_CATEGORIES_SUCCESS });
-      })
-      .catch((error) => {
-        dispatch({ type: actionTypes.REQUEST_LOAD_CATEGORIES_SUCCESS });
-        toast.error("Loading categories failed!");
-        throw error;
-      });
-  };
+    var categories = cacheService.getWithExpiry("categories");
+    return categories
+      ? categories
+      : webApi
+          .getCategories()
+          .then((categories) => {
+            dispatch(loadCategoriesSuccess(categories));
+            dispatch({ type: actionTypes.REQUEST_LOAD_CATEGORIES_SUCCESS });
+            cacheService.setWithExpiry("categories", categories);
+          })
+          .catch((error) => {
+            dispatch({ type: actionTypes.REQUEST_LOAD_CATEGORIES_SUCCESS });
+            toast.error("Loading categories failed!");
+            throw error;
+          });   
 }
 
 export function saveCategory(category) {
