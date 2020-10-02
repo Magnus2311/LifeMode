@@ -47,6 +47,8 @@ img {
   width: 12.5em;
   cursor: pointer;
   transform: scale(0.8);
+  height: 16rem;
+  margin-bottom: 2.4rem;
 }
 
 .receipts {
@@ -172,7 +174,7 @@ img {
   transform: scale(0.2, 0.9);
   opacity: 0;
   border-radius: var(--br);
-  height: 16rem;
+  height: 17rem;
 }
 
 .product:hover {
