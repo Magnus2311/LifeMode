@@ -5,8 +5,10 @@ const AutoCompleteBox = (props) => {
   const { data, placeholder, handleSubmit, handleChange } = props;
   const [text, setText] = useState("");
   const [options, setOptions] = useState(data);
+  const [isOptionsVisible, setIsOptionsVisible] = useState(false);
 
   const handleInnerChange = (event) => {
+    setIsOptionsVisible(!(text === ""));
     setText(event.target.value.toLowerCase());
     setOptions(
       data.filter((item) => {
@@ -14,6 +16,12 @@ const AutoCompleteBox = (props) => {
       })
     );
     if (handleChange) handleChange(event.target.value);
+  };
+
+  const handleInnerSubmit = (event) => {
+    setText("");
+    setIsOptionsVisible(false);
+    handleSubmit(event);
   };
 
   return (
@@ -29,23 +37,28 @@ const AutoCompleteBox = (props) => {
           className="autocomplete-options"
           style={{
             display:
-              text.length === 0 || (options && options.length === 0) || !options
+              !isOptionsVisible ||
+              text.length === 0 ||
+              (options && options.length === 0) ||
+              !options
                 ? "none"
                 : "block",
           }}
         >
           {options &&
-            options.map((option) => {
-              return (
-                <div
-                  className="autocomplete-option"
-                  key={option}
-                  onClick={handleSubmit}
-                >
-                  {option}
-                </div>
-              );
-            })}
+            options
+              .filter((item, i, ar) => ar.indexOf(item) === i)
+              .map((option) => {
+                return (
+                  <div
+                    className="autocomplete-option"
+                    key={option}
+                    onClick={handleInnerSubmit}
+                  >
+                    {option}
+                  </div>
+                );
+              })}
         </div>
       </div>
     </>

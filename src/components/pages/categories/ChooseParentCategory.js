@@ -26,7 +26,7 @@ const ChooseParentCategory = (props) => {
   const showCategories = (categories) => {
     return categories.map((category) => {
       return category.subCategories && category.subCategories.length > 0 ? (
-        <Dropdown key={category.id}>
+        <Dropdown key={category.id} className="category-dropdown">
           <Dropdown.Toggle>
             {canSelectMainCategory ? (
               /* eslint-disable-next-line */

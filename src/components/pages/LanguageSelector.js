@@ -22,7 +22,7 @@ export default function LanguageSelector() {
   return (
     <NavDropdown
       style={{
-        position: "fixed",
+        position: "absolute",
         right: "0",
         top: "5px",
         zIndex: "99",

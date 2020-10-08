@@ -16,12 +16,7 @@ const Layout = () => {
   };
 
   return (
-    <Navbar
-      bg="light"
-      expand="lg"
-      style={{ minWidth: "380px" }}
-      expanded={isExpanded}
-    >
+    <Navbar bg="light" expand="lg" expanded={isExpanded}>
       <Link className="navbar-brand" to="/" onClick={handleClick}>
         Life Mode
       </Link>
@@ -54,6 +49,9 @@ const Layout = () => {
           </Link>
           <Link className="nav-link" to="/categories/add" onClick={handleClick}>
             <Translator getString="Add category" />
+          </Link>
+          <Link className="nav-link" to="/meals/add" onClick={handleClick}>
+            <Translator getString="Add meal" />
           </Link>
         </Nav>
       </Navbar.Collapse>

@@ -1,0 +1,25 @@
+.meal-container {
+  position: relative;
+  width: clamp(0px, 100%, 60ch);
+  min-height: 90vh;
+}
+
+.meal-products-list {
+  width: 100%;
+  position: absolute;
+  display: flex;
+  bottom: 0;
+  place-items: center;
+
+  .meal-products-values {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10%, 1fr));
+    place-items: center;
+
+    div {
+      text-align: center;
+      place-items: center;
+    }
+  }
+}

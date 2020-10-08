@@ -12,6 +12,7 @@ import { connect, useStore } from "react-redux";
 import * as categoryActions from "./redux/actions/categoryActions";
 import * as productActions from "./redux/actions/productsActions";
 import SubCategoriesListPage from "./components/pages/categories/SubCategoriesListPage";
+import DailyCalculator from "./components/pages/calculators/DailyCalculator";
 
 function AppRouter(props) {
   const { dispatch } = props;
@@ -41,6 +42,7 @@ function AppRouter(props) {
         <Route path="/products/:categoryId" component={ProductsListPage} />
         <Route path="/categories/all" component={CategoriesListPage} />
         <Route path="/categories/add" component={AddCategoryPage} />
+        <Route path="/meals/add" component={DailyCalculator} />
         <Route path="/login" component={LoginPage} />
         <Route
           path="/categories/:categoryId?"

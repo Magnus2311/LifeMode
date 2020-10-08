@@ -4,7 +4,12 @@
 }
 
 .add-form {
-  width: clamp(0, 100%, 60ch);
+  width: clamp(0px, 100%, 60ch);
+}
+
+.navbar {
+  position: relative;
+  margin-bottom: 1.8rem;
 }
 
 hr {

@@ -7,7 +7,6 @@ export function loadCategoriesSuccess(categories) {
   return {
     type: actionTypes.LOAD_CATEGORIES_SUCCESS,
     categories,
-    loading: false,
   };
 }
 
@@ -17,6 +16,7 @@ export function saveCategorySuccess(category) {
 
 export function loadCategories() {
   return function (dispatch) {
+    dispatch({ type: actionTypes.REQUEST_LOAD_CATEGORIES });
     var categories = cacheService.getWithExpiry("categories");
     return categories
       ? categories
@@ -31,7 +31,8 @@ export function loadCategories() {
             dispatch({ type: actionTypes.REQUEST_LOAD_CATEGORIES_SUCCESS });
             toast.error("Loading categories failed!");
             throw error;
-          });   
+          });
+  };
 }
 
 export function saveCategory(category) {

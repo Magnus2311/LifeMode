@@ -12,7 +12,6 @@ export function loadProductsSuccess(products) {
 
 export function loadProducts() {
   return function (dispatch) {
-    debugger;
     dispatch({ type: actionTypes.REQUEST_LOAD_PRODUCTS });
     return webApi
       .getProducts()
@@ -21,7 +20,7 @@ export function loadProducts() {
         dispatch({ type: actionTypes.REQUEST_LOAD_PRODUCTS_SUCCESS });
       })
       .catch((error) => {
-        toast.error("Loading productsb  failed!");
+        toast.error("Loading products failed!");
         dispatch({ type: actionTypes.REQUEST_LOAD_PRODUCTS_SUCCESS });
         throw error;
       });

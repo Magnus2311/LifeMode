@@ -66,3 +66,11 @@
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   place-items: center;
 }
+
+.dropdown {
+  margin-bottom: 0.75rem;
+}
+
+.navbar .dropdown {
+  margin-bottom: 0;
+}
