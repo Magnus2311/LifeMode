@@ -61,6 +61,16 @@ h6 {
   width: 100%;
 }
 
+.shopCategories-list-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  place-items: initial;
+  width: 100%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  z-index: 0;
+}
+
 .loader {
   position: absolute;
   left: 50%;

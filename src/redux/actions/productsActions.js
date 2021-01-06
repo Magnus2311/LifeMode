@@ -12,7 +12,6 @@ export function loadProductsSuccess(products) {
 
 export function loadProducts() {
   return function (dispatch) {
-    debugger;
     dispatch({ type: actionTypes.REQUEST_LOAD_PRODUCTS });
     return webApi
       .getProducts()
