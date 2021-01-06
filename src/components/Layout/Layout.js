@@ -55,6 +55,12 @@ const Layout = () => {
           <Link className="nav-link" to="/categories/add" onClick={handleClick}>
             <Translator getString="Add category" />
           </Link>
+          <Link className="nav-link" to="/shop/add" onClick={handleClick}>
+            <Translator getString="Add shop category" />
+          </Link>
+          <Link className="nav-link" to="/shop" onClick={handleClick}>
+            <Translator getString="Shop" />
+          </Link>
         </Nav>
       </Navbar.Collapse>
       <LanguageSelector />

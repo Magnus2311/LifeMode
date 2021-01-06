@@ -8,9 +8,12 @@ import AddProductPage from "./components/pages/products/AddProductPage";
 import LoginPage from "./components/pages/login/LoginPage";
 import ProductsListPage from "./components/pages/products/ProductsListPage";
 import AddCategoryPage from "./components/pages/categories/AddCategoryPage";
+import AddShopCategoryPage from "./components/pages/shop/AddShopCategoryPage";
+import ShopPage from "./components/pages/shop/ShopPage";
 import { connect, useStore } from "react-redux";
 import * as categoryActions from "./redux/actions/categoryActions";
 import * as productActions from "./redux/actions/productsActions";
+import * as shopActions from "./redux/actions/shopActions";
 import SubCategoriesListPage from "./components/pages/categories/SubCategoriesListPage";
 
 function AppRouter(props) {
@@ -23,6 +26,8 @@ function AppRouter(props) {
     dispatch(categoryActions.loadCategories());
   if (!state.products || state.products.length === 0)
     dispatch(productActions.loadProducts());
+  if (!state.shopCategories || state.shopCategories.length === 0)
+    dispatch(shopActions.loadShopCategories());
 
   return (
     <>
@@ -42,6 +47,8 @@ function AppRouter(props) {
         <Route path="/categories/all" component={CategoriesListPage} />
         <Route path="/categories/add" component={AddCategoryPage} />
         <Route path="/login" component={LoginPage} />
+        <Route path="/shop/add" component={AddShopCategoryPage} />
+        <Route path="/shop" component={ShopPage} />
         <Route
           path="/categories/:categoryId?"
           component={SubCategoriesListPage}

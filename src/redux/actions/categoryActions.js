@@ -31,7 +31,8 @@ export function loadCategories() {
             dispatch({ type: actionTypes.REQUEST_LOAD_CATEGORIES_SUCCESS });
             toast.error("Loading categories failed!");
             throw error;
-          });   
+          });
+  };
 }
 
 export function saveCategory(category) {
