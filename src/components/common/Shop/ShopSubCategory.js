@@ -1,5 +1,4 @@
 import React from "react";
-import { Translator } from "../../../services/languages/Laguage";
 
 const ShopSubCategory = (props) => {
   const { handleClick } = props;
@@ -7,7 +6,7 @@ const ShopSubCategory = (props) => {
 
   return (
     <>
-      <div class="card">
+      <div class="card" onClick={handleClick} data-id={id}>
         <div class="card_image">
           <img src={image}></img>
         </div>

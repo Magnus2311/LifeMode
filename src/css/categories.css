@@ -1,6 +1,6 @@
 .dropdown-menu {
   padding: 0px !important;
-  width: 100%;
+  width: auto !important;
 }
 
 .dropdown-toggle {

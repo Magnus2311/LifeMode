@@ -14,3 +14,12 @@ export function saveShopCategory(shopCategory) {
     .then(handleResponse)
     .catch(handleError);
 }
+
+export function getShopItemsByCategory(shopCategoryId) {
+  return fetch(baseUrl + "shopItems?categoryId=" + (shopCategoryId || ""), {
+    method: "GET",
+    headers: { "content-type": "application/json" },
+  })
+    .then(handleResponse)
+    .catch(handleError);
+}
