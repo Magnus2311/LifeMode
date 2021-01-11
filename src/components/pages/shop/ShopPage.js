@@ -8,8 +8,7 @@ import "../../../css/shopCategories.css";
 import { handleShopCategoryClick } from "../../../services/shop/shop";
 
 const ShopPage = (props) => {
-  const { shopCategories, onLoadShopCategories } = props;
-  let { shopCategoryId } = props.match.params;
+  const { shopCategories } = props;
 
   const handleShopCategoryChoose = (event) => {
     handleShopCategoryClick(event, props.history);

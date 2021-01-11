@@ -31,14 +31,8 @@ export function loadShopItemsByCategory(shopCategoryId) {
       .getShopItemsByCategory(shopCategoryId)
       .then((shopItemsByCategory) => {
         dispatch(loadShopItemsByCategorySuccess(shopItemsByCategory));
-        dispatch({
-          type: actionTypes.REQUEST_LOAD_SHOPITEMSBYCATEGORY_SUCCESS,
-        });
       })
       .catch((error) => {
-        dispatch({
-          type: actionTypes.REQUEST_LOAD_SHOPITEMSBYCATEGORY_SUCCESS,
-        });
         toast.error("Loading shop items failed!");
         throw error;
       });
