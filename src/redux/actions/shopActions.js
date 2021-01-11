@@ -2,6 +2,22 @@ import * as actionTypes from "../actions/actionTypes";
 import * as webApi from "../../api/shopApi";
 import { toast } from "react-toastify";
 
+export function loadShopCategories() {
+  return function (dispatch) {
+    return webApi
+      .getShopCategories()
+      .then((shopCategories) => {
+        dispatch(loadShopCategoriesSuccess(shopCategories));
+        dispatch({ type: actionTypes.REQUEST_LOAD_SHOPCATEGORIES_SUCCESS });
+      })
+      .catch((error) => {
+        dispatch({ type: actionTypes.REQUEST_LOAD_SHOPCATEGORIES_SUCCESS });
+        toast.error("Loading shop categories failed!");
+        throw error;
+      });
+  };
+}
+
 export function loadShopCategoriesSuccess(shopCategories) {
   return {
     type: actionTypes.LOAD_SHOPCATEGORIES_SUCCESS,
@@ -9,22 +25,30 @@ export function loadShopCategoriesSuccess(shopCategories) {
   };
 }
 
-export function loadShopCategories() {
+export function loadShopItemsByCategory(shopCategoryId) {
   return function (dispatch) {
-    debugger;
     return webApi
-      .getShopCategories()
-      .then((shopCategories) => {
-        debugger;
-        dispatch(loadShopCategoriesSuccess(shopCategories));
-        dispatch({ type: actionTypes.REQUEST_LOAD_SHOPCATEGORIES_SUCCESS });
+      .getShopItemsByCategory(shopCategoryId)
+      .then((shopItemsByCategory) => {
+        dispatch(loadShopItemsByCategorySuccess(shopItemsByCategory));
+        dispatch({
+          type: actionTypes.REQUEST_LOAD_SHOPITEMSBYCATEGORY_SUCCESS,
+        });
       })
       .catch((error) => {
-        debugger;
-        dispatch({ type: actionTypes.REQUEST_LOAD_SHOPCATEGORIES_SUCCESS });
-        toast.error("Loading shop categories failed!");
+        dispatch({
+          type: actionTypes.REQUEST_LOAD_SHOPITEMSBYCATEGORY_SUCCESS,
+        });
+        toast.error("Loading shop items failed!");
         throw error;
       });
+  };
+}
+
+export function loadShopItemsByCategorySuccess(shopItemsByCategory) {
+  return {
+    type: actionTypes.LOAD_SHOPITEMSBYCATEGORY_SUCCESS,
+    shopItemsByCategory,
   };
 }
 

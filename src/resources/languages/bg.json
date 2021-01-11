@@ -21,5 +21,9 @@
   "Meat": "Месо",
   "Bean cultures": "Бобови култури",
   "Cereal cultures": "Зърнени култури",
-  "Potato cultures": "Картофови култури"
+  "Potato cultures": "Картофови култури",
+  "Shop" : "Магазин",
+  "Add shop category" : "Добави категория за магазин",
+  "Category" : "Категория",
+  "Shop category" : "Категория за магазин"
 }

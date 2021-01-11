@@ -5,10 +5,15 @@ import "../../../css/categories.css";
 import * as shopActions from "../../../redux/actions/shopActions";
 import ShopSubCategory from "../../common/Shop/ShopSubCategory";
 import "../../../css/shopCategories.css";
+import { handleShopCategoryClick } from "../../../services/shop/shop";
+
 const ShopPage = (props) => {
-  debugger;
   const { shopCategories, onLoadShopCategories } = props;
-  debugger;
+  let { shopCategoryId } = props.match.params;
+
+  const handleShopCategoryChoose = (event) => {
+    handleShopCategoryClick(event, props.history);
+  };
   return (
     <>
       {shopCategories
@@ -31,6 +36,7 @@ const ShopPage = (props) => {
                       name="subCategory"
                       key={subCategory.id}
                       category={subCategory}
+                      handleClick={handleShopCategoryChoose}
                     />
                   );
                 })}

@@ -9,7 +9,6 @@ import Loader from "../../common/Loader";
 const ProductsListPage = (props) => {
   const { products, categories, loading } = props;
   const { categoryId } = props.match.params;
-  debugger;
 
   return (
     <>
@@ -33,7 +32,6 @@ const ProductsListPage = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  debugger;
   return {
     products: state.products,
     categories: state.categories,

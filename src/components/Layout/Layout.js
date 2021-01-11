@@ -52,12 +52,28 @@ const Layout = () => {
           <Link className="nav-link" to="/categories/all" onClick={handleClick}>
             <Translator getString="Categories" />
           </Link>
-          <Link className="nav-link" to="/categories/add" onClick={handleClick}>
-            <Translator getString="Add category" />
-          </Link>
-          <Link className="nav-link" to="/shop/add" onClick={handleClick}>
-            <Translator getString="Add shop category" />
-          </Link>
+
+          <NavDropdown title={<Translator getString="Add" />}>
+            <NavDropdown.Item className="nav-dropdown-item">
+              <Link
+                className="dropdown-item"
+                to="/categories/add"
+                onClick={handleClick}
+              >
+                <Translator getString="Category" />
+              </Link>
+            </NavDropdown.Item>
+            <NavDropdown.Item className="nav-dropdown-item">
+              <Link
+                className="dropdown-item"
+                to="/shop/add"
+                onClick={handleClick}
+              >
+                <Translator getString="Shop category" />
+              </Link>
+            </NavDropdown.Item>
+          </NavDropdown>
+
           <Link className="nav-link" to="/shop" onClick={handleClick}>
             <Translator getString="Shop" />
           </Link>
