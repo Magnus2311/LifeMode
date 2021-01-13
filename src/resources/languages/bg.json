@@ -25,5 +25,17 @@
   "Shop" : "Магазин",
   "Add shop category" : "Добави категория за магазин",
   "Category" : "Категория",
-  "Shop category" : "Категория за магазин"
+  "Shop category" : "Категория за магазин",
+  "Shop item" : "Артикул",
+  "Add shop item" : "Добави артикул",
+  "Description" : "Описание",
+  "Enter name": "Въведете наименование",
+  "Enter description" : "Въведете описание",
+  "Usage" : "Употреба",
+  "Enter description - how to use" : "Въведете описание на начина на употреба",
+  "Price" : "Цена",
+  "Quantity" : "Количество",
+  "Enter quantity" : "Въведете количество",
+  "Choose brand" : "Избери марка"
+
 }

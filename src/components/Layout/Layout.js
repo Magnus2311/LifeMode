@@ -72,6 +72,15 @@ const Layout = () => {
                 <Translator getString="Shop category" />
               </Link>
             </NavDropdown.Item>
+            <NavDropdown.Item className="nav-dropdown-item">
+              <Link
+                className="dropdown-item"
+                to="/shop/addShopItem"
+                onClick={handleClick}
+              >
+                <Translator getString="Shop item" />
+              </Link>
+            </NavDropdown.Item>
           </NavDropdown>
 
           <Link className="nav-link" to="/shop" onClick={handleClick}>
