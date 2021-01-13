@@ -6,10 +6,7 @@ export default function shopItemsByCategoryReducers(
 ) {
   switch (action.type) {
     case actionTypes.LOAD_SHOPITEMSBYCATEGORY_SUCCESS:
-      return {
-        ...shopItemsByCategory,
-        shopItemsByCategory: action.shopItemsByCategory,
-      };
+      return action.shopItemsByCategory;
     default:
       return shopItemsByCategory;
   }

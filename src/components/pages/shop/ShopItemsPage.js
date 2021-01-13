@@ -1,8 +1,7 @@
-import userEvent from "@testing-library/user-event";
 import React from "react";
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import * as shopActions from "../../../redux/actions/shopActions";
+import * as shopItemsActions from "../../../redux/actions/shopItemAction";
 
 const ShopItemsPage = (props) => {
   const { shopCategoryId } = props.match.params;
@@ -12,6 +11,7 @@ const ShopItemsPage = (props) => {
   return (
     <>
       {shopItemsByCategory &&
+        shopItemsByCategory.length > 0 &&
         shopItemsByCategory.map((item) => {
           return (
             <>
@@ -30,7 +30,7 @@ const mapsStateToProps = (state) => {
 const mapsDispatchToProps = (dispatch) => {
   return {
     onLoadShopItems: (shopCategoryId) => {
-      dispatch(shopActions.loadShopItemsByCategory(shopCategoryId));
+      dispatch(shopItemsActions.loadShopItemsByCategory(shopCategoryId));
     },
   };
 };

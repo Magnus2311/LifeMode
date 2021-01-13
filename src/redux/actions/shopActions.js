@@ -25,33 +25,6 @@ export function loadShopCategoriesSuccess(shopCategories) {
   };
 }
 
-export function loadShopItemsByCategory(shopCategoryId) {
-  return function (dispatch) {
-    return webApi
-      .getShopItemsByCategory(shopCategoryId)
-      .then((shopItemsByCategory) => {
-        dispatch(loadShopItemsByCategorySuccess(shopItemsByCategory));
-        dispatch({
-          type: actionTypes.REQUEST_LOAD_SHOPITEMSBYCATEGORY_SUCCESS,
-        });
-      })
-      .catch((error) => {
-        dispatch({
-          type: actionTypes.REQUEST_LOAD_SHOPITEMSBYCATEGORY_SUCCESS,
-        });
-        toast.error("Loading shop items failed!");
-        throw error;
-      });
-  };
-}
-
-export function loadShopItemsByCategorySuccess(shopItemsByCategory) {
-  return {
-    type: actionTypes.LOAD_SHOPITEMSBYCATEGORY_SUCCESS,
-    shopItemsByCategory,
-  };
-}
-
 export function saveShopCategory(shopCategory) {
   return function (dispatch) {
     return webApi

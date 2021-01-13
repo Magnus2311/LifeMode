@@ -16,6 +16,7 @@ import * as productActions from "./redux/actions/productsActions";
 import * as shopActions from "./redux/actions/shopActions";
 import SubCategoriesListPage from "./components/pages/categories/SubCategoriesListPage";
 import ShopItemsPage from "./components/pages/shop/ShopItemsPage";
+import AddShopItemPage from "./components/pages/shop/AddShopItemPage";
 
 function AppRouter(props) {
   const { dispatch } = props;
@@ -49,6 +50,7 @@ function AppRouter(props) {
         <Route path="/categories/add" component={AddCategoryPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/shop/add" component={AddShopCategoryPage} />
+        <Route path="/shop/addShopItem" component={AddShopItemPage} />
         <Route path="/shop" exact component={ShopPage} />
         <Route
           path="/categories/:categoryId?"
