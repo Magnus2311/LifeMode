@@ -6,15 +6,23 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { LanguageProvider } from "./services/languages/Laguage";
 import "./App.css";
+import { AuthContext } from "./components/common/Contexts/AuthContext";
+import { authenticate } from "./services/auth/authenticate";
 
 function App() {
+  const [user, setUser] = React.useState({});
+  React.useEffect(() => {
+    authenticate().then((userRes) => setUser(userRes));
+  }, []);
   return (
     <LanguageProvider>
-      <Layout />
-      <div className="container app-container">
-        <AppRouter />
-      </div>
-      <ToastContainer />
+      <AuthContext.Provider value={{ user: user, setUser: setUser }}>
+        <Layout />
+        <div className="container app-container">
+          <AppRouter />
+        </div>
+        <ToastContainer />
+      </AuthContext.Provider>
     </LanguageProvider>
   );
 }
