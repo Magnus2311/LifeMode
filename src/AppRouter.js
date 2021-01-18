@@ -17,6 +17,9 @@ import * as shopActions from "./redux/actions/shopActions";
 import SubCategoriesListPage from "./components/pages/categories/SubCategoriesListPage";
 import ShopItemsPage from "./components/pages/shop/ShopItemsPage";
 import AddShopItemPage from "./components/pages/shop/AddShopItemPage";
+import Registration from "./components/pages/auth/Registration";
+import Login from "./components/pages/auth/Login";
+import { AuthenticatedRoute } from "./components/pages/auth/AuthenticatedRoute";
 
 function AppRouter(props) {
   const { dispatch } = props;
@@ -44,7 +47,11 @@ function AppRouter(props) {
       <Switch key={location.key} location={location}>
         <Route exact path="/" component={Home} />
         <Route exact path="/about" component={AboutPage} />
-        <Route exact path="/products/add" component={AddProductPage} />
+        <AuthenticatedRoute
+          exact
+          path="/products/add"
+          component={AddProductPage}
+        />
         <Route path="/products/:categoryId" component={ProductsListPage} />
         <Route path="/categories/all" component={CategoriesListPage} />
         <Route path="/categories/add" component={AddCategoryPage} />
@@ -60,6 +67,8 @@ function AppRouter(props) {
           path="/shop/shopItems/:shopCategoryId?"
           component={ShopItemsPage}
         />
+        <Route path="/auth/registration" component={Registration} />
+        <Route path="/auth/login" component={Login} />
         <Route component={PageNotFound} />
       </Switch>
       {/* </div>
