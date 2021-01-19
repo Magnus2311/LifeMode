@@ -3,13 +3,11 @@ import { AuthContext } from "../../common/Contexts/AuthContext";
 import { login } from "../../../services/users/usersDbService";
 import FormText from "../../common/FormText";
 import { Translator } from "../../../services/languages/Laguage";
-import { useHistory } from "react-router";
 
 const Login = ({ returnAfterLogin }) => {
   const [logged, setLogged] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const { setUser } = useContext(AuthContext);
-  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +17,6 @@ const Login = ({ returnAfterLogin }) => {
       if (isLoginSuccessful) {
         setUser(currentUser);
         setLogged(true);
-        history.push("/");
       }
     });
   };

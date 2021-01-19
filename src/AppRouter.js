@@ -49,7 +49,7 @@ function AppRouter(props) {
         <AuthenticatedRoute
           exact
           path="/products/add"
-          component={AddProductPage}
+          Component={AddProductPage}
         />
         <Route
           path="/products/:categoryId"
