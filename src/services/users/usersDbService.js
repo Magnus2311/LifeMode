@@ -1,12 +1,12 @@
 import { toast } from "react-toastify";
-const baseUrl = "http://localhost:5000/users/";
+const baseUrl = "/api/users/";
 
 export function add(user) {
   fetch(baseUrl + "add", {
     method: "POST",
     mode: "cors",
     cache: "no-cache",
-    credentials: "same-origin",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
@@ -19,7 +19,7 @@ export function login(user) {
     method: "POST",
     mode: "cors",
     cache: "no-cache",
-    credentials: "same-origin",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },

@@ -1,12 +1,11 @@
+const baseUrl = "/api/users/";
+
 export const authenticate = () => {
-  return fetch("api/users/getUsername", {
+  return fetch(baseUrl + "getUsername", {
     method: "GET",
     mode: "cors",
     cache: "no-cache",
-    credentials: "same-origin",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    credentials: "include",
   })
     .then((response) => {
       if (response.status === 200) return response.json();
@@ -22,7 +21,7 @@ export const authenticate = () => {
 };
 
 export const sighOut = async () => {
-  await fetch("api/users/logout", {
+  await fetch(baseUrl + "logout", {
     method: "POST",
     credentials: "same-origin",
     cache: "no-cache",
