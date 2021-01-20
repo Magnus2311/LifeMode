@@ -5,7 +5,6 @@ import PageNotFound from "./components/pages/PageNotFound";
 import AboutPage from "./components/pages/about/AboutPage";
 import CategoriesListPage from "./components/pages/categories/CategoriesListPage";
 import AddProductPage from "./components/pages/products/AddProductPage";
-import LoginPage from "./components/pages/login/LoginPage";
 import ProductsListPage from "./components/pages/products/ProductsListPage";
 import AddCategoryPage from "./components/pages/categories/AddCategoryPage";
 import AddShopCategoryPage from "./components/pages/shop/AddShopCategoryPage";
@@ -17,6 +16,9 @@ import * as shopActions from "./redux/actions/shopActions";
 import SubCategoriesListPage from "./components/pages/categories/SubCategoriesListPage";
 import ShopItemsPage from "./components/pages/shop/ShopItemsPage";
 import AddShopItemPage from "./components/pages/shop/AddShopItemPage";
+import Registration from "./components/pages/auth/Registration";
+import Login from "./components/pages/auth/Login";
+import { AuthenticatedRoute } from "./components/pages/auth/AuthenticatedRoute";
 
 function AppRouter(props) {
   const { dispatch } = props;
@@ -44,23 +46,33 @@ function AppRouter(props) {
       <Switch key={location.key} location={location}>
         <Route exact path="/" component={Home} />
         <Route exact path="/about" component={AboutPage} />
-        <Route exact path="/products/add" component={AddProductPage} />
-        <Route path="/products/:categoryId" component={ProductsListPage} />
-        <Route path="/categories/all" component={CategoriesListPage} />
-        <Route path="/categories/add" component={AddCategoryPage} />
-        <Route path="/login" component={LoginPage} />
-        <Route path="/shop/add" component={AddShopCategoryPage} />
-        <Route path="/shop/addShopItem" component={AddShopItemPage} />
+        <AuthenticatedRoute
+          exact
+          path="/products/add"
+          Component={AddProductPage}
+        />
+        <Route
+          path="/products/:categoryId"
+          exact
+          component={ProductsListPage}
+        />
+        <Route path="/categories/all" exact component={CategoriesListPage} />
+        <Route path="/categories/add" exact component={AddCategoryPage} />
+        <Route path="/shop/add" exact component={AddShopCategoryPage} />
+        <Route path="/shop/addShopItem" exact component={AddShopItemPage} />
         <Route path="/shop" exact component={ShopPage} />
         <Route
           path="/categories/:categoryId?"
+          exact
           component={SubCategoriesListPage}
         />
         <Route
           path="/shop/shopItems/:shopCategoryId?"
+          exact
           component={ShopItemsPage}
         />
-        <Route component={PageNotFound} />
+        <Route path="/auth/registration" component={Registration} />
+        <Route path="/auth/login" component={Login} />
       </Switch>
       {/* </div>
         </CSSTransition>

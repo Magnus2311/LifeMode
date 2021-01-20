@@ -3,6 +3,7 @@ import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { Translator } from "../../services/languages/Laguage";
 import LanguageSelector from "../pages/LanguageSelector";
 import { Link } from "react-router-dom";
+import UserNavMenu from "../pages/auth/UserNavMenu";
 
 const Layout = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -46,9 +47,6 @@ const Layout = () => {
               </Link>
             </NavDropdown.Item>
           </NavDropdown>
-          <Link className="nav-link" to="/login">
-            <Translator getString="Login" />
-          </Link>
           <Link className="nav-link" to="/categories/all" onClick={handleClick}>
             <Translator getString="Categories" />
           </Link>
@@ -88,6 +86,7 @@ const Layout = () => {
           </Link>
         </Nav>
       </Navbar.Collapse>
+      <UserNavMenu />
       <LanguageSelector />
     </Navbar>
   );
