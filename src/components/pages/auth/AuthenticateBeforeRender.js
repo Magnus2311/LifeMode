@@ -5,7 +5,7 @@ import Login from "./Login";
 const AuthenticateBeforeRender = ({ render }) => {
   const user = useContext(AuthContext);
 
-  return user.username ? render() : <Login returnrAfterLogin={render} />;
+  return user.username ? render() : <Login returnAfterLogin={render()} />;
 };
 
 export default AuthenticateBeforeRender;

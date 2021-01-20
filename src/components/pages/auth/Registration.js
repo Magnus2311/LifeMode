@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as usersDb from "../../../services/db/usersDbService";
+import * as usersDb from "../../../services/users/usersDbService";
 import { Translator } from "../../../services/languages/Laguage";
 import FormText from "../../common/FormText";
 

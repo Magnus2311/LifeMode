@@ -1,20 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { NavItem, NavLink } from "reactstrap";
+import { Translator } from "../../../services/languages/Laguage";
 
 const NotLoggedNavMenu = () => {
   return (
     <>
-      <NavItem>
-        <NavLink tag={Link} className="text-dark" to="/auth/registration">
-          Register
-        </NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink tag={Link} className="text-dark" to="/auth/login">
-          Login
-        </NavLink>
-      </NavItem>
+      <Link tag={Link} className="nav-link" to="/auth/registration">
+        <Translator getString="Register" />
+      </Link>
+      <Link tag={Link} className="nav-link" to="/auth/login">
+        <Translator getString="Login" />
+      </Link>
     </>
   );
 };

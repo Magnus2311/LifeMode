@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import { AuthContext } from "../../Common/Contexts/AuthContext";
-import { login } from "../../../services/db/usersDbService";
+import { AuthContext } from "../../common/Contexts/AuthContext";
+import { login } from "../../../services/users/usersDbService";
 import FormText from "../../common/FormText";
 import { Translator } from "../../../services/languages/Laguage";
 
@@ -13,6 +13,7 @@ const Login = ({ returnAfterLogin }) => {
     e.preventDefault();
 
     login(currentUser).then((isLoginSuccessful) => {
+      debugger;
       if (isLoginSuccessful) {
         setUser(currentUser);
         setLogged(true);
@@ -24,7 +25,7 @@ const Login = ({ returnAfterLogin }) => {
     setCurrentUser({ ...currentUser, [e.target.name]: e.target.value });
   };
 
-  return logged ? (
+  return logged && returnAfterLogin ? (
     returnAfterLogin
   ) : (
     <form onSubmit={handleSubmit}>
@@ -44,7 +45,7 @@ const Login = ({ returnAfterLogin }) => {
         label={<Translator getString="Password" />}
         value={currentUser.password}
       />
-      <button className="fut-btn" style={{ width: "100%" }}>
+      <button className="btn btn-primary btn-xl" style={{ width: "100%" }}>
         <Translator getString="Login" />
       </button>
     </form>
