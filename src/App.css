@@ -70,6 +70,9 @@ h6 {
   flex-wrap: wrap;
   z-index: 0;
 }
+body {
+  overflow: hidden;
+}
 
 .loader {
   position: absolute;

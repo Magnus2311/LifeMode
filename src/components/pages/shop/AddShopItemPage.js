@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Form, Button } from "react-bootstrap";
 import { Translator } from "../../../services/languages/Laguage";
@@ -8,7 +8,6 @@ import ChooseParentCategory from "../categories/ChooseParentCategory";
 import ChoosePhotoInput from "../../common/ChoosePhotoInput";
 import FormText from "../../common/FormText";
 import Combobox from "../../common/Combobox";
-import { useEffect } from "react";
 
 const defaultImgName = "Choose photo";
 const emptyShopItem = {

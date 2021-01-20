@@ -1,0 +1,87 @@
+.shopItems-container {
+  margin: 20px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  place-items: center;
+}
+.itemCardName {
+  height: inherit;
+  max-height: 30px;
+}
+
+.itemCard {
+  margin: 17px;
+  width: 160px;
+  height: 180px;
+  cursor: pointer;
+  display: inline-table;
+  transition: 0.4s;
+  border-radius: 40px !important;
+}
+.itemCard_image {
+  max-height: 150px;
+  transition: 0.4s;
+}
+.itemCard_image:hover {
+  z-index: 1;
+  transform: scale(1, 1) translateY(-5px);
+  box-shadow: 5px 5px 30px 7px rgba(80, 56, 56, 0.25),
+    -5px -5px 30px 7px rgba(78, 72, 72, 0.25);
+}
+
+.itemCard .itemCard_image {
+  width: inherit;
+  height: inherit;
+  border-radius: 10px;
+}
+
+.itemCard .itemCard_image img {
+  width: inherit;
+  height: inherit;
+}
+
+.itemCard .itemCard_title {
+  text-align: center;
+  margin-top: 10px;
+  border-radius: 0px 0px 40px 40px;
+  font-family: sans-serif;
+  font-size: 15px;
+}
+
+.title-white {
+  height: inherit;
+  color: white;
+}
+
+.title-black {
+  height: inherit;
+  color: black;
+}
+
+@media all and (max-width: 500px) {
+  .card-list {
+    flex-direction: column;
+  }
+}
+.items-container {
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  place-items: center;
+  width: 100%;
+  margin: 20px;
+  max-width: 100%;
+}
+#root {
+  overflow: auto;
+  height: 100%;
+  scrollbar-width: none;
+}
+
+html,
+body {
+  overflow: auto;
+  margin: 0;
+  height: 100%;
+}

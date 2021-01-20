@@ -22,20 +22,15 @@ export function saveShopItem(shopItem) {
   };
 }
 
-export function loadShopItemsByCategory(shopCategoryId) {
+export function loadShopItemsByCategory(shopCategoryId, pageNumber) {
   return function (dispatch) {
+    dispatch(loadShopItemsByCategoryLoading());
     return webApi
-      .getShopItemsByCategory(shopCategoryId)
+      .getShopItemsByCategory(shopCategoryId, pageNumber)
       .then((shopItemsByCategory) => {
         dispatch(loadShopItemsByCategorySuccess(shopItemsByCategory));
-        dispatch({
-          type: actionTypes.REQUEST_LOAD_SHOPITEMSBYCATEGORY_SUCCESS,
-        });
       })
       .catch((error) => {
-        dispatch({
-          type: actionTypes.REQUEST_LOAD_SHOPITEMSBYCATEGORY_SUCCESS,
-        });
         toast.error("Loading shop items failed!");
         throw error;
       });
@@ -46,5 +41,11 @@ export function loadShopItemsByCategorySuccess(shopItemsByCategory) {
   return {
     type: actionTypes.LOAD_SHOPITEMSBYCATEGORY_SUCCESS,
     shopItemsByCategory,
+  };
+}
+
+export function loadShopItemsByCategoryLoading() {
+  return {
+    type: actionTypes.REQUEST_LOAD_SHOPITEMSBYCATEGORY_SUCCESS,
   };
 }
