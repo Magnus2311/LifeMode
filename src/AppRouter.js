@@ -19,6 +19,7 @@ import AddShopItemPage from "./components/pages/shop/AddShopItemPage";
 import Registration from "./components/pages/auth/Registration";
 import Login from "./components/pages/auth/Login";
 import { AuthenticatedRoute } from "./components/pages/auth/AuthenticatedRoute";
+import ShopItemPreview from "./components/pages/shop/ShopItemPreview";
 
 function AppRouter(props) {
   const { dispatch } = props;
@@ -73,6 +74,11 @@ function AppRouter(props) {
         />
         <Route path="/auth/registration" component={Registration} />
         <Route path="/auth/login" component={Login} />
+        <Route
+          path="/shop/shopItems/shopItem/:shopItemId"
+          exact
+          component={ShopItemPreview}
+        />
       </Switch>
       {/* </div>
         </CSSTransition>

@@ -1,0 +1,35 @@
+.nav-tabs .nav-link:hover {
+  color: black;
+}
+
+.nav-tabs .nav-link {
+  width: 150px;
+  text-align: center;
+}
+
+.nav-link {
+  color: rgb(112, 104, 104);
+}
+.info-container {
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  place-items: center;
+  width: 100%;
+  margin: 20px;
+  max-width: 100%;
+}
+.btn-primary {
+  margin: 10px;
+  background-color: rgb(226, 217, 217) !important;
+  border-color: #a59999 !important;
+  color: #1d1919 !important;
+}
+.btn-primary:hover {
+  background-color: #c2adad !important;
+  border-color: #352e2e !important;
+}
+
+.center {
+  text-align: center;
+}

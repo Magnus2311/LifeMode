@@ -72,6 +72,7 @@ h6 {
 }
 body {
   overflow: hidden;
+  padding-top: 60px;
 }
 
 .loader {

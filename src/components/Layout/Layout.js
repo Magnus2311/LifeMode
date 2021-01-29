@@ -20,7 +20,7 @@ const Layout = () => {
     <Navbar
       bg="light"
       expand="lg"
-      style={{ minWidth: "380px" }}
+      style={{ minWidth: "380px", position: "fixed", top: "0", width: "100%" }}
       expanded={isExpanded}
     >
       <Link className="navbar-brand" to="/" onClick={handleClick}>
