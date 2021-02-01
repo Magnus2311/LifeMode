@@ -22,6 +22,24 @@ export function saveShopItem(shopItem) {
   };
 }
 
+export function loadShopItemSuccess(shopItem) {
+  return { type: actionTypes.LOAD_SHOPITEM_SUCCESS, shopItem };
+}
+
+export function loadShopItem(shopItemId) {
+  debugger;
+  return function (dispatch) {
+    return webApi
+      .loadShopItem(shopItemId)
+      .then((shopItem) => {
+        dispatch(loadShopItemSuccess(shopItem));
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
+}
+
 export function loadShopItemsByCategory(shopCategoryId, pageNumber) {
   return function (dispatch) {
     dispatch(loadShopItemsByCategoryLoading());

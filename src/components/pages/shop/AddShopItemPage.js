@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Form, Button } from "react-bootstrap";
 import { Translator } from "../../../services/languages/Laguage";
-import * as shopItemActions from "../../../redux/actions/shopItemAction";
+import * as shopItemActions from "../../../redux/actions/shopItemActions";
 import * as brandActions from "../../../redux/actions/brandActions";
 import ChooseParentCategory from "../categories/ChooseParentCategory";
 import ChoosePhotoInput from "../../common/ChoosePhotoInput";

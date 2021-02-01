@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import "../../../css/shopItems.css";
-import * as shopItemsActions from "../../../redux/actions/shopItemAction";
+import * as shopItemsActions from "../../../redux/actions/shopItemActions";
 import ItemCard from "../../common/Shop/Items/ItemCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 
