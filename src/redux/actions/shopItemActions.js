@@ -8,7 +8,6 @@ export function saveShopItemSuccess(shopItem) {
 
 export function saveShopItem(shopItem) {
   return function (dispatch) {
-    debugger;
     return webApi
       .saveShopItem(shopItem)
       .then((shopItem) => {
@@ -27,7 +26,6 @@ export function loadShopItemSuccess(shopItem) {
 }
 
 export function loadShopItem(shopItemId) {
-  debugger;
   return function (dispatch) {
     return webApi
       .loadShopItem(shopItemId)

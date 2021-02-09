@@ -36,6 +36,13 @@
   "Price" : "Цена",
   "Quantity" : "Количество",
   "Enter quantity" : "Въведете количество",
-  "Choose brand" : "Избери марка"
-
+  "Choose brand" : "Избери марка",
+"Add to cart" : "Добави в количката",
+"Description" : "Описание",
+"Usage" : "Употреба",
+"Opinions":"Мнения",
+"Your opinion":"Твоето мнение",
+"Comment":"Коментирай",
+"Brand":"Марка",
+"How to use":"Начин на употреба"
 }
