@@ -9,6 +9,7 @@ import brands from "./brandsReducers";
 import loadingShopItems from "./shopLoadingReducers";
 import pageNumber from "./shopItemsPageNumber";
 import shopItem from "./shopItemReducer";
+import feedbacks from "./feedbackReducer";
 
 const rootReducer = combineReducers({
   products,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   loadingShopItems,
   pageNumber,
   shopItem,
+  feedbacks,
 });
 
 export default rootReducer;
