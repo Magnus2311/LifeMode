@@ -18,15 +18,16 @@ const CartItem = ({ product }) => {
       setExactQuantity(product, 0);
     }
   };
-  const handleIncreaseQuantity = (event) => {
+  const handleIncreaseQuantity = () => {
+    setQuantity(product.quantity + 1);
     increase(product, 1);
   };
   const handleDecreaseQuantity = () => {
+    setQuantity(product.quantity - 1);
     if (product.quantity > 1) decrease(product);
   };
 
   const hanldeOnBlur = (event) => {
-    debugger;
     if (event.target.value < 1 || quantity === "") {
       setExactQuantity(product, 1);
       setQuantity(1);

@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { Translator } from "../../../../services/languages/Laguage";
 import StarRatings from "react-star-ratings";
 import { CartContext } from "../../../common/Contexts/CartContext";
-import * as cartActions from "../../../../redux/actions/cartActions";
 import QuantityControl from "../Cart/QuantityControl";
 
 const ItemDescriptionTab = (props) => {
@@ -105,11 +104,7 @@ const ItemDescriptionTab = (props) => {
 };
 
 const mapsDispatchToProps = (dispatch) => {
-  return {
-    addItemInCart: (shopItemId, quantity) => {
-      dispatch(cartActions.addItemInCart(shopItemId, quantity));
-    },
-  };
+  return {};
 };
 const mapsStateToProps = (state) => {
   return {
