@@ -1,25 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../../../../css/shopItems.css";
-import { Button } from "react-bootstrap";
+import "../../../../css/cart.css";
+import { connect } from "react-redux";
 import { Translator } from "../../../../services/languages/Laguage";
 import StarRatings from "react-star-ratings";
+import { CartContext } from "../../../common/Contexts/CartContext";
+import * as cartActions from "../../../../redux/actions/cartActions";
+import QuantityControl from "../Cart/QuantityControl";
 
 const ItemDescriptionTab = (props) => {
+  const { addProduct, cartItems, setExactQuantity } = useContext(CartContext);
   const { shopItem } = props;
   const [quantity, setQuantity] = useState(1);
 
+  const isInCart = (shopItem) => {
+    return !!cartItems.find((item) => item.id === shopItem.id);
+  };
+
   const handleDecreaseQuantity = () => {
-    if (quantity > 0) setQuantity(quantity - 1);
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
   };
   const handleIncreaseQuantity = () => {
-    setQuantity(quantity + 1);
+    if (quantity > 0) {
+      setQuantity(quantity + 1);
+    }
   };
 
   const handleInputQuantity = (event) => {
-    setQuantity(parseInt(event.target.value));
+    if (quantity > 0) {
+      setQuantity(parseInt(event.target.value));
+    }
   };
 
-  const handleAddToCart = (event) => {};
+  const handleAddToCart = (event) => {
+    if (quantity > 0) {
+      if (isInCart(shopItem)) {
+        setExactQuantity(shopItem, quantity);
+      } else {
+        addProduct(shopItem, quantity);
+      }
+    }
+  };
 
   return (
     <>
@@ -57,27 +80,22 @@ const ItemDescriptionTab = (props) => {
                 name="rating"
               />
             </div>
-            <div className="center">
-              <Button
-                className="button buttonQuantity"
-                onClick={handleDecreaseQuantity}
+            <div
+              className="center"
+              style={{ maxWidth: "200px", marginTop: "20px" }}
+            >
+              <QuantityControl
+                quantity={quantity}
+                handleIncrease={handleIncreaseQuantity}
+                handleDecrease={handleDecreaseQuantity}
+                handleInputChange={handleInputQuantity}
+              />
+              <button
+                onClick={handleAddToCart}
+                className="btn btn-primary btn-sm"
               >
-                -
-              </Button>
-              <input
-                className="quantityInput"
-                value={quantity}
-                onChange={handleInputQuantity}
-              ></input>
-              <Button
-                className="button buttonQuantity"
-                onClick={handleIncreaseQuantity}
-              >
-                +
-              </Button>
-              <Button className="button" onClick={handleAddToCart}>
                 <Translator getString="Add to cart" />
-              </Button>
+              </button>
             </div>
           </div>
         </div>
@@ -86,4 +104,20 @@ const ItemDescriptionTab = (props) => {
   );
 };
 
-export default ItemDescriptionTab;
+const mapsDispatchToProps = (dispatch) => {
+  return {
+    addItemInCart: (shopItemId, quantity) => {
+      dispatch(cartActions.addItemInCart(shopItemId, quantity));
+    },
+  };
+};
+const mapsStateToProps = (state) => {
+  return {
+    shopItem: state.shopItem,
+  };
+};
+
+export default connect(
+  mapsStateToProps,
+  mapsDispatchToProps
+)(ItemDescriptionTab);

@@ -20,6 +20,7 @@ import Registration from "./components/pages/auth/Registration";
 import Login from "./components/pages/auth/Login";
 import { AuthenticatedRoute } from "./components/pages/auth/AuthenticatedRoute";
 import ShopItemPreview from "./components/pages/shop/ShopItemPreview";
+import Cart from "./components/pages/shop/cart/Cart";
 
 function AppRouter(props) {
   const { dispatch } = props;
@@ -62,6 +63,7 @@ function AppRouter(props) {
         <Route path="/shop/add" exact component={AddShopCategoryPage} />
         <Route path="/shop/addShopItem" exact component={AddShopItemPage} />
         <Route path="/shop" exact component={ShopPage} />
+        <Route path="/shop/cart" component={Cart} />
         <Route
           path="/categories/:categoryId?"
           exact

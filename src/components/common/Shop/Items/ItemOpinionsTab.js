@@ -28,7 +28,7 @@ const ItemOpinionsTab = (props) => {
 
   const handleFeedback = (event) => {
     event.preventDefault();
-    onAddFeedback(feedback);
+    onAddFeedback(feedbacks, feedback);
     setRating(0);
     setFeedback({ ...feedback, feedback: "", rating: "" });
   };
@@ -54,7 +54,7 @@ const ItemOpinionsTab = (props) => {
                   key={fb.id}
                   style={{ display: "grid", marginRight: "40px" }}
                 >
-                  <div>
+                  <div style={{ minWidth: "200px" }}>
                     <div className="leftElement">
                       <h6>{fb.user.username}</h6>
                       <p className="transbox">{fb.date}</p>
@@ -115,8 +115,8 @@ const ItemOpinionsTab = (props) => {
 
 const mapsDispatchToProps = (dispatch) => {
   return {
-    onAddFeedback: (feedback) => {
-      dispatch(feedbackActions.addShopItemFeedback(feedback));
+    onAddFeedback: (feedbacks, feedback) => {
+      dispatch(feedbackActions.addShopItemFeedback(feedbacks, feedback));
     },
     onLoadFeedbacks: (shopItemId) => {
       dispatch(feedbackActions.loadShopItemFeedback(shopItemId));

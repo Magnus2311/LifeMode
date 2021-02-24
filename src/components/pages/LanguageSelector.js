@@ -24,6 +24,7 @@ export default function LanguageSelector() {
       style={{
         position: "fixed",
         right: "0",
+        left: "30",
         top: "5px",
         zIndex: "99",
       }}

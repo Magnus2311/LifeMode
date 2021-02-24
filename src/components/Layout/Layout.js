@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { Translator } from "../../services/languages/Laguage";
 import LanguageSelector from "../pages/LanguageSelector";
 import { Link } from "react-router-dom";
 import UserNavMenu from "../pages/auth/UserNavMenu";
+import { Image } from "react-bootstrap";
+import { CartContext } from "../../components/common/Contexts/CartContext";
+import "../../css/cart.css";
 
 const Layout = () => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const { itemCount } = useContext(CartContext);
 
   const handleClick = () => {
     if (isExpanded) setIsExpanded(!isExpanded);
@@ -84,10 +88,18 @@ const Layout = () => {
           <Link className="nav-link" to="/shop" onClick={handleClick}>
             <Translator getString="Shop" />
           </Link>
+          <Link className="nav-link" to="/shop/cart" onClick={handleClick}>
+            <Image
+              className="cartImage"
+              src={`/images/shoppingCart/shopping-cart.png`}
+            />
+            <Translator getString="Cart" />({itemCount})
+          </Link>
         </Nav>
       </Navbar.Collapse>
       <UserNavMenu />
       <LanguageSelector />
+      {/* <CartIcon /> */}
     </Navbar>
   );
 };
