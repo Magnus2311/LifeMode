@@ -8,6 +8,7 @@ import { LanguageProvider } from "./services/languages/Laguage";
 import "./App.css";
 import { AuthContext } from "./components/common/Contexts/AuthContext";
 import { authenticate } from "./services/auth/authenticate";
+import CartContextProvider from "./components/common/Contexts/CartContext";
 
 function App() {
   const [user, setUser] = React.useState({});
@@ -17,11 +18,13 @@ function App() {
   return (
     <LanguageProvider>
       <AuthContext.Provider value={{ user: user, setUser: setUser }}>
-        <Layout />
-        <div className="container app-container">
-          <AppRouter />
-        </div>
-        <ToastContainer />
+        <CartContextProvider>
+          <Layout />
+          <div className="container app-container">
+            <AppRouter />
+          </div>
+          <ToastContainer />
+        </CartContextProvider>
       </AuthContext.Provider>
     </LanguageProvider>
   );
