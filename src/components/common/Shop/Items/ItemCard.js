@@ -38,7 +38,7 @@ const ItemCard = (props) => {
               <Button
                 variant="primary"
                 type="submit"
-                onClick={() => increase(props.item)}
+                onClick={() => increase(props.item, 1)}
               >
                 <Translator getString="Add" />
               </Button>

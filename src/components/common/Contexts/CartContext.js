@@ -15,25 +15,25 @@ const initialState = {
 const CartContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(CartReducer, initialState);
 
-  const increase = (payload, quantity) => {
-    dispatch({ type: "INCREASE", payload, quantity });
+  const increase = (product, quantity) => {
+    dispatch({ type: "INCREASE", product, quantity });
   };
 
-  const setExactQuantity = (payload, quantity) => {
+  const setExactQuantity = (product, quantity) => {
     debugger;
-    dispatch({ type: "SETEXACTQUANTITY", payload, quantity });
+    dispatch({ type: "SETEXACTQUANTITY", product, quantity });
   };
 
-  const decrease = (payload) => {
-    dispatch({ type: "DECREASE", payload });
+  const decrease = (product) => {
+    dispatch({ type: "DECREASE", product });
   };
 
-  const addProduct = (payload, quantity) => {
-    dispatch({ type: "ADD_ITEM", payload, quantity });
+  const addProduct = (product, quantity) => {
+    dispatch({ type: "ADD_ITEM", product, quantity });
   };
 
-  const removeProduct = (payload) => {
-    dispatch({ type: "REMOVE_ITEM", payload });
+  const removeProduct = (product) => {
+    dispatch({ type: "REMOVE_ITEM", product });
   };
 
   const clearCart = () => {

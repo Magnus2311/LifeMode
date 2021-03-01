@@ -18,7 +18,7 @@ const Cart = () => {
     <>
       <div style={{ width: "100%" }}>
         <div className="text-center mt-5">
-          <div class="title">
+          <div className="title">
             <Translator getString="Shopping bag" />
           </div>
         </div>
