@@ -11,22 +11,25 @@ const CartItem = ({ product }) => {
   );
   const handleQuantityChange = (event) => {
     if (event.target.value > 0) {
-      setQuantity(event.target.value);
       setExactQuantity(product, event.target.value);
+      setQuantity(event.target.value);
     } else {
       setQuantity("");
       setExactQuantity(product, 0);
     }
   };
   const handleIncreaseQuantity = (event) => {
-    increase(product, 1);
+    setExactQuantity(product, product.quantity + 1);
+    setQuantity(quantity + 1);
   };
   const handleDecreaseQuantity = () => {
-    if (product.quantity > 1) decrease(product);
+    if (product.quantity > 1) {
+      setExactQuantity(product, product.quantity - 1);
+      setQuantity(quantity - 1);
+    }
   };
 
   const hanldeOnBlur = (event) => {
-    debugger;
     if (event.target.value < 1 || quantity === "") {
       setExactQuantity(product, 1);
       setQuantity(1);

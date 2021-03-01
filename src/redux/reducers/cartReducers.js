@@ -20,9 +20,9 @@ export const sumItems = (cartItems) => {
 export const CartReducer = (state, action) => {
   switch (action.type) {
     case "ADD_ITEM":
-      if (!state.cartItems.find((item) => item.id === action.payload.id)) {
+      if (!state.cartItems.find((item) => item.id === action.product.id)) {
         state.cartItems.push({
-          ...action.payload,
+          ...action.product,
           quantity: action.quantity,
         });
       }
@@ -36,18 +36,18 @@ export const CartReducer = (state, action) => {
       return {
         ...state,
         ...sumItems(
-          state.cartItems.filter((item) => item.id !== action.payload.id)
+          state.cartItems.filter((item) => item.id !== action.product.id)
         ),
         cartItems: [
-          ...state.cartItems.filter((item) => item.id !== action.payload.id),
+          ...state.cartItems.filter((item) => item.id !== action.product.id),
         ],
       };
     case "INCREASE":
       state.cartItems[
-        state.cartItems.findIndex((item) => item.id === action.payload.id)
+        state.cartItems.findIndex((item) => item.id === action.product.id)
       ].quantity =
         state.cartItems[
-          state.cartItems.findIndex((item) => item.id === action.payload.id)
+          state.cartItems.findIndex((item) => item.id === action.product.id)
         ].quantity + action.quantity;
       return {
         ...state,
@@ -56,7 +56,7 @@ export const CartReducer = (state, action) => {
       };
     case "SETEXACTQUANTITY":
       state.cartItems[
-        state.cartItems.findIndex((item) => item.id === action.payload.id)
+        state.cartItems.findIndex((item) => item.id === action.product.id)
       ].quantity = parseInt(action.quantity);
       return {
         ...state,
@@ -66,11 +66,11 @@ export const CartReducer = (state, action) => {
     case "DECREASE":
       if (
         state.cartItems[
-          state.cartItems.findIndex((item) => item.id === action.payload.id)
+          state.cartItems.findIndex((item) => item.id === action.product.id)
         ].quantity <= 1
       ) {
         state.cartItems[
-          state.cartItems.findIndex((item) => item.id === action.payload.id)
+          state.cartItems.findIndex((item) => item.id === action.product.id)
         ].quantity = 1;
         return {
           ...state,
@@ -79,7 +79,7 @@ export const CartReducer = (state, action) => {
         };
       } else {
         state.cartItems[
-          state.cartItems.findIndex((item) => item.id === action.payload.id)
+          state.cartItems.findIndex((item) => item.id === action.product.id)
         ].quantity--;
         return {
           ...state,

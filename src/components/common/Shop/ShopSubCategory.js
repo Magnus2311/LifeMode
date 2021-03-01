@@ -6,11 +6,11 @@ const ShopSubCategory = (props) => {
 
   return (
     <>
-      <div class="card" onClick={handleClick} data-id={id}>
-        <div class="card_image">
-          <img src={image}></img>
+      <div className="card" onClick={handleClick} data-id={id}>
+        <div className="card_image">
+          <img src={image} alt=""></img>
         </div>
-        <div class="card_title title-black">
+        <div className="card_title title-black">
           <p>{props.category.name}</p>
         </div>
       </div>

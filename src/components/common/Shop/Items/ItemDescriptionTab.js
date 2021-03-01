@@ -5,11 +5,10 @@ import { connect } from "react-redux";
 import { Translator } from "../../../../services/languages/Laguage";
 import StarRatings from "react-star-ratings";
 import { CartContext } from "../../../common/Contexts/CartContext";
-import * as cartActions from "../../../../redux/actions/cartActions";
 import QuantityControl from "../Cart/QuantityControl";
 
 const ItemDescriptionTab = (props) => {
-  const { addProduct, cartItems, setExactQuantity } = useContext(CartContext);
+  const { addProduct, cartItems, increase } = useContext(CartContext);
   const { shopItem } = props;
   const [quantity, setQuantity] = useState(1);
 
@@ -37,7 +36,7 @@ const ItemDescriptionTab = (props) => {
   const handleAddToCart = (event) => {
     if (quantity > 0) {
       if (isInCart(shopItem)) {
-        setExactQuantity(shopItem, quantity);
+        increase(shopItem, quantity);
       } else {
         addProduct(shopItem, quantity);
       }
@@ -104,20 +103,10 @@ const ItemDescriptionTab = (props) => {
   );
 };
 
-const mapsDispatchToProps = (dispatch) => {
-  return {
-    addItemInCart: (shopItemId, quantity) => {
-      dispatch(cartActions.addItemInCart(shopItemId, quantity));
-    },
-  };
-};
 const mapsStateToProps = (state) => {
   return {
     shopItem: state.shopItem,
   };
 };
 
-export default connect(
-  mapsStateToProps,
-  mapsDispatchToProps
-)(ItemDescriptionTab);
+export default connect(mapsStateToProps)(ItemDescriptionTab);
