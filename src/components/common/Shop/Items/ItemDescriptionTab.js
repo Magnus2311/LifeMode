@@ -103,18 +103,10 @@ const ItemDescriptionTab = (props) => {
   );
 };
 
-const mapsDispatchToProps = (dispatch) => {
-  return {
-    addItemInCart: (shopItemId, quantity) => {},
-  };
-};
 const mapsStateToProps = (state) => {
   return {
     shopItem: state.shopItem,
   };
 };
 
-export default connect(
-  mapsStateToProps,
-  mapsDispatchToProps
-)(ItemDescriptionTab);
+export default connect(mapsStateToProps)(ItemDescriptionTab);
