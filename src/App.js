@@ -9,6 +9,7 @@ import "./App.css";
 import { AuthContext } from "./components/common/Contexts/AuthContext";
 import { authenticate } from "./services/auth/authenticate";
 import CartContextProvider from "./components/common/Contexts/CartContext";
+import TemplateRouter from "./TemplateRouter";
 
 function App() {
   const [user, setUser] = React.useState({});
@@ -23,6 +24,7 @@ function App() {
           <div className="container app-container">
             <AppRouter />
           </div>
+          <TemplateRouter />
           <ToastContainer />
         </CartContextProvider>
       </AuthContext.Provider>
