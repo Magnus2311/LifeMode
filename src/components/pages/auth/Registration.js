@@ -4,26 +4,51 @@ import { Translator } from "../../../services/languages/Laguage";
 import FormText from "../../common/FormText";
 
 const Registration = ({ history }) => {
-  const [user, setUser] = useState({
-    username: "",
-    password: "",
-    confirmPassword: "",
-  });
+  const [isValidEmail, setIsValidEmail] = useState(true);
+  const [isPasswordMatching, setIsPasswordMatching] = useState(true);
+  const [isRegisterActive, setIsRegisterActive] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+  const handleUsernameChange = (e) => {
+    debugger;
+    setUsername(e.target.value);
+    if (e.target.value === "") {
+      setIsValidEmail(true);
+      return;
+    }
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    setIsValidEmail(re.test(e.target.value));
+    changeIsRegisterActive();
   };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    if (e.target.value === "" && confirmPassword === "") setIsPasswordMatching(true);
+    changeIsRegisterActive();
+  }
+
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+    setIsPasswordMatching(e.target.value === password);
+    changeIsRegisterActive();
+  }
+
+  const changeIsRegisterActive = () => {
+    debugger;
+    setIsRegisterActive(username && username !== "" && password && confirmPassword && isPasswordMatching);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const userToInsert = {
       createdDate: new Date(),
-      password: user.password,
-      username: user.username,
-      eaAccounts: [],
+      password: password,
+      username: username,
     };
     usersDb.add(userToInsert);
-    history.push("/auth/emailsent");
+    history.push(`/auth/emailsent/${username}`);
   };
 
   return (
@@ -41,12 +66,14 @@ const Registration = ({ history }) => {
       </h5>
       <form onSubmit={handleSubmit} className="add-form">
         <FormText
-          handleChange={handleChange}
-          value={user.username}
+          handleChange={handleUsernameChange}
+          value={username}
           label={<Translator getString="E-mail" />}
           name="username"
           placeholder="Enter your email"
           type="email"
+          autoFocus
+          isValid={isValidEmail}
         />
         <div
           style={{
@@ -56,23 +83,24 @@ const Registration = ({ history }) => {
           }}
         >
           <FormText
-            handleChange={handleChange}
-            value={user.password}
+            handleChange={handlePasswordChange}
+            value={password}
             label={<Translator getString="Password" />}
             name="password"
             placeholder="Enter your password"
             type="password"
           />
           <FormText
-            handleChange={handleChange}
-            value={user.confirmPassword}
+            handleChange={handleConfirmPasswordChange}
+            value={confirmPassword}
             label={<Translator getString="Confirm password" />}
             name="confirmPassword"
             placeholder="Confirm your password"
             type="password"
+            isValid={isPasswordMatching}
           />
         </div>
-        <button className="btn btn-primary btn-xl" style={{ width: "100%" }}>
+        <button className="btn btn-primary btn-xl" style={{ width: "100%" }} disabled={!isRegisterActive}>
           <Translator getString="Register" />
         </button>
       </form>

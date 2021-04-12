@@ -1,8 +1,6 @@
 import React from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
 import Home from "./components/pages/home/HomePage";
-import PageNotFound from "./components/pages/PageNotFound";
-import EmailConfirmationPage from "./components/pages/auth/EmailConfirmationPage";
 import AboutPage from "./components/pages/about/AboutPage";
 import CategoriesListPage from "./components/pages/categories/CategoriesListPage";
 import AddProductPage from "./components/pages/products/AddProductPage";
@@ -22,7 +20,7 @@ import Login from "./components/pages/auth/Login";
 import { AuthenticatedRoute } from "./components/pages/auth/AuthenticatedRoute";
 import ShopItemPreview from "./components/pages/shop/ShopItemPreview";
 import Cart from "./components/pages/shop/cart/Cart";
-import ConfirmationEmailTemplate from "./components/pages/templates/emails/ConfirmationEmailTemplate";
+import EmailSent from "./components/pages/auth/EmailSent";
 
 function AppRouter(props) {
   const { dispatch } = props;
@@ -84,8 +82,8 @@ function AppRouter(props) {
           component={ShopItemPreview}
         />
         <Route
-          path="/auth/confirmEmail/:email/:token"
-          component={EmailConfirmationPage}
+          path="/auth/emailSent/:email"
+          component={EmailSent}
         />
       </Switch>
       {/* </div>
