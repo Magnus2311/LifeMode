@@ -17,7 +17,7 @@ const EmailSent = (props) => {
         />
         <h3><Translator getString="Confirmation e-mail sent to:" /> {props.match.params.email}</h3>
         <div>
-            <Translator getString="You will be able to sign-in your account as soon as you confirm your e-mail." />
+            <Translator getString="You will be able to sign-in as soon as e-mail is confirmed." />
         </div>
     </div>
 }

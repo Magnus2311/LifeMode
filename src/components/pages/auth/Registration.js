@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as usersDb from "../../../services/users/usersDbService";
 import { Translator } from "../../../services/languages/Laguage";
 import FormText from "../../common/FormText";
+import * as emailService from "../../../services/helpers/emailsService";
 
 const Registration = ({ history }) => {
   const [isValidEmail, setIsValidEmail] = useState(true);
@@ -12,33 +13,56 @@ const Registration = ({ history }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleUsernameChange = (e) => {
-    debugger;
     setUsername(e.target.value);
-    if (e.target.value === "") {
-      setIsValidEmail(true);
-      return;
-    }
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    setIsValidEmail(re.test(e.target.value));
-    changeIsRegisterActive();
+    changeIsRegisterActive(e.target.name, e.target.value);
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-    if (e.target.value === "" && confirmPassword === "") setIsPasswordMatching(true);
-    changeIsRegisterActive();
-  }
+    if (e.target.value === "" && confirmPassword === "")
+      setIsPasswordMatching(true);
+    changeIsRegisterActive(e.target.name, e.target.value);
+  };
 
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
     setIsPasswordMatching(e.target.value === password);
-    changeIsRegisterActive();
-  }
+    changeIsRegisterActive(e.target.name, e.target.value);
+  };
 
-  const changeIsRegisterActive = () => {
-    debugger;
-    setIsRegisterActive(username && username !== "" && password && confirmPassword && isPasswordMatching);
-  }
+  const changeIsRegisterActive = (propName, propValue) => {
+    switch (propName) {
+      case "username":
+        const isEmail = emailService.isValidEmail(propValue);
+        setIsValidEmail(isEmail);
+        setIsRegisterActive(
+          propValue &&
+            propValue !== "" &&
+            isEmail &&
+            password &&
+            password !== "" &&
+            isPasswordMatching
+        );
+        break;
+      case "password":
+        setIsRegisterActive(
+          propValue &&
+            confirmPassword &&
+            propValue === confirmPassword &&
+            isValidEmail
+        );
+        break;
+      case "confirmPassword":
+        setIsRegisterActive(
+          propValue &&
+            password &&
+            propValue === password &&
+            username !== "" &&
+            isValidEmail
+        );
+        break;
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -56,7 +80,7 @@ const Registration = ({ history }) => {
       <img
         alt="Life Mode logo"
         src="/images/logos/logo_transparent.png"
-        style={{ height: "100px", width: "100px", alignSelf: "baseline" }}
+        style={{ height: "20rem", width: "20rem", alignSelf: "baseline" }}
       />
       <h3>
         <Translator getString="Let's get started" />
@@ -100,7 +124,11 @@ const Registration = ({ history }) => {
             isValid={isPasswordMatching}
           />
         </div>
-        <button className="btn btn-primary btn-xl" style={{ width: "100%" }} disabled={!isRegisterActive}>
+        <button
+          className="btn btn-primary btn-xl"
+          style={{ width: "100%" }}
+          disabled={!isRegisterActive}
+        >
           <Translator getString="Register" />
         </button>
       </form>

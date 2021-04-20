@@ -53,5 +53,8 @@
   "Shopping bag": "Количка",
   "Clear": "Премахване",
   "You will be able to sign-in your account as soon as you confirm your e-mail.": "Вашият акаунт ще бъде достъпен веднага след като потвърдите и-мейла си.",
-  "Confirmation e-mail sent to:": "Изпратен е и-мейл за потвърждение до:"
+  "Confirmation e-mail sent to:": "Изпратен е и-мейл за потвърждение до:",
+  "E-mail or password are wrong!": "Въведени са грешен и-мейл или грешна парола!",
+  "Welcome back": "Добре дошли отново",
+  "Login and continue to enjoy our site": "Впишете се и продължете да се наслаждавате на нашия сайт"
 }
