@@ -21,6 +21,7 @@ import { AuthenticatedRoute } from "./components/pages/auth/AuthenticatedRoute";
 import ShopItemPreview from "./components/pages/shop/ShopItemPreview";
 import Cart from "./components/pages/shop/cart/Cart";
 import EmailSent from "./components/pages/auth/EmailSent";
+import EmailConfirmationPage from "./components/pages/auth/EmailConfirmationPage";
 
 function AppRouter(props) {
   const { dispatch } = props;
@@ -81,9 +82,10 @@ function AppRouter(props) {
           exact
           component={ShopItemPreview}
         />
+        <Route path="/auth/emailSent/:email" component={EmailSent} />
         <Route
-          path="/auth/emailSent/:email"
-          component={EmailSent}
+          path="/auth/emailConfirmed/:email/:token"
+          component={EmailConfirmationPage}
         />
       </Switch>
       {/* </div>

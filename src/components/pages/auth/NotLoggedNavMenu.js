@@ -5,7 +5,12 @@ import { Translator } from "../../../services/languages/Laguage";
 const NotLoggedNavMenu = () => {
   return (
     <>
-      <Link tag={Link} className="nav-link" to="/auth/registration">
+      <Link
+        tag={Link}
+        className="nav-link"
+        to="/auth/registration"
+        style={{ marginRight: "1rem" }}
+      >
         <Translator getString="Register" />
       </Link>
       <Link tag={Link} className="nav-link" to="/auth/login">

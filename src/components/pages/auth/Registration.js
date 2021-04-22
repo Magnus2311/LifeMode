@@ -3,6 +3,8 @@ import * as usersDb from "../../../services/users/usersDbService";
 import { Translator } from "../../../services/languages/Laguage";
 import FormText from "../../common/FormText";
 import * as emailService from "../../../services/helpers/emailsService";
+import ConfirmationEmailTemplate from "../templates/emails/ConfirmationEmailTemplate";
+import ReactDomServer from "react-dom/server";
 
 const Registration = ({ history }) => {
   const [isValidEmail, setIsValidEmail] = useState(true);
@@ -61,15 +63,19 @@ const Registration = ({ history }) => {
             isValidEmail
         );
         break;
+      default:
+        break;
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const template = <ConfirmationEmailTemplate username={username} />;
     const userToInsert = {
       createdDate: new Date(),
       password: password,
       username: username,
+      template: ReactDomServer.renderToStaticMarkup(template),
     };
     usersDb.add(userToInsert);
     history.push(`/auth/emailsent/${username}`);

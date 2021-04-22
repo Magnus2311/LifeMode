@@ -4,13 +4,15 @@ import { login } from "../../../services/users/usersDbService";
 import FormText from "../../common/FormText";
 import { Translator } from "../../../services/languages/Laguage";
 import * as emailsService from "../../../services/helpers/emailsService";
+import { useHistory } from "react-router";
 
-const Login = ({ returnAfterLogin }) => {
+const Login = ({ returnAfterLogin, email, isConfirmation }) => {
   const [logged, setLogged] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isWrongCredentials, setIsWrongCredentials] = useState(false);
   const [isLoginActive, setIsLoginActive] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({ username: email });
+  const history = useHistory();
   const { setUser } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
@@ -20,8 +22,11 @@ const Login = ({ returnAfterLogin }) => {
       if (isLoginSuccessful) {
         setUser(currentUser);
         setLogged(true);
+        !returnAfterLogin && history.push("/");
       } else {
         setIsWrongCredentials(true);
+        setCurrentUser({ ...currentUser, password: "" });
+        changeIsLoginActive("password", "");
       }
     });
   };
@@ -47,6 +52,8 @@ const Login = ({ returnAfterLogin }) => {
       case "password":
         setIsLoginActive(propValue && propValue !== "" && isValidEmail);
         break;
+      default:
+        break;
     }
   };
 
@@ -59,12 +66,21 @@ const Login = ({ returnAfterLogin }) => {
         src="/images/logos/logo_transparent.png"
         style={{ height: "20rem", width: "20rem", alignSelf: "baseline" }}
       />
-      <h3>
-        <Translator getString="Welcome back" />
-      </h3>
-      <h5>
-        <Translator getString="Login and continue to enjoy our site" />
-      </h5>
+      {isConfirmation ? (
+        <h5 style={{ color: "#97db48" }}>
+          <Translator getString="Email confirmed successfully!" />
+        </h5>
+      ) : (
+        <>
+          <h3>
+            <Translator getString="Welcome back" />
+          </h3>
+          <h5>
+            <Translator getString="Login and continue to enjoy our site" />
+          </h5>
+        </>
+      )}
+
       {isWrongCredentials && (
         <h6 style={{ color: "red" }}>
           <Translator getString="E-mail or password are wrong!" />{" "}
@@ -78,6 +94,7 @@ const Login = ({ returnAfterLogin }) => {
           handleChange={handleChange}
           label={<Translator getString="E-mail" />}
           value={currentUser.username}
+          autoFocus={!isWrongCredentials && !isConfirmation}
         />
         <FormText
           type="password"
@@ -86,6 +103,7 @@ const Login = ({ returnAfterLogin }) => {
           handleChange={handleChange}
           label={<Translator getString="Password" />}
           value={currentUser.password}
+          autoFocus={isWrongCredentials || isConfirmation}
         />
         <button
           className="btn btn-primary btn-xl"

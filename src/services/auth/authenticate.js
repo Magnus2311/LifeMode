@@ -1,3 +1,5 @@
+import { handleResponse, handleError } from "../../api/apiUtils";
+
 const baseUrl = "/api/users/";
 
 export const authenticate = () => {
@@ -30,4 +32,18 @@ export const sighOut = async () => {
       "Content-Type": "application/json",
     },
   });
+};
+
+export const checkConfirmationToken = (email, token) => {
+  return fetch(`${baseUrl}confirmEmail?email=${email}&token=${token}`, {
+    method: "GET",
+    credentials: "same-origin",
+    cache: "no-cache",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(() => true)
+    .catch(() => false);
 };

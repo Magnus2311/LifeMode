@@ -1,8 +1,7 @@
 import React from "react";
-import { useLocation } from "react-router";
 
-const ConfirmationEmailTemplate = (props) => {
-  const location = useLocation();
+const ConfirmationEmailTemplate = ({ username }) => {
+  debugger;
   return (
     <div
       style={{
@@ -13,20 +12,24 @@ const ConfirmationEmailTemplate = (props) => {
       }}
     >
       <img
-        src="/images/logos/logo_transparent.png"
+        src="cid:{0}"
         alt="LifeModeLogo"
         style={{ width: "200px", height: "200px" }}
       />
-      <h3>Confirm email for Life Mode</h3>
+      <iframe
+        src="https://localhost:5001/auth/emailsent/iavor.orlyov1@gmail.com"
+        title="Life Mode etc"
+      />
+      <h3>Confirm email for Life Modeeeeeee</h3>
       <div>
         You are receiving this email in order to confirm your address. If you
         haven't registered in{" "}
         <a href="https://lifemode.online">LifeMode.online</a> please ignore this
         email!
       </div>
-      {props && props.match && (
+      {username && (
         <a
-          href={`${location.protocol}//${location.host}/${props.match.params.email}/${props.match.params.token}`}
+          href={`${window.location.protocol}//${window.location.host}/auth/emailConfirmed/${username}/{1}`}
         >
           Confirm Email
         </a>
