@@ -22,6 +22,7 @@ import ShopItemPreview from "./components/pages/shop/ShopItemPreview";
 import Cart from "./components/pages/shop/cart/Cart";
 import EmailSent from "./components/pages/auth/EmailSent";
 import EmailConfirmationPage from "./components/pages/auth/EmailConfirmationPage";
+import Index from "./components/pages/auth/Index";
 
 function AppRouter(props) {
   const { dispatch } = props;
@@ -87,6 +88,7 @@ function AppRouter(props) {
           path="/auth/emailConfirmed/:email/:token"
           component={EmailConfirmationPage}
         />
+        <Route path="/auth/index" component={Index} />
       </Switch>
       {/* </div>
         </CSSTransition>
