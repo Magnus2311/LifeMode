@@ -136,3 +136,11 @@ body {
     opacity: 1;
   }
 }
+
+.expandable {
+  transition: max-height 1s ease-in;
+}
+
+.fadeable {
+  transition: opacity 0.7s ease-in, visibility 0s 0.8s linear;
+}
