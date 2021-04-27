@@ -1,4 +1,6 @@
+import React from "react";
 import { toast } from "react-toastify";
+import { Translator } from "../languages/Laguage";
 const baseUrl = "/api/users/";
 
 export function add(user) {
@@ -37,6 +39,39 @@ export function login(user) {
       if (loginResponse.isSuccessful)
         toast.success("You've logged in successfully!");
       else toast.error("Login failed! Check your credentials!");
+      return loginResponse.isSuccessful;
+    })
+    .catch(() => {
+      return false;
+    });
+}
+
+export function changePassword(oldPassword, newPassword) {
+  return fetch(baseUrl + "changePassword", {
+    method: "POST",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ oldPassword, newPassword }),
+  })
+    .then(async (response) => {
+      var isSuccessful = response.status === 200;
+      var loginResponse = {
+        isSuccessful: isSuccessful,
+      };
+      return loginResponse;
+    })
+    .then((loginResponse) => {
+      debugger;
+      if (loginResponse.isSuccessful)
+        toast.success(<Translator getString="Password changed successfully" />);
+      else
+        toast.error(
+          <Translator getString="Password was not changed! Try again later" />
+        );
       return loginResponse.isSuccessful;
     })
     .catch(() => {

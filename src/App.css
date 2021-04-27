@@ -136,3 +136,15 @@ body {
     opacity: 1;
   }
 }
+
+.expanded {
+  transition: max-height 0.7s ease-in, border-width 0s linear;
+}
+
+.collapsed {
+  transition: max-height 0.5s 0.4s ease-in, border-width 0s 1s linear;
+}
+
+.fadeable {
+  transition: opacity 0.7s ease-in, visibility 0s 0.8s linear;
+}

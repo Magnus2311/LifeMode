@@ -1,4 +1,6 @@
-import { handleResponse, handleError } from "../../api/apiUtils";
+import React from "react";
+import { toast } from "react-toastify";
+import { Translator } from "../languages/Laguage";
 
 const baseUrl = "/api/users/";
 
@@ -32,6 +34,8 @@ export const sighOut = async () => {
       "Content-Type": "application/json",
     },
   });
+
+  toast.success(<Translator getString="Signed out successfully" />);
 };
 
 export const checkConfirmationToken = (email, token) => {

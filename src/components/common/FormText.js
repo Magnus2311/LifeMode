@@ -4,10 +4,9 @@ const FormText = (props) => {
   const isValid = props.isValid ?? true;
   return (
     <Form.Group>
-      <Form.Label style={props.style}>
-        {props.label}
-      </Form.Label>
+      <Form.Label style={props.style}>{props.label}</Form.Label>
       <Form.Control
+        props={props}
         type={props.type}
         name={props.name}
         placeholder={props.placeholder}
