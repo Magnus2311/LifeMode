@@ -137,8 +137,12 @@ body {
   }
 }
 
-.expandable {
-  transition: max-height 1s ease-in;
+.expanded {
+  transition: max-height 0.7s ease-in, border-width 0s linear;
+}
+
+.collapsed {
+  transition: max-height 0.5s 0.4s ease-in, border-width 0s 1s linear;
 }
 
 .fadeable {

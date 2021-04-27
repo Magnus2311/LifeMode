@@ -61,11 +61,11 @@ export function changePassword(oldPassword, newPassword) {
       var isSuccessful = response.status === 200;
       var loginResponse = {
         isSuccessful: isSuccessful,
-        token: JSON.parse(await response.text()),
       };
       return loginResponse;
     })
     .then((loginResponse) => {
+      debugger;
       if (loginResponse.isSuccessful)
         toast.success(<Translator getString="Password changed successfully" />);
       else
