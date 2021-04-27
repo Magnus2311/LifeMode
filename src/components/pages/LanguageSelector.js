@@ -22,10 +22,10 @@ export default function LanguageSelector() {
   return (
     <NavDropdown
       style={{
-        position: "fixed",
+        position: "absolute",
         right: "0",
         left: "30",
-        top: "5px",
+        top: "0.5rem",
         zIndex: "99",
       }}
       title={

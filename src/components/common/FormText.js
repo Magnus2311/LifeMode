@@ -1,6 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 const FormText = (props) => {
+  const isValid = props.isValid ?? true;
   return (
     <Form.Group>
       <Form.Label style={props.style}>
@@ -13,6 +14,8 @@ const FormText = (props) => {
         value={props.value}
         onChange={props.handleChange}
         style={props.style}
+        autoFocus={props.autoFocus}
+        isInvalid={!isValid}
       />
     </Form.Group>
   );
