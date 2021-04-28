@@ -24,7 +24,7 @@ const ResetPasswordEmailTemplate = () => {
         email!
       </div>
       <a
-        href={`${window.location.protocol}//${window.location.host}/auth/resetPassword/{0}`}
+        href={`${window.location.protocol}//${window.location.host}/auth/resetPassword/{1}`}
       >
         Reset password
       </a>

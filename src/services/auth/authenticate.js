@@ -51,3 +51,40 @@ export const checkConfirmationToken = (email, token) => {
     .then(() => true)
     .catch(() => false);
 };
+
+export const checkResetPasswordToken = (token) => {
+  return fetch(`${baseUrl}checkResetPassword?token=${token}`, {
+    method: "GET",
+    credentials: "same-origin",
+    cache: "no-cache",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((response) => {
+    if (response.status === 200) {
+      return response.text();
+    }
+  });
+};
+
+export const sendResetPasswordEmail = (user) => {
+  return fetch(baseUrl + "sendResetPasswordEmail", {
+    method: "POST",
+    credentials: "same-origin",
+    cache: "no-cache",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  }).then((response) => {
+    if (response.status === 200) {
+      toast.success(
+        <Translator
+          getString={`E-mail to reset your password was sent to ${user.username}`}
+        />
+      );
+    }
+  });
+};
