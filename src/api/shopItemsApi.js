@@ -1,17 +1,13 @@
-import { handleResponse, handleError } from "./apiUtils";
+import { handleResponse, handleError, get } from "./apiUtils";
 const baseUrl = "/api/shop/";
 
 export function getShopItemsByCategory(shopCategoryId, pageNumber) {
-  return fetch(
+  return get(
     baseUrl +
       "shopItems?categoryId=" +
       (shopCategoryId || "") +
       "&pageNumber=" +
-      (pageNumber || ""),
-    {
-      method: "GET",
-      headers: { "content-type": "application/json" },
-    }
+      (pageNumber || "")
   )
     .then(handleResponse)
     .catch(handleError);
@@ -28,10 +24,7 @@ export function saveShopItem(shopItem) {
 }
 
 export function loadShopItem(shopItemId) {
-  return fetch(baseUrl + "shopItem?shopItemId=" + (shopItemId || ""), {
-    method: "GET",
-    headers: { "content-type": "application/json" },
-  })
+  return get(baseUrl + "shopItem?shopItemId=" + (shopItemId || ""))
     .then(handleResponse)
     .catch(handleError);
 }
