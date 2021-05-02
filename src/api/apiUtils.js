@@ -15,3 +15,28 @@ export function handleError(error) {
   console.error("API call failed. " + error);
   throw error;
 }
+
+export const get = (url) => {
+  return fetch(
+    (url,
+    {
+      method: "GET",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "include",
+    })
+  );
+};
+
+export const post = (url, params) => {
+  return fetch(url, {
+    method: "POST",
+    credentials: "same-origin",
+    cache: "no-cache",
+    mode: "cors",
+    body: JSON.stringify(params),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+};
