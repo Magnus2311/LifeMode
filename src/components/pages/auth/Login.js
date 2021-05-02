@@ -5,6 +5,9 @@ import FormText from "../../common/FormText";
 import { Translator } from "../../../services/languages/Laguage";
 import * as emailsService from "../../../services/helpers/emailsService";
 import { useHistory } from "react-router";
+import ReactDomServer from "react-dom/server";
+import ResetPasswordEmailTemplate from "../templates/emails/ResetPasswordEmailTemplate";
+import { sendResetPasswordEmail } from "../../../services/auth/authenticate";
 
 const Login = ({ returnAfterLogin, email, isConfirmation }) => {
   const [logged, setLogged] = useState(false);
@@ -57,6 +60,16 @@ const Login = ({ returnAfterLogin, email, isConfirmation }) => {
     }
   };
 
+  const handleResetPassword = (e) => {
+    e.preventDefault();
+    const template = <ResetPasswordEmailTemplate />;
+    const user = {
+      username: currentUser.username,
+      template: ReactDomServer.renderToStaticMarkup(template),
+    };
+    sendResetPasswordEmail(user);
+  };
+
   return logged && returnAfterLogin ? (
     returnAfterLogin
   ) : (
@@ -103,7 +116,7 @@ const Login = ({ returnAfterLogin, email, isConfirmation }) => {
           handleChange={handleChange}
           label={<Translator getString="Password" />}
           value={currentUser.password}
-          autoFocus={isWrongCredentials || isConfirmation}
+          autoFocus={isWrongCredentials || isConfirmation || email}
         />
         <button
           className="btn btn-primary btn-xl"
@@ -111,6 +124,19 @@ const Login = ({ returnAfterLogin, email, isConfirmation }) => {
           disabled={!isLoginActive}
         >
           <Translator getString="Login" />
+        </button>
+        <button
+          className="btn btn-secondary"
+          disabled={
+            !currentUser ||
+            !currentUser.username ||
+            currentUser.username === "" ||
+            !isValidEmail
+          }
+          style={{ width: "100%", marginTop: "1rem" }}
+          onClick={handleResetPassword}
+        >
+          <Translator getString="Reset your password" />
         </button>
       </form>
     </>

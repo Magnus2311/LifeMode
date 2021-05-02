@@ -1,7 +1,6 @@
 import React from "react";
 
 const ConfirmationEmailTemplate = ({ username }) => {
-  debugger;
   return (
     <div
       style={{
@@ -16,11 +15,7 @@ const ConfirmationEmailTemplate = ({ username }) => {
         alt="LifeModeLogo"
         style={{ width: "200px", height: "200px" }}
       />
-      <iframe
-        src="https://localhost:5001/auth/emailsent/iavor.orlyov1@gmail.com"
-        title="Life Mode etc"
-      />
-      <h3>Confirm email for Life Modeeeeeee</h3>
+      <h3>Confirm email for Life Mode</h3>
       <div>
         You are receiving this email in order to confirm your address. If you
         haven't registered in{" "}

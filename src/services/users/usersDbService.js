@@ -33,11 +33,11 @@ export function changePassword(oldPassword, newPassword) {
       var isSuccessful = response.status === 200;
       var loginResponse = {
         isSuccessful: isSuccessful,
-        token: JSON.parse(await response.text()),
       };
       return loginResponse;
     })
     .then((loginResponse) => {
+      debugger;
       if (loginResponse.isSuccessful)
         toast.success(<Translator getString="Password changed successfully" />);
       else
@@ -48,6 +48,29 @@ export function changePassword(oldPassword, newPassword) {
     })
     .catch(handleError);
 }
+
+export const resetPassword = (token, newPassword) => {
+  return fetch(baseUrl + "resetPassword", {
+    method: "POST",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ token, newPassword }),
+  }).then(async (response) => {
+    if (response.status === 200) {
+      toast.success(<Translator getString="Password changed successfully" />);
+      return true;
+    } else {
+      toast.error(
+        <Translator getString="Password was not changed! Try again later" />
+      );
+      return false;
+    }
+  });
+};
 
 export function refreshAccessToken() {
   return get(baseUrl + "getAccessToken")
