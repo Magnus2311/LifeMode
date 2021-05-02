@@ -23,6 +23,7 @@ import Cart from "./components/pages/shop/cart/Cart";
 import EmailSent from "./components/pages/auth/EmailSent";
 import EmailConfirmationPage from "./components/pages/auth/EmailConfirmationPage";
 import Index from "./components/pages/auth/Index";
+import ResetPassword from "./components/pages/auth/ResetPasswordPage";
 
 function AppRouter(props) {
   const { dispatch } = props;
@@ -89,6 +90,7 @@ function AppRouter(props) {
           component={EmailConfirmationPage}
         />
         <Route path="/auth/index" component={Index} />
+        <Route path="/auth/resetPassword/:token" component={ResetPassword} />
       </Switch>
       {/* </div>
         </CSSTransition>

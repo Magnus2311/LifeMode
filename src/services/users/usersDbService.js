@@ -79,6 +79,29 @@ export function changePassword(oldPassword, newPassword) {
     });
 }
 
+export const resetPassword = (token, newPassword) => {
+  return fetch(baseUrl + "resetPassword", {
+    method: "POST",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ token, newPassword }),
+  }).then(async (response) => {
+    if (response.status === 200) {
+      toast.success(<Translator getString="Password changed successfully" />);
+      return true;
+    } else {
+      toast.error(
+        <Translator getString="Password was not changed! Try again later" />
+      );
+      return false;
+    }
+  });
+};
+
 export function refreshAccessToken() {
   return fetch(baseUrl + "getAccessToken", {
     method: "GET",
