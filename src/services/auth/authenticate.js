@@ -20,8 +20,8 @@ export const sighOut = async () => {
 
 export const checkConfirmationToken = (email, token) => {
   return get(`${baseUrl}confirmEmail?email=${email}&token=${token}`)
-    .then((response) => handleResponse(response).then(() => true))
-    .catch((error) => handleError(error));
+    .then(() => true)
+    .catch(() => false);
 };
 
 export const checkResetPasswordToken = (token) => {
