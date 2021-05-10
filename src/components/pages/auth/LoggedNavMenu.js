@@ -6,11 +6,11 @@ const LoggedNavMenu = () => {
   const authContext = useContext(AuthContext);
 
   return (
-    <Link to="/auth/index" className="text-dark nav-link">
-      {authContext.user.username
-        ? authContext.user.username.toLowerCase()
-        : "WTF????"}
-    </Link>
+    authContext.user.username && (
+      <Link to="/auth/index" className="text-dark nav-link">
+        {authContext.user.username.toLowerCase()}
+      </Link>
+    )
   );
 };
 

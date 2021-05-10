@@ -1,7 +1,6 @@
 import React from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
 import Home from "./components/pages/home/HomePage";
-import PageNotFound from "./components/pages/PageNotFound";
 import AboutPage from "./components/pages/about/AboutPage";
 import CategoriesListPage from "./components/pages/categories/CategoriesListPage";
 import AddProductPage from "./components/pages/products/AddProductPage";
@@ -21,6 +20,10 @@ import Login from "./components/pages/auth/Login";
 import { AuthenticatedRoute } from "./components/pages/auth/AuthenticatedRoute";
 import ShopItemPreview from "./components/pages/shop/ShopItemPreview";
 import Cart from "./components/pages/shop/cart/Cart";
+import EmailSent from "./components/pages/auth/EmailSent";
+import EmailConfirmationPage from "./components/pages/auth/EmailConfirmationPage";
+import Index from "./components/pages/auth/Index";
+import ResetPassword from "./components/pages/auth/ResetPasswordPage";
 import CalorieCalculator from "./components/pages/calorie calculator/CalorieCalculator";
 
 function AppRouter(props) {
@@ -83,6 +86,13 @@ function AppRouter(props) {
           component={ShopItemPreview}
         />
         <Route path="/calorieCalculator" exact component={CalorieCalculator} />
+        <Route path="/auth/emailSent/:email" component={EmailSent} />
+        <Route
+          path="/auth/emailConfirmed/:email/:token"
+          component={EmailConfirmationPage}
+        />
+        <Route path="/auth/index" component={Index} />
+        <Route path="/auth/resetPassword/:token" component={ResetPassword} />
       </Switch>
       {/* </div>
         </CSSTransition>
