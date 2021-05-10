@@ -21,6 +21,7 @@ import Login from "./components/pages/auth/Login";
 import { AuthenticatedRoute } from "./components/pages/auth/AuthenticatedRoute";
 import ShopItemPreview from "./components/pages/shop/ShopItemPreview";
 import Cart from "./components/pages/shop/cart/Cart";
+import CalorieCalculator from "./components/pages/calorie calculator/CalorieCalculator";
 
 function AppRouter(props) {
   const { dispatch } = props;
@@ -81,6 +82,7 @@ function AppRouter(props) {
           exact
           component={ShopItemPreview}
         />
+        <Route path="/calorieCalculator" exact component={CalorieCalculator} />
       </Switch>
       {/* </div>
         </CSSTransition>

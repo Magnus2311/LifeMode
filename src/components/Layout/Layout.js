@@ -95,6 +95,13 @@ const Layout = () => {
             />
             <Translator getString="Cart" />({itemCount})
           </Link>
+          <Link
+            className="nav-link"
+            to="/calorieCalculator"
+            onClick={handleClick}
+          >
+            <Translator getString="Calorie Calculator" />
+          </Link>
         </Nav>
       </Navbar.Collapse>
       <UserNavMenu />
