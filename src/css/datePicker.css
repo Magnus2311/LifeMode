@@ -1,0 +1,58 @@
+.arrow {
+  border: solid black;
+  border-width: 0 1px 1px 0;
+  display: inline-block;
+  padding: 8px;
+  margin-top: 11px;
+  cursor: pointer;
+}
+
+.arrow:hover {
+  border-color: var(--default-hover-color);
+  transition: transform 0.1s ease-in-out;
+}
+
+.arrow-right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.arrow-right:hover {
+  transform: scale(0.9) rotate(-45deg);
+  -webkit-transform: scale(0.9) rotate(-45deg);
+}
+
+.arrow-left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.arrow-left:hover {
+  transform: scale(0.9) rotate(135deg);
+  -webkit-transform: scale(0.9) rotate(135deg);
+}
+
+.react-date-picker__button:enabled:hover .react-date-picker__button__icon,
+.react-date-picker__button:enabled:focus .react-date-picker__button__icon {
+  stroke: var(--default-color);
+}
+
+.react-calendar__tile--active {
+  background: var(--default-color);
+  color: white;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: var(--background-with-opacity);
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: var(--background-with-opacity);
+}
+
+.react-calendar__tile--hasActive {
+  background: var(--default-color);
+  color: white;
+}

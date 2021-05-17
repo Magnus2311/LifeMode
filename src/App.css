@@ -1,3 +1,10 @@
+body {
+  --default-color: rgb(21, 202, 21);
+  --default-hover-color: rgb(17, 233, 17);
+
+  --background-with-opacity: rgba(17, 233, 17, 0.5);
+}
+
 .app-container {
   display: grid;
   place-items: center;

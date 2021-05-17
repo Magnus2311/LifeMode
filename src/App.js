@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { LanguageProvider } from "./services/languages/Laguage";
 import "./App.css";
+import "./css/datePicker.css";
 import { AuthContext } from "./components/common/Contexts/AuthContext";
 import { authenticate } from "./services/auth/authenticate";
 import CartContextProvider from "./components/common/Contexts/CartContext";

@@ -114,6 +114,13 @@ const Layout = () => {
           >
             <Translator getString="Calorie Calculator" />
           </Link>
+          <Link
+            className="nav-link"
+            to="/nutritions/daily"
+            onClick={handleClick}
+          >
+            <Translator getString="Daily Nutrition" />
+          </Link>
         </Nav>
       </Navbar.Collapse>
       <UserNavMenu />

@@ -25,6 +25,7 @@ import EmailConfirmationPage from "./components/pages/auth/EmailConfirmationPage
 import Index from "./components/pages/auth/Index";
 import ResetPassword from "./components/pages/auth/ResetPasswordPage";
 import CalorieCalculator from "./components/pages/calorie calculator/CalorieCalculator";
+import DailyNutritionPage from "./components/pages/nutritions/DailyNutritionPage";
 
 function AppRouter(props) {
   const { dispatch } = props;
@@ -93,6 +94,7 @@ function AppRouter(props) {
         />
         <Route path="/auth/index" component={Index} />
         <Route path="/auth/resetPassword/:token" component={ResetPassword} />
+        <Route path="/nutritions/daily" component={DailyNutritionPage} />
       </Switch>
       {/* </div>
         </CSSTransition>
