@@ -20,7 +20,6 @@ const Combobox = (props) => {
   };
 
   const showItems = (items) => {
-    debugger;
     return (
       items &&
       items.map((item) => {

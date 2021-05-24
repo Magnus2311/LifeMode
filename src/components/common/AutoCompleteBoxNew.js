@@ -10,7 +10,7 @@ const AutoCompleteBox = (props) => {
     setText(event.target.value.toLowerCase());
     setOptions(
       data.filter((item) =>
-        item.toLowerCase().includes(event.target.value.toLowerCase())
+        item.name.toLowerCase().includes(event.target.value.toLowerCase())
       )
     );
     if (handleChange) handleChange(event.target.value);
@@ -39,10 +39,10 @@ const AutoCompleteBox = (props) => {
               return (
                 <div
                   className="autocomplete-option"
-                  key={option}
+                  key={option.id}
                   onClick={handleSubmit}
                 >
-                  {option}
+                  {option.name}
                 </div>
               );
             })}

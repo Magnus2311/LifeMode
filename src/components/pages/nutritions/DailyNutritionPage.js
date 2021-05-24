@@ -5,13 +5,14 @@ import {
   getWithExpiry,
   setWithExpiry,
 } from "../../../services/caching/cacheData";
-import { FormLabel } from "react-bootstrap";
 import { Translator } from "../../../services/languages/Laguage";
+import AutoCompleteBoxNew from "../../common/AutoCompleteBox";
 
-const DailyNutritionPage = () => {
+const DailyNutritionPage = ({ products }) => {
   const NUTRITION_DAILY_DATE = "nutrition-daily-date";
   const [date, setDate] = useState(new Date());
   const [caloriesPerDay, setCaloriesPerDay] = useState(2000);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     const lastDate = getWithExpiry(NUTRITION_DAILY_DATE);
@@ -21,6 +22,14 @@ const DailyNutritionPage = () => {
   const setNewDate = (date) => {
     setDate(date);
     setWithExpiry(NUTRITION_DAILY_DATE, date, 300000);
+  };
+
+  const handleAutocompleteOptionChoose = (event) => {
+    setSearchText(event.target.textContent);
+    var product = products.find(
+      (product) =>
+        product.name.toLowerCase() === event.target.textContent.toLowerCase()
+    );
   };
 
   return (
@@ -78,12 +87,18 @@ const DailyNutritionPage = () => {
           </label>
         </div>
       </div>
+      <AutoCompleteBoxNew
+        handleSubmit={handleAutocompleteOptionChoose}
+        data={products}
+      />
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    products: state.products,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
