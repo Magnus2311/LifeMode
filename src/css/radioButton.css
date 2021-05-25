@@ -51,3 +51,12 @@
   transform: scale(0);
   background: #c75555;
 }
+.radio-btn-container {
+  display: flex;
+  width: 60%;
+  padding: 20px;
+}
+.flexDiv {
+  width: 100%;
+  display: flex;
+}
