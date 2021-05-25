@@ -13,7 +13,7 @@ const Dropdown = ({ items, handleItemChosen }) => {
 
   const handleItemClick = (e) => {
     setInputText(e.currentTarget.innerHTML);
-    handleItemChosen(e.currentTarget.innerText);
+    handleItemChosen(e.currentTarget.innerText, e.currentTarget);
   };
 
   const handleOnBlur = () => {
@@ -44,8 +44,11 @@ const Dropdown = ({ items, handleItemChosen }) => {
           <div
             className="dropdown2-item"
             key={item.key}
+            id={item.key}
             onClick={handleItemClick}
             style={{
+              backgroundColor: "#e6ffe6",
+              zIndex: 1,
               maxHeight: isDropdownOpen ? "38px" : "0px",
               visibility: isDropdownOpen ? "visible" : "collapse",
               borderStyle: isDropdownOpen ? "ridge" : "none",
