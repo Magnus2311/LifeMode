@@ -28,7 +28,25 @@ export function calculateMaintananceCalories(event, calorieData, gender, unit) {
         5 * calorieData.age +
         5;
   }
-  return result < 500 ? 0 : Math.round(result);
+  let res = result < 500 ? 0 : Math.round(result);
+
+  switch (calorieData.activityType) {
+    case "1":
+      res = res + 280;
+      break;
+    case "2":
+      res = res + 535;
+      break;
+    case "3":
+      res = res + 663;
+      break;
+    case "4":
+      res = res + 1034;
+      break;
+    default:
+      break;
+  }
+  return res;
 }
 
 export function calculateFatLossCalories(event, maintananceCalorie) {

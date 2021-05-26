@@ -52,9 +52,9 @@
   background: #c75555;
 }
 .radio-btn-container {
+  padding-top: 20px;
   display: flex;
   width: 60%;
-  padding: 20px;
 }
 .flexDiv {
   width: 100%;

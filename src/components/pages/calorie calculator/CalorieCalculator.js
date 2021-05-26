@@ -21,6 +21,7 @@ const CalorieCalculator = (props) => {
     unit: "",
   };
   const activities = [
+    { key: 0, value: "Basal Metaboliv Rate (BMR)" },
     { key: 1, value: "Sedentary: Little or no exersice " },
     { key: 2, value: "Light: Exercise 1-3 times/week" },
     { key: 3, value: "Moderate: Exercise 4-5 times/week" },
@@ -62,6 +63,125 @@ const CalorieCalculator = (props) => {
     <Form onSubmit={handleSubmit}>
       <div className="itemsContainer ">
         <div className="split left">
+          <h3>
+            <Translator getString="Calorie calculator" />
+          </h3>
+          <div
+            className="centered "
+            style={{ display: "contents", marginRight: "50px" }}
+          >
+            <hr />
+            <div style={{ display: "flex" }}>
+              <div style={{ width: "20%", padding: "20px" }}>
+                <label>
+                  <Translator getString="Gender" />
+                </label>
+              </div>
+              <div className="radio-btn-container">
+                <RadioButton
+                  label="Male"
+                  value="male"
+                  checked={gender}
+                  setter={setGender}
+                />
+                <RadioButton
+                  label="Female"
+                  value="female"
+                  checked={gender}
+                  setter={setGender}
+                />
+              </div>
+            </div>
+            <div style={{ width: "100%" }}>
+              <div style={{ width: "100%", display: "flex" }}>
+                <div style={{ width: "20%", padding: "20px" }}>
+                  <label>
+                    <Translator getString="Age" />
+                  </label>
+                </div>
+                <div style={{ width: "60%" }}>
+                  <input
+                    className="inputStyle"
+                    value={calorieData.age}
+                    onChange={handleChange}
+                    placeholder="Enter age"
+                    name="age"
+                  />
+                </div>
+              </div>
+              <div style={{ display: "flex" }}>
+                <div style={{ width: "20%", padding: "20px" }}>
+                  <label>
+                    <Translator getString="Unit" />
+                  </label>
+                </div>
+                <div className="radio-btn-container">
+                  <RadioButton
+                    label="Metric"
+                    value="metric"
+                    checked={unit}
+                    setter={setUnit}
+                  />
+                  <RadioButton
+                    label="U.S."
+                    value="us"
+                    checked={unit}
+                    setter={setUnit}
+                  />
+                </div>
+              </div>
+              <div className="flexDiv">
+                <div style={{ width: "20%", padding: "20px" }}>
+                  <label>
+                    <Translator getString="Height" />
+                  </label>
+                </div>
+                <div style={{ width: "60%" }}>
+                  <input
+                    className="inputStyle"
+                    value={calorieData.height}
+                    onChange={handleChange}
+                    placeholder="Enter height"
+                    name="height"
+                  />
+                </div>
+              </div>
+              <div className="flexDiv">
+                <div style={{ width: "20%", padding: "20px" }}>
+                  <label>
+                    <Translator getString="Weight" />
+                  </label>
+                </div>
+                <div style={{ width: "60%" }}>
+                  <input
+                    className="inputStyle"
+                    value={calorieData.weight}
+                    onChange={handleChange}
+                    placeholder="Enter weight"
+                    name="weight"
+                  />
+                </div>
+              </div>
+              <div className="flexDiv">
+                <div style={{ width: "20%", padding: "20px" }}>
+                  <Translator getString="Activity" />
+                </div>
+                <div style={{ width: "60%" }}>
+                  <Dropdown
+                    items={activities}
+                    handleItemChosen={handleActivityChosen}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style={{ textAlign: "center" }}>
+            <Button class="button type1" type="submit" style={{ zIndex: "5" }}>
+              <Translator getString="Calculate" />
+            </Button>
+          </div>
+        </div>
+        <div className="split right">
           {isCalculated ? (
             <div className="centered">
               <div>
@@ -169,128 +289,6 @@ const CalorieCalculator = (props) => {
               </p>
             </div>
           )}
-        </div>
-        <div className="split right">
-          <h3>
-            <Translator getString="Calorie calculator" />
-          </h3>
-          <div
-            className="centered "
-            style={{ display: "contents", marginRight: "50px" }}
-          >
-            <hr />
-            <div style={{ display: "flex" }}>
-              <div style={{ width: "20%", padding: "20px" }}>
-                <label>
-                  <Translator getString="Gender" />
-                </label>
-              </div>
-              <div
-                className="radio-btn-container"
-                style={{ display: "flex", width: "60%", padding: "20px" }}
-              >
-                <RadioButton
-                  label="Male"
-                  value="male"
-                  checked={gender}
-                  setter={setGender}
-                />
-                <RadioButton
-                  label="Female"
-                  value="female"
-                  checked={gender}
-                  setter={setGender}
-                />
-              </div>
-            </div>
-            <div style={{ width: "100%" }}>
-              <div style={{ width: "100%", display: "flex" }}>
-                <div style={{ width: "20%", padding: "20px" }}>
-                  <label>
-                    <Translator getString="Age" />
-                  </label>
-                </div>
-                <div style={{ width: "60%" }}>
-                  <input
-                    className="inputStyle"
-                    value={calorieData.age}
-                    onChange={handleChange}
-                    placeholder="Enter age"
-                    name="age"
-                  />
-                </div>
-              </div>
-              <div style={{ display: "flex" }}>
-                <div style={{ width: "20%", padding: "20px" }}>
-                  <label>
-                    <Translator getString="Unit" />
-                  </label>
-                </div>
-                <div className="radio-btn-container">
-                  <RadioButton
-                    label="Metric"
-                    value="metric"
-                    checked={unit}
-                    setter={setUnit}
-                  />
-                  <RadioButton
-                    label="U.S."
-                    value="us"
-                    checked={unit}
-                    setter={setUnit}
-                  />
-                </div>
-              </div>
-              <div className="flexDiv">
-                <div style={{ width: "20%", padding: "20px" }}>
-                  <label>
-                    <Translator getString="Height" />
-                  </label>
-                </div>
-                <div style={{ width: "60%" }}>
-                  <input
-                    className="inputStyle"
-                    value={calorieData.height}
-                    onChange={handleChange}
-                    placeholder="Enter height"
-                    name="height"
-                  />
-                </div>
-              </div>
-              <div className="flexDiv">
-                <div style={{ width: "20%", padding: "20px" }}>
-                  <label>
-                    <Translator getString="Weight" />
-                  </label>
-                </div>
-                <div style={{ width: "60%" }}>
-                  <input
-                    className="inputStyle"
-                    value={calorieData.weight}
-                    onChange={handleChange}
-                    placeholder="Enter weight"
-                    name="weight"
-                  />
-                </div>
-              </div>
-              <div className="flexDiv">
-                <div style={{ width: "20%", padding: "20px" }}>
-                  <Translator getString="Activity" />
-                </div>
-                <div style={{ width: "60%" }}>
-                  <Dropdown
-                    items={activities}
-                    handleItemChosen={handleActivityChosen}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div style={{ textAlign: "center" }}>
-            <Button class="button type1" type="submit">
-              <Translator getString="Calculate" />
-            </Button>
-          </div>
         </div>
       </div>
     </Form>

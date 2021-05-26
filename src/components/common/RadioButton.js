@@ -1,18 +1,16 @@
 import React from "react";
-import "../../css/radioButton.css";
 
-const RadioButton = (props) => {
+const RadioButton = ({ label, value, checked, setter }) => {
   return (
-    <div className="RadioButton">
+    <label style={{ display: "flex", minWidth: "100px", margin: "2px" }}>
       <input
-        id={props.id}
-        onChange={props.changed}
-        value={props.value}
         type="radio"
-        checked={props.isSelected}
+        checked={checked === value}
+        onChange={() => setter(value)}
+        style={{ margin: "5px" }}
       />
-      <label htmlFor={props.id}>{props.label}</label>
-    </div>
+      <span>{label}</span>
+    </label>
   );
 };
 
