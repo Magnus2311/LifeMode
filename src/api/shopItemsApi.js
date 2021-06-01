@@ -2,12 +2,16 @@ import { handleResponse, handleError, get } from "./apiUtils";
 const baseUrl = "/api/shop/";
 
 export function getShopItemsByCategory(shopCategoryId, pageNumber) {
-  return get(
+  return fetch(
     baseUrl +
       "shopItems?categoryId=" +
       (shopCategoryId || "") +
       "&pageNumber=" +
-      (pageNumber || "")
+      (pageNumber || ""),
+    {
+      method: "GET",
+      headers: { "content-type": "application/json" },
+    }
   )
     .then(handleResponse)
     .catch(handleError);

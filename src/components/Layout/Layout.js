@@ -95,6 +95,15 @@ const Layout = () => {
                 <Translator getString="Shop item" />
               </Link>
             </NavDropdown.Item>
+            <NavDropdown.Item className="nav-dropdown-item">
+              <Link
+                className="dropdown-item"
+                to="/knowledge/addKnowledgeCategory"
+                onClick={handleClick}
+              >
+                <Translator getString="Knowledge category" />
+              </Link>
+            </NavDropdown.Item>
           </NavDropdown>
 
           <Link className="nav-link" to="/shop" onClick={handleClick}>
@@ -113,6 +122,9 @@ const Layout = () => {
             onClick={handleClick}
           >
             <Translator getString="Calorie Calculator" />
+          </Link>
+          <Link className="nav-link" to="/knowledge" onClick={handleClick}>
+            <Translator getString="Knowledge" />
           </Link>
         </Nav>
       </Navbar.Collapse>
