@@ -6,13 +6,13 @@ import {
   setWithExpiry,
 } from "../../../services/caching/cacheData";
 import { Translator } from "../../../services/languages/Laguage";
-import AutoCompleteBoxNew from "../../common/AutoCompleteBox";
+import AutoCompleteBoxNew from "../../common/AutoCompleteBoxNew";
 
 const DailyNutritionPage = ({ products }) => {
   const NUTRITION_DAILY_DATE = "nutrition-daily-date";
   const [date, setDate] = useState(new Date());
+  const [selectedNutritions, setSelectedNutritions] = useState([]);
   const [caloriesPerDay, setCaloriesPerDay] = useState(2000);
-  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     const lastDate = getWithExpiry(NUTRITION_DAILY_DATE);
@@ -24,11 +24,13 @@ const DailyNutritionPage = ({ products }) => {
     setWithExpiry(NUTRITION_DAILY_DATE, date, 300000);
   };
 
-  const handleAutocompleteOptionChoose = (event) => {
-    setSearchText(event.target.textContent);
-    var product = products.find(
-      (product) =>
-        product.name.toLowerCase() === event.target.textContent.toLowerCase()
+  const handleAutocompleteOptionChoose = (product) => {
+    const selectedNutritionsTemp = [...selectedNutritions, product];
+    setSelectedNutritions(selectedNutritionsTemp);
+    setCaloriesPerDay(
+      selectedNutritionsTemp
+        .map((item) => item.calories)
+        .reduce((prev, next) => prev + next)
     );
   };
 
@@ -91,6 +93,17 @@ const DailyNutritionPage = ({ products }) => {
         handleSubmit={handleAutocompleteOptionChoose}
         data={products}
       />
+      {selectedNutritions &&
+        selectedNutritions.map((nutrition) => {
+          return (
+            <div>
+              <label>{nutrition.name + ", " + nutrition.description}</label>
+              <div>
+                <input type="number" />x
+              </div>
+            </div>
+          );
+        })}
     </div>
   );
 };
