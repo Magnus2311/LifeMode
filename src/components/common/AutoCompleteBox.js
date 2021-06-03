@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../css/autocomplete.css";
 
-const AutoCompleteBox = (props) => {
+const AutoCompleteBoxNew = (props) => {
   const { data, placeholder, handleSubmit, handleChange } = props;
   const [text, setText] = useState("");
   const [options, setOptions] = useState(data);
@@ -52,4 +52,4 @@ const AutoCompleteBox = (props) => {
   );
 };
 
-export default AutoCompleteBox;
+export default AutoCompleteBoxNew;
