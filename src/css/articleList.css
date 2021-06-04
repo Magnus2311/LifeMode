@@ -1,0 +1,52 @@
+.articleCard {
+  transition: 0.3s;
+  width: 200px;
+  height: 180px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: 0.4s;
+  border-radius: 40px !important;
+  margin: 30px;
+  border: "css";
+}
+
+.articleCard:hover {
+  box-shadow: 5px 5px 30px 7px rgba(51, 47, 47, 0.25),
+    -5px -5px 30px 7px rgba(44, 41, 41, 0.22);
+
+  transform: scale(0.96, 0.96);
+}
+
+.articlecontainer {
+  padding: 2px 16px;
+  background-color: gainsboro;
+  border-radius: 8px;
+}
+
+.articleCard .articleCard_image {
+  width: 100%;
+  height: 140px;
+  border-radius: 8px;
+}
+
+.articleCard .articleCard_image img {
+  width: inherit;
+  height: inherit;
+  border-radius: 38px;
+  object-fit: cover;
+}
+
+.card .card_title {
+  text-align: center;
+  border-radius: 0px 0px 40px 40px;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  height: 10px;
+}
+
+.card:hover {
+  transform: scale(0.9, 0.9);
+  box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.25),
+    -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
+}

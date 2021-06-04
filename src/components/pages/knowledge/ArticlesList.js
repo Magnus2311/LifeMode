@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import * as articleActions from "../../../redux/actions/acticleActions";
+import ArticleCard from "../../common/Knowledge/ArticleCard";
 import InfiniteScroll from "react-infinite-scroll-component";
+import "../../../css/shopItems.css";
 
 const ArticlesList = (props) => {
   const { knowledgeCategoryId } = props.match.params;
@@ -10,10 +12,9 @@ const ArticlesList = (props) => {
   const { pageNumber } = props;
 
   useEffect(() => {
-    debugger;
-    if (pageNumber === 1 && articles.length < 1) {
-      onLoadArticles(knowledgeCategoryId, pageNumber);
-    }
+    // if (pageNumber === 1 && articles.length < 1) {
+    onLoadArticles(knowledgeCategoryId, "1");
+    // }
   }, []);
 
   const loadMore = () => {
@@ -33,11 +34,7 @@ const ArticlesList = (props) => {
         {articles &&
           articles.length > 0 &&
           articles.map((item) => {
-            return (
-              <>
-                <p>{item.Name}</p>
-              </>
-            );
+            return <ArticleCard item={item} key={item.id} />;
           })}
       </div>
       {loadingArticles && (
