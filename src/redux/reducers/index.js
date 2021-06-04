@@ -12,6 +12,7 @@ import shopItem from "./shopItemReducer";
 import feedbacks from "./feedbackReducer";
 import knowledgeCategories from "./knowledgeReducers";
 import articles from "./articlesReducers";
+import article from "./articleReducers";
 
 const rootReducer = combineReducers({
   products,
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   feedbacks,
   knowledgeCategories,
   articles,
+  article,
 });
 
 export default rootReducer;

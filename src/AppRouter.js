@@ -29,6 +29,8 @@ import CalorieCalculator from "./components/pages/calorie calculator/CalorieCalc
 import KnowledgeCategories from "./components/pages/knowledge/KnowledgeCategories";
 import AddKnowledgeCategory from "./components/pages/knowledge/AddKnowledgeCategory";
 import ArticlesList from "./components/pages/knowledge/ArticlesList";
+import AddArticle from "./components/pages/knowledge/AddArticle";
+import ArticlePreview from "./components/pages/knowledge/ArticlePreview";
 
 function AppRouter(props) {
   const { dispatch } = props;
@@ -102,13 +104,19 @@ function AppRouter(props) {
         <Route path="/knowledge" exact component={KnowledgeCategories} />
         <Route
           path="/knowledge/addKnowledgeCategory"
-          axact
+          exact
           component={AddKnowledgeCategory}
         />
+        <Route path="/articles/addArticle" exact component={AddArticle} />
         <Route
           path="/knowledge/articles/:knowledgeCategoryId?"
           exact
           component={ArticlesList}
+        />
+        <Route
+          path="/knowledge/article/:articleId?"
+          exact
+          component={ArticlePreview}
         />
       </Switch>
       {/* </div>
