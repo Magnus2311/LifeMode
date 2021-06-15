@@ -1,10 +1,27 @@
 import React from "react";
+import { Translator } from "../../services/languages/Laguage";
 
-const FormLabel = (props) => {
+const labelStyle = {
+  textAlign: "right",
+  clear: "both",
+  float: "left",
+  marginRight: "15px",
+};
+
+const FormLabel = ({ label, value, style }) => {
   return (
-    <div className="form-group" style={props.style}>
-      <label className="form-label">{props.label}</label>
-      <label className="form-label">{props.value}</label>
+    <div
+      className="form-group"
+      style={{
+        height: style?.height ?? "2rem",
+        textAlignLast: "right",
+        marginBottom: "0",
+      }}
+    >
+      <label style={labelStyle}>
+        <Translator getString={label} />
+      </label>
+      <div>{value}</div>
     </div>
   );
 };

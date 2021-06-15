@@ -12,6 +12,7 @@ body {
 
 .add-form {
   width: clamp(150px, 100%, 60ch);
+  padding-bottom: 2rem;
 }
 
 hr {

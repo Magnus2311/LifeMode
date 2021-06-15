@@ -1,0 +1,19 @@
+.daily-nutrition-selected {
+  max-height: 2rem;
+  height: 1000px;
+  position: relative;
+  border-bottom: solid 1px var(--default-hover-color);
+  padding: 0.5rem 0.25rem;
+  line-height: 14px;
+  cursor: pointer;
+}
+
+.daily-nutrition-selected.expanded {
+  max-height: 4.3rem;
+  transition: max-height 0.6s ease-in-out, color 0.6s ease-in-out;
+}
+
+.daily-nutrition-selected.collapsed {
+  max-height: 2rem;
+  transition: max-height 0.6s ease-in-out, color 0s ease-in-out;
+}

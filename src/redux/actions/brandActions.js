@@ -11,7 +11,7 @@ export function loadBrands() {
         dispatch(loadBrandsSuccess(brands));
       })
       .catch((error) => {
-        toast.error("Loading brands failed!");
+        toast.error("Loadi  ng brands failed!");
         throw error;
       });
   };

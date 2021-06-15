@@ -5,14 +5,22 @@ import {
   getWithExpiry,
   setWithExpiry,
 } from "../../../services/caching/cacheData";
-import { Translator } from "../../../services/languages/Laguage";
 import AutoCompleteBoxNew from "../../common/AutoCompleteBoxNew";
+import DailyNutritionModal from "./DailyNutritionModal";
+import { formatDecimalNumber } from "../../../services/helpers/numbers";
+import FormLabel from "../../common/FormLabel";
+import DailyNutritionSelected from "./DailyNutritionSelected";
 
 const DailyNutritionPage = ({ products }) => {
   const NUTRITION_DAILY_DATE = "nutrition-daily-date";
   const [date, setDate] = useState(new Date());
+  const [currentNutrition, setCurrentNutrition] = useState({});
   const [selectedNutritions, setSelectedNutritions] = useState([]);
-  const [caloriesPerDay, setCaloriesPerDay] = useState(2000);
+  const [caloriesPerDay, setCaloriesPerDay] = useState(0);
+  const [carbohydratesPerDay, setCarbohydratesPerDay] = useState(0);
+  const [fatsPerDay, setFatsPerDay] = useState(0);
+  const [proteinsPerDay, setProteinsPerDay] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const lastDate = getWithExpiry(NUTRITION_DAILY_DATE);
@@ -24,14 +32,67 @@ const DailyNutritionPage = ({ products }) => {
     setWithExpiry(NUTRITION_DAILY_DATE, date, 300000);
   };
 
-  const handleAutocompleteOptionChoose = (product) => {
-    const selectedNutritionsTemp = [...selectedNutritions, product];
+  const handleAutocompleteOptionChosen = (product) => {
+    setIsModalOpen(true);
+    setCurrentNutrition({
+      ...product,
+      name: product.name + ", " + product.description,
+    });
+  };
+
+  const handleAddNutrition = (nutrition) => {
+    const selectedNutritionsTemp = [...selectedNutritions, nutrition];
+    setAllNutritionsData(selectedNutritionsTemp);
+  };
+
+  const handleDelete = (nutrition) => {
+    const selectedNutritionsTemp = [...selectedNutritions];
+    var removeIndex = selectedNutritionsTemp
+      .map((item) => item.id)
+      .indexOf(nutrition.id);
+
+    ~removeIndex && selectedNutritionsTemp.splice(removeIndex, 1);
+    setAllNutritionsData(selectedNutritionsTemp);
+  };
+
+  const setAllNutritionsData = (selectedNutritionsTemp) => {
     setSelectedNutritions(selectedNutritionsTemp);
-    setCaloriesPerDay(
-      selectedNutritionsTemp
-        .map((item) => item.calories)
-        .reduce((prev, next) => prev + next)
-    );
+
+    if (selectedNutritionsTemp && selectedNutritionsTemp.length > 0) {
+      setCaloriesPerDay(
+        formatDecimalNumber(
+          selectedNutritionsTemp
+            .map((item) => item.calories)
+            .reduce((prev, next) => +prev + +next)
+        )
+      );
+      setCarbohydratesPerDay(
+        formatDecimalNumber(
+          selectedNutritionsTemp
+            .map((item) => item.carbohydrates)
+            .reduce((prev, next) => +prev + +next)
+        )
+      );
+      setFatsPerDay(
+        formatDecimalNumber(
+          selectedNutritionsTemp
+            .map((item) => item.fats)
+            .reduce((prev, next) => +prev + +next)
+        )
+      );
+      setProteinsPerDay(
+        formatDecimalNumber(
+          selectedNutritionsTemp
+            .map((item) => item.proteins)
+            .reduce((prev, next) => +prev + +next)
+        )
+      );
+    } else {
+      setCaloriesPerDay(formatDecimalNumber(0));
+      setCarbohydratesPerDay(formatDecimalNumber(0));
+      setFatsPerDay(formatDecimalNumber(0));
+      setProteinsPerDay(formatDecimalNumber(0));
+    }
   };
 
   return (
@@ -76,32 +137,39 @@ const DailyNutritionPage = ({ products }) => {
         </div>
         <div
           style={{
-            textAlign: "center",
-            marginTop: "0.75rem",
-            fontSize: "1.5rem",
+            marginTop: "1rem",
+            display: "grid",
+            gridColumnGap: "3rem",
+            gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))",
           }}
         >
-          <label style={{ fontStyle: "italic" }}>
-            <Translator getString="Daily Calories: " />
-          </label>
-          <label style={{ marginLeft: "0.75rem", fontWeight: "700" }}>
-            {caloriesPerDay}
-          </label>
+          <FormLabel label="Total calories: " value={caloriesPerDay} />
+          <FormLabel
+            label="Total carbohydrates: "
+            value={carbohydratesPerDay}
+          />
+          <FormLabel label="Total fats: " value={fatsPerDay} />
+          <FormLabel label="Total proteins: " value={proteinsPerDay} />
         </div>
       </div>
       <AutoCompleteBoxNew
-        handleSubmit={handleAutocompleteOptionChoose}
+        handleSubmit={handleAutocompleteOptionChosen}
         data={products}
+        clearOnSelect={true}
+      />
+      <DailyNutritionModal
+        nutrition={currentNutrition}
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        onAdd={handleAddNutrition}
       />
       {selectedNutritions &&
         selectedNutritions.map((nutrition) => {
           return (
-            <div>
-              <label>{nutrition.name + ", " + nutrition.description}</label>
-              <div>
-                <input type="number" />x
-              </div>
-            </div>
+            <DailyNutritionSelected
+              nutrition={nutrition}
+              handleDelete={handleDelete}
+            />
           );
         })}
     </div>

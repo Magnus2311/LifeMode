@@ -40,3 +40,7 @@ export const ADD_ITEMINCART = "ADD_ITEMINCART";
 export const EMPTY = "EMPTY";
 export const UPDATE_SHOPITEM = "UPDATE_SHOPITEM";
 export const ADD = "ADD";
+
+export const ADD_NUTRITION = "ADD_NUTRITION";
+export const LOAD_NUTRITIONS = "LOAD_NUTRITIONS";
+export const DELETE_NUTRITION = "DELETE_NUTRITION";
