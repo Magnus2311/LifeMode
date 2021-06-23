@@ -6,7 +6,9 @@ import { Translator } from "../languages/Laguage";
 const baseUrl = "/api/users/";
 
 export const authenticate = () => {
-  return get(baseUrl + "getUsername")
+  return fetch(baseUrl + "getUsername", {
+    method: "GET",
+  })
     .then(handleResponse)
     .then((userResponse) => {
       return userResponse;

@@ -10,8 +10,13 @@ import DailyNutritionModal from "./DailyNutritionModal";
 import { formatDecimalNumber } from "../../../services/helpers/numbers";
 import FormLabel from "../../common/FormLabel";
 import DailyNutritionSelected from "./DailyNutritionSelected";
+import * as dailyNutritions from "../../../redux/actions/nutritions/dailyNutritions";
 
-const DailyNutritionPage = ({ products }) => {
+const DailyNutritionPage = ({
+  products,
+  onNutritionsLoad,
+  onNutritionAdded,
+}) => {
   const NUTRITION_DAILY_DATE = "nutrition-daily-date";
   const [date, setDate] = useState(new Date());
   const [currentNutrition, setCurrentNutrition] = useState({});
@@ -24,8 +29,13 @@ const DailyNutritionPage = ({ products }) => {
 
   useEffect(() => {
     const lastDate = getWithExpiry(NUTRITION_DAILY_DATE);
-    lastDate && setDate(lastDate);
-  }, []);
+    if (lastDate) {
+      setDate(lastDate);
+      onNutritionsLoad(lastDate);
+    } else {
+      onNutritionsLoad(date);
+    }
+  }, [date, onNutritionsLoad]);
 
   const setNewDate = (date) => {
     setDate(date);
@@ -43,6 +53,7 @@ const DailyNutritionPage = ({ products }) => {
   const handleAddNutrition = (nutrition) => {
     const selectedNutritionsTemp = [...selectedNutritions, nutrition];
     setAllNutritionsData(selectedNutritionsTemp);
+    onNutritionAdded(nutrition);
   };
 
   const handleDelete = (nutrition) => {
@@ -53,6 +64,7 @@ const DailyNutritionPage = ({ products }) => {
 
     ~removeIndex && selectedNutritionsTemp.splice(removeIndex, 1);
     setAllNutritionsData(selectedNutritionsTemp);
+    dailyNutritions.deleteNutrition(nutrition.id);
   };
 
   const setAllNutritionsData = (selectedNutritionsTemp) => {
@@ -183,7 +195,14 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    onNutritionsLoad: (date) => {
+      dispatch(dailyNutritions.loadNutritions(date));
+    },
+    onNutritionAdded: (nutrition) => {
+      dispatch(dailyNutritions.addNutrition(nutrition));
+    },
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DailyNutritionPage);

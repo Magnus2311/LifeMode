@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import ProductPreview from "./ProductPreview";
 import "../../../css/products.css";
 import ChosenCategories from "../../common/Categories/ChosenCategories";
-import "../../../css/products.scss";
 import Loader from "../../common/Loader";
 
 const ProductsListPage = (props) => {

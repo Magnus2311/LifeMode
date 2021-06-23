@@ -23,15 +23,21 @@ export const deleteNutritionSuccess = (nutritionId) => {
   };
 };
 
-export const loadNutritions = () => {
+export const loadNutritions = (date) => {
   return function (dispatch) {
     return webApi
-      .getDailyNutritions()
-      .then((nutritions) => {
-        dispatch(loadNutritionsSuccess(nutritions));
+      .getDailyNutritions(JSON.stringify(date))
+      .then((response) => {
+        if (response.ok) {
+          response.json().then((nutritions) => {
+            debugger;
+            dispatch(loadNutritionsSuccess(nutritions));
+          });
+        }
       })
       .catch((error) => {
         toast.error("Loading nutritions failed!");
+        console.log(error);
         throw error;
       });
   };
