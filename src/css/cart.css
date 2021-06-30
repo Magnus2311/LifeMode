@@ -48,7 +48,7 @@
 .delete-btn {
   width: 80px;
   height: 30px;
-  background: url("/images/shoppingCart/delete.png") no-repeat center;
+  background: url("../assets/images/shoppingCart/delete.png") no-repeat center;
 }
 .is-active {
   animation-name: animate;

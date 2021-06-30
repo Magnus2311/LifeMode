@@ -18,7 +18,8 @@ const DailyNutritionPage = ({
   onNutritionAdded,
 }) => {
   const NUTRITION_DAILY_DATE = "nutrition-daily-date";
-  const [date, setDate] = useState(new Date());
+  const lastDate = getWithExpiry(NUTRITION_DAILY_DATE);
+  const [date, setDate] = useState(lastDate ?? new Date());
   const [currentNutrition, setCurrentNutrition] = useState({});
   const [selectedNutritions, setSelectedNutritions] = useState([]);
   const [caloriesPerDay, setCaloriesPerDay] = useState(0);
@@ -28,17 +29,17 @@ const DailyNutritionPage = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    const lastDate = getWithExpiry(NUTRITION_DAILY_DATE);
     if (lastDate) {
-      setDate(lastDate);
-      onNutritionsLoad(lastDate);
+      const tempData = new Date(lastDate);
+      onNutritionsLoad(tempData);
     } else {
       onNutritionsLoad(date);
     }
-  }, [date, onNutritionsLoad]);
+  }, [date, onNutritionsLoad, lastDate]);
 
   const setNewDate = (date) => {
-    setDate(date);
+    debugger;
+    setDate(new Date(date));
     setWithExpiry(NUTRITION_DAILY_DATE, date, 300000);
   };
 
@@ -53,7 +54,7 @@ const DailyNutritionPage = ({
   const handleAddNutrition = (nutrition) => {
     const selectedNutritionsTemp = [...selectedNutritions, nutrition];
     setAllNutritionsData(selectedNutritionsTemp);
-    onNutritionAdded(nutrition);
+    onNutritionAdded(date, nutrition);
   };
 
   const handleDelete = (nutrition) => {
@@ -128,7 +129,11 @@ const DailyNutritionPage = ({
               <i
                 className="arrow arrow-left"
                 onClick={() =>
-                  setNewDate(new Date().setDate(new Date(date).getDate() - 1))
+                  setNewDate(
+                    new Date(
+                      new Date().setDate(new Date(date).getDate() - 1) * 1
+                    )
+                  )
                 }
               ></i>
             </p>
@@ -141,7 +146,11 @@ const DailyNutritionPage = ({
               <i
                 className="arrow arrow-right"
                 onClick={() =>
-                  setNewDate(new Date().setDate(new Date(date).getDate() + 1))
+                  setNewDate(
+                    new Date(
+                      new Date().setDate(new Date(date).getDate() + 1) * 1
+                    )
+                  )
                 }
               ></i>
             </p>
@@ -155,13 +164,13 @@ const DailyNutritionPage = ({
             gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))",
           }}
         >
-          <FormLabel label="Total calories: " defaultValue={caloriesPerDay} />
+          <FormLabel label="Total calories: " value={caloriesPerDay} />
           <FormLabel
             label="Total carbohydrates: "
-            defaultValue={carbohydratesPerDay}
+            value={carbohydratesPerDay}
           />
-          <FormLabel label="Total fats: " defaultValue={fatsPerDay} />
-          <FormLabel label="Total proteins: " defaultValue={proteinsPerDay} />
+          <FormLabel label="Total fats: " value={fatsPerDay} />
+          <FormLabel label="Total proteins: " value={proteinsPerDay} />
         </div>
       </div>
       <AutoCompleteBoxNew
@@ -200,8 +209,8 @@ const mapDispatchToProps = (dispatch) => {
     onNutritionsLoad: (date) => {
       dispatch(dailyNutritions.loadNutritions(date));
     },
-    onNutritionAdded: (nutrition) => {
-      dispatch(dailyNutritions.addNutrition(nutrition));
+    onNutritionAdded: (date, nutrition) => {
+      dispatch(dailyNutritions.addNutrition(date, nutrition));
     },
   };
 };

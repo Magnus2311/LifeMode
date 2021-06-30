@@ -2,16 +2,18 @@ import * as actionTypes from "../actionTypes";
 import * as webApi from "../../../api/nutritions";
 import { toast } from "react-toastify";
 
-export const addNutritionSuccess = (nutrition) => {
+export const addNutritionSuccess = (date, nutrition) => {
   return {
     type: actionTypes.ADD_NUTRITION,
+    date,
     nutrition,
   };
 };
 
-export const loadNutritionsSuccess = (nutritions) => {
+export const loadNutritionsSuccess = (date, nutritions) => {
   return {
     type: actionTypes.LOAD_NUTRITIONS,
+    date,
     nutritions,
   };
 };
@@ -30,7 +32,7 @@ export const loadNutritions = (date) => {
       .then((response) => {
         if (response.ok) {
           response.json().then((nutritions) => {
-            dispatch(loadNutritionsSuccess(nutritions));
+            dispatch(loadNutritionsSuccess(date, nutritions));
           });
         }
       })
@@ -42,12 +44,12 @@ export const loadNutritions = (date) => {
   };
 };
 
-export const addNutrition = (nutrition) => {
+export const addNutrition = (date, nutrition) => {
   return function (dispatch) {
     return webApi
       .addDailyNutrition(nutrition)
       .then((nutrition) => {
-        dispatch(addNutritionSuccess(nutrition));
+        dispatch(addNutritionSuccess(date, nutrition));
         return nutrition;
       })
       .catch((error) => {

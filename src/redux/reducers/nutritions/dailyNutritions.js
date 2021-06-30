@@ -1,11 +1,21 @@
 import * as actionTypes from "../../actions/actionTypes";
 
-export default function nutritionsReducer(nutritions = [], action) {
+export default function nutritionsReducer(nutritions = {}, action) {
   switch (action.type) {
     case actionTypes.LOAD_NUTRITIONS:
-      return [...action.nutritions];
+      return Object.assign({}, nutritions, {
+        nutritions: [
+          ...nutritions.nutritions,
+          { [action.date]: action.nutritions },
+        ],
+      });
     case actionTypes.ADD_NUTRITION:
-      return [...nutritions, action.nutrition];
+      return Object.assign({}, nutritions, {
+        nutritions: [
+          ...nutritions.nutritions,
+          { [action.date]: action.nutrition },
+        ],
+      });
     case actionTypes.DELETE_NUTRITION:
       const nutritionToDelete = nutritions.filter(
         (n) => n.id === action.nutritionId
