@@ -84,18 +84,22 @@ const DailyNutritionSelected = ({ nutrition, handleDelete }) => {
       >
         <FormLabel
           label="Calories: "
-          value={calories}
+          defaultValue={calories}
           style={{ height: "1.1rem" }}
         />
         <FormLabel
           label="Carbohydrates: "
-          value={carbohydrates}
+          defaultValue={carbohydrates}
           style={{ height: "1.1rem" }}
         />
-        <FormLabel label="Fats: " value={fats} style={{ height: "1.1rem" }} />
+        <FormLabel
+          label="Fats: "
+          defaultValue={fats}
+          style={{ height: "1.1rem" }}
+        />
         <FormLabel
           label="Proteins: "
-          value={proteins}
+          defaultValue={proteins}
           style={{ height: "1.1rem" }}
         />
       </div>

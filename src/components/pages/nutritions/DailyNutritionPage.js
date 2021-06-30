@@ -155,13 +155,13 @@ const DailyNutritionPage = ({
             gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))",
           }}
         >
-          <FormLabel label="Total calories: " value={caloriesPerDay} />
+          <FormLabel label="Total calories: " defaultValue={caloriesPerDay} />
           <FormLabel
             label="Total carbohydrates: "
-            value={carbohydratesPerDay}
+            defaultValue={carbohydratesPerDay}
           />
-          <FormLabel label="Total fats: " value={fatsPerDay} />
-          <FormLabel label="Total proteins: " value={proteinsPerDay} />
+          <FormLabel label="Total fats: " defaultValue={fatsPerDay} />
+          <FormLabel label="Total proteins: " defaultValue={proteinsPerDay} />
         </div>
       </div>
       <AutoCompleteBoxNew
@@ -179,6 +179,7 @@ const DailyNutritionPage = ({
         selectedNutritions.map((nutrition) => {
           return (
             <DailyNutritionSelected
+              key={nutrition.id}
               nutrition={nutrition}
               handleDelete={handleDelete}
             />

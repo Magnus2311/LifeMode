@@ -2,8 +2,8 @@ import { handleResponse, handleError } from "./apiUtils";
 const baseUrl = "/api/nutritions";
 
 export function addDailyNutrition(nutrition) {
-  return fetch(baseUrl + (nutrition.id || ""), {
-    method: nutrition.id ? "PUT" : "POST", // POST for create, PUT to update when id already exists.
+  return fetch(baseUrl, {
+    method: "POST", // POST for create, PUT to update when id already exists.
     headers: {
       "content-type": "application/json",
       mode: "cors",
@@ -11,13 +11,16 @@ export function addDailyNutrition(nutrition) {
       credentials: "include",
     },
     body: JSON.stringify(nutrition),
-  })
-    .then(handleResponse)
-    .catch(handleError);
+  }).then((response) => {
+    if (response.ok) {
+      response.json().then((nutrition) => nutrition);
+    }
+  });
 }
 
 export function getDailyNutritions(currentDate) {
-  return fetch(`${baseUrl}/get-for-day/${currentDate}`, {
+  debugger;
+  return fetch(`${baseUrl}/get-for-day?date=${currentDate}`, {
     method: "GET",
     mode: "cors",
     cache: "no-cache",

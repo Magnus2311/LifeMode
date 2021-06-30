@@ -26,11 +26,10 @@ export const deleteNutritionSuccess = (nutritionId) => {
 export const loadNutritions = (date) => {
   return function (dispatch) {
     return webApi
-      .getDailyNutritions(JSON.stringify(date))
+      .getDailyNutritions(date.toJSON())
       .then((response) => {
         if (response.ok) {
           response.json().then((nutritions) => {
-            debugger;
             dispatch(loadNutritionsSuccess(nutritions));
           });
         }
