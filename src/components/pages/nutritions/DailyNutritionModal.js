@@ -22,7 +22,6 @@ const DailyNutritionModal = ({
     const currWeight = e.target.value;
     setWeight(currWeight);
     const multiplier = currWeight / 100;
-    debugger;
     setTotalCarbohydrates(formatDecimalNumber(multiplier * carbohydrates));
     setTotalCalories(formatDecimalNumber(multiplier * calories));
     setTotalFats(formatDecimalNumber(multiplier * fats));
